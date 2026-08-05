@@ -1,0 +1,343 @@
+/* Google Fonts — must be FIRST before any @tailwind directives */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ──────────────────────────────────────────────────────────────
+   CSS Variables — theme tokens
+────────────────────────────────────────────────────────────── */
+:root {
+  /* Dark theme defaults */
+  --bg-base:      #0B0F1E;
+  --bg-surface:   #111827;
+  --bg-elevated:  #141D32;
+  --bg-overlay:   #1A2340;
+  --border:       #2A3560;
+  --border-light: #3A4870;
+  --text-primary:   #F0EDE6;
+  --text-secondary: #9AA3BD;
+  --text-muted:     #5E6780;
+  --gold:     #C9A84C;
+  --gold-glow:#C9A84C40;
+  --gold-soft:#C9A84C18;
+  --pulse:    #3FBFAD;
+  --alert:    #E8615A;
+  --success:  #3DBF7A;
+  color-scheme: dark;
+}
+
+.light {
+  --bg-base:      #FAF8F3;
+  --bg-surface:   #FDFCF9;
+  --bg-elevated:  #F4F0E6;
+  --bg-overlay:   #EDE7D8;
+  --border:       #D5CCBA;
+  --border-light: #C5BAA0;
+  --text-primary:   #1A1409;
+  --text-secondary: #5A4E35;
+  --text-muted:     #8C7D60;
+  --gold:     #B8912F;
+  --gold-glow:#B8912F35;
+  --gold-soft:#B8912F12;
+  --pulse:    #2EA090;
+  --alert:    #D44B44;
+  --success:  #2EA060;
+  color-scheme: light;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Base reset
+────────────────────────────────────────────────────────────── */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Pulse / heartbeat mark animation
+────────────────────────────────────────────────────────────── */
+.pulse-line {
+  stroke: var(--gold);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: pulseDraw 2.4s ease-in-out infinite;
+}
+@keyframes pulseDraw {
+  0%   { stroke-dashoffset: 220;  opacity: 0.3; }
+  50%  { stroke-dashoffset: 0;    opacity: 1;   }
+  100% { stroke-dashoffset: -220; opacity: 0.3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-line { animation: none; stroke-dashoffset: 0; opacity: 0.8; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Component utilities
+────────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full rounded-xl px-4 py-2.5 text-sm outline-none transition-all duration-200;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  .input::placeholder {
+    color: var(--text-muted);
+  }
+  .input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-soft);
+  }
+  select.input {
+    cursor: pointer;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 font-semibold text-sm rounded-xl px-5 py-2.5 transition-all duration-200 overflow-hidden;
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C55C 50%, #B8912F 100%);
+    color: #1A1409;
+    box-shadow: 0 4px 16px var(--gold-glow), inset 0 1px 0 #FFFFFF40;
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px var(--gold-glow), inset 0 1px 0 #FFFFFF40;
+    filter: brightness(1.08);
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    filter: brightness(0.95);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  /* shimmer effect on btn-primary */
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, #FFFFFF30 50%, transparent 60%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 font-medium text-sm rounded-xl px-5 py-2.5 transition-all duration-200;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-1px);
+  }
+  .btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 font-medium text-sm rounded-xl px-4 py-2 transition-all duration-200;
+    color: var(--text-muted);
+  }
+  .btn-ghost:hover {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply rounded-2xl p-5 transition-all duration-200;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+  }
+  .card-elevated {
+    @apply rounded-2xl p-5 transition-all duration-200;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+  }
+  .card-glass {
+    @apply rounded-2xl p-5 backdrop-blur-sm transition-all duration-200;
+    background: rgba(var(--bg-surface-rgb, 17,24,39), 0.7);
+    border: 1px solid var(--border);
+  }
+  .card-hover:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold-soft), 0 8px 32px var(--gold-glow);
+    transform: translateY(-2px);
+  }
+  .card-gold {
+    @apply rounded-2xl p-5;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold-glow);
+  }
+
+  /* ── Labels / Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1.5 text-2xs font-mono font-semibold uppercase tracking-widest rounded-full px-3 py-1;
+  }
+  .badge-gold {
+    background: var(--gold-soft);
+    color: var(--gold);
+    border: 1px solid var(--gold-glow);
+  }
+  .badge-alert {
+    @apply bg-alert/10 text-alert border border-alert/30;
+  }
+  .badge-success {
+    @apply bg-success/10 text-success border border-success/30;
+  }
+  .badge-warning {
+    @apply bg-warning/10 text-warning border border-warning/30;
+  }
+  .badge-pulse {
+    @apply bg-pulse/10 text-pulse border border-pulse/30;
+  }
+
+  /* ── Dividers ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
+  }
+
+  /* ── Section headers ── */
+  .section-label {
+    @apply text-2xs font-mono font-semibold uppercase tracking-widest;
+    color: var(--gold);
+  }
+
+  /* ── Gradient text ── */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C9A84C 0%, #E8C55C 50%, #D4A93E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .light .text-gradient-gold {
+    background: linear-gradient(135deg, #8A6620 0%, #C9A84C 50%, #7A5C18 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Global animated background glow
+────────────────────────────────────────────────────────────── */
+.bg-glow::before {
+  content: '';
+  position: fixed;
+  top: -30%;
+  right: -20%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse, #C9A84C12 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-glow::after {
+  content: '';
+  position: fixed;
+  bottom: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(ellipse, #3FBFAD0A 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Scrollbar
+────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+
+/* ──────────────────────────────────────────────────────────────
+   Selection
+────────────────────────────────────────────────────────────── */
+::selection { background: var(--gold-glow); }
+
+/* ──────────────────────────────────────────────────────────────
+   Focus ring
+────────────────────────────────────────────────────────────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Animations utility classes
+────────────────────────────────────────────────────────────── */
+.animate-fade-in   { animation: fadeIn 0.4s ease-out both; }
+.animate-slide-up  { animation: slideUp 0.45s ease-out both; }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Stagger delays for list items */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.10s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.20s; }
+.stagger-5 { animation-delay: 0.25s; }
+
+/* ──────────────────────────────────────────────────────────────
+   Typing indicator (chat)
+────────────────────────────────────────────────────────────── */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: typingBounce 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50%       { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Chart tooltip theme
+────────────────────────────────────────────────────────────── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  border-radius: 12px !important;
+}
