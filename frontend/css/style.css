@@ -1,0 +1,505 @@
+/* ==================================================
+   VentureIQ — style.css
+   Design tokens + landing page styles.
+   This file is the single source of truth for colors,
+   spacing and shape — every other page reuses these
+   CSS variables, so keep them updated here only.
+================================================== */
+
+/* -------------------- 1. DESIGN TOKENS -------------------- */
+:root {
+  /* Gold palette (flat — used for text, icons, borders) */
+  --color-gold: #C9A24B;
+  --color-gold-light: #E8D9AE;
+  --color-gold-dark: #9C7B2E;
+
+  /* Base palette */
+  --color-white: #FFFFFF;
+  --color-offwhite: #FAF9F6;
+  --color-charcoal: #1F1F1F;
+  --color-gray: #6B6B6B;
+  --color-gray-light: #9C9994;
+  --color-border: #EAE6DC;
+
+  /* Status colors */
+  --color-success: #3D8B5F;
+  --color-warning: #C97B2E;
+  --color-danger: #B94A3D;
+
+  /* Gold gradient — reserved for hero/nav/CTA "chrome",
+     never used as a body/card background */
+  --gradient-gold: linear-gradient(135deg, #7A5A1E 0%, #D4AF6A 50%, #F0DDA8 100%);
+
+  /* Shape */
+  --radius-card: 16px;
+  --radius-btn: 8px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-sm: 0 2px 10px rgba(31, 31, 31, 0.05);
+  --shadow-card: 0 4px 24px rgba(31, 31, 31, 0.07);
+  --shadow-lift: 0 12px 32px rgba(154, 118, 43, 0.18);
+
+  /* Type */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Layout */
+  --container-width: 1200px;
+  --nav-height: 76px;
+}
+
+/* -------------------- 2. RESET -------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-charcoal);
+  background: var(--color-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { text-decoration: none; color: inherit; }
+
+ul { list-style: none; }
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-gold-dark);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--color-charcoal); }
+
+.text-gold { color: var(--color-gold-dark); }
+
+/* -------------------- 3. REUSABLE COMPONENTS -------------------- */
+
+/* Eyebrow label — small caps tag above section titles */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  margin-bottom: 14px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+.btn--sm { padding: 9px 18px; font-size: 14px; }
+.btn--lg { padding: 15px 32px; font-size: 16px; }
+
+.btn--primary {
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+.btn--primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-charcoal);
+  border: 1.5px solid var(--color-border);
+}
+.btn--outline:hover { border-color: var(--color-gold-dark); color: var(--color-gold-dark); }
+
+.btn--dark {
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+.btn--dark:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.25); }
+
+/* Status badge pill */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.badge--good { background: rgba(61, 139, 95, 0.12); color: var(--color-success); }
+.badge--medium { background: rgba(201, 123, 46, 0.12); color: var(--color-warning); }
+.badge--low { background: rgba(185, 74, 61, 0.12); color: var(--color-danger); }
+
+/* Generic card base — extended across the site */
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Section spacing */
+.section { padding: 96px 0; }
+.section--offwhite { background: var(--color-offwhite); }
+
+.section__header { max-width: 620px; margin: 0 auto 56px; text-align: center; }
+.section__title { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.2; margin-bottom: 14px; }
+.section__subtitle { color: var(--color-gray); font-size: 17px; }
+
+/* Scroll-reveal utility (JS toggles .is-visible) */
+[data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+/* -------------------- 4. NAVBAR -------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow 0.2s ease;
+}
+.navbar.is-scrolled { box-shadow: var(--shadow-sm); }
+
+.navbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand__mark { width: 38px; height: 38px; flex-shrink: 0; }
+.brand__name { font-family: var(--font-display); font-weight: 800; font-size: 20px; color: var(--color-charcoal); }
+.brand__name--accent { color: var(--color-gold-dark); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links__link { font-weight: 500; font-size: 15px; color: var(--color-charcoal); transition: color 0.15s ease; }
+.nav-links__link:hover { color: var(--color-gold-dark); }
+
+.nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+.nav-toggle__bar { width: 22px; height: 2px; background: var(--color-charcoal); transition: transform 0.2s ease, opacity 0.2s ease; }
+
+/* -------------------- 5. HERO -------------------- */
+.hero { padding: 72px 0 100px; overflow: hidden; }
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero__heading {
+  font-size: clamp(34px, 4.6vw, 54px);
+  line-height: 1.14;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.hero__subtext { font-size: 17px; color: var(--color-gray); max-width: 480px; margin-bottom: 32px; }
+
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+
+.hero__stats { display: flex; gap: 40px; }
+.hero__stat { display: flex; flex-direction: column; }
+.hero__stat-value { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--color-charcoal); }
+.hero__stat-label { font-size: 13px; color: var(--color-gray); }
+
+/* Hero abstract orbit visual */
+.hero__visual { display: flex; justify-content: center; }
+.orbit { width: 100%; max-width: 460px; }
+
+.orbit__ring { fill: none; stroke: var(--color-border); stroke-width: 1; }
+.orbit__ring--2 { stroke-dasharray: 4 6; }
+
+.orbit__lines line { stroke: var(--color-gold-light); stroke-width: 1.5; }
+
+.orbit__core-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  fill: var(--color-white);
+}
+
+.orbit__node circle {
+  fill: var(--color-white);
+  stroke: var(--color-gold-light);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 6px 14px rgba(154, 118, 43, 0.16));
+}
+.orbit__node-icon {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 18px;
+  fill: var(--color-gold-dark);
+}
+.orbit__node-label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--color-charcoal);
+}
+
+/* Slow ambient rotation for the orbit rings — subtle, not distracting */
+.orbit__ring--2 { animation: spin 40s linear infinite; transform-origin: 240px 240px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .orbit__ring--2 { animation: none; } }
+
+/* -------------------- 6. FEATURES -------------------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  padding: 32px 26px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-gold-light);
+}
+
+.feature-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  color: var(--color-white);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.feature-card__title { font-size: 18px; margin-bottom: 10px; }
+.feature-card__text { font-size: 14.5px; color: var(--color-gray); }
+
+/* -------------------- 7. STEPPER (How It Works) -------------------- */
+.stepper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stepper__step { flex: 1; text-align: center; }
+
+.stepper__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gold);
+  color: var(--color-gold-dark);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.stepper__title { font-size: 16px; margin-bottom: 6px; }
+.stepper__text { font-size: 14px; color: var(--color-gray); max-width: 220px; margin: 0 auto; }
+
+.stepper__connector {
+  flex: 0 0 auto;
+  width: 60px;
+  height: 1.5px;
+  background: var(--color-border);
+  margin-top: 22px;
+}
+
+/* -------------------- 8. ANALYSIS PREVIEW -------------------- */
+.preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.preview__list { margin: 24px 0 32px; display: flex; flex-direction: column; gap: 12px; }
+.preview__list li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--color-charcoal); }
+.preview__list i { color: var(--color-success); }
+
+.preview__card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+}
+
+.preview__card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; font-weight: 600; }
+
+/* Circular score indicator */
+.score-ring { position: relative; width: 140px; height: 140px; margin: 0 auto 28px; }
+.score-ring svg { transform: rotate(-90deg); }
+.score-ring__track { fill: none; stroke: var(--color-offwhite); stroke-width: 10; }
+.score-ring__fill {
+  fill: none;
+  stroke: var(--color-gold);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease;
+}
+.score-ring__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-ring__value { font-family: var(--font-display); font-size: 34px; font-weight: 800; color: var(--color-charcoal); }
+.score-ring__max { font-size: 12px; color: var(--color-gray); }
+
+.preview__metrics { display: flex; flex-direction: column; gap: 16px; }
+.metric__head { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--color-gray); }
+.metric__head span:last-child { color: var(--color-charcoal); font-weight: 600; }
+.metric__bar { height: 6px; border-radius: var(--radius-pill); background: var(--color-offwhite); overflow: hidden; }
+.metric__bar span { display: block; height: 100%; background: var(--gradient-gold); border-radius: var(--radius-pill); }
+
+/* -------------------- 9. WHY VENTUREIQ -------------------- */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+}
+
+.why-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-gold-light);
+  color: var(--color-gold-dark);
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+.why-item h3 { font-size: 16.5px; margin-bottom: 8px; }
+.why-item p { font-size: 14.5px; color: var(--color-gray); }
+
+/* -------------------- 10. CTA -------------------- */
+.cta { background: var(--gradient-gold); padding: 88px 0; }
+.cta__inner { text-align: center; max-width: 560px; }
+.cta__heading { font-size: clamp(26px, 3.2vw, 38px); color: var(--color-white); margin-bottom: 12px; }
+.cta__subtext { color: rgba(255,255,255,0.85); margin-bottom: 32px; font-size: 16px; }
+
+/* -------------------- 11. FOOTER -------------------- */
+.footer { background: var(--color-charcoal); color: rgba(255,255,255,0.7); padding: 64px 0 0; }
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer__brand .brand__name { color: var(--color-white); }
+.footer__brand p { margin-top: 8px; font-size: 14px; }
+
+.footer__col h4 { color: var(--color-white); font-size: 14px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
+.footer__col { display: flex; flex-direction: column; gap: 10px; }
+.footer__col a { font-size: 14.5px; transition: color 0.15s ease; }
+.footer__col a:hover { color: var(--color-gold-light); }
+
+.footer__bottom { text-align: center; padding: 24px 0; font-size: 13px; }
+
+/* -------------------- 12. RESPONSIVE -------------------- */
+
+/* Tablet */
+@media (max-width: 960px) {
+  .hero__inner { grid-template-columns: 1fr; text-align: center; }
+  .hero__subtext { margin-left: auto; margin-right: auto; }
+  .hero__actions { justify-content: center; }
+  .hero__stats { justify-content: center; }
+  .hero__visual { order: -1; max-width: 360px; margin: 0 auto; }
+
+  .preview { grid-template-columns: 1fr; }
+
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+
+/* Mobile nav + stepper stacking */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 24px 28px;
+    gap: 18px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-links.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .nav-links .btn { align-self: flex-start; }
+
+  .nav-toggle { display: flex; }
+
+  .stepper { flex-direction: column; align-items: center; }
+  .stepper__connector { width: 1.5px; height: 32px; }
+
+  .section { padding: 64px 0; }
+}
+
+@media (max-width: 480px) {
+  .hero__stats { gap: 24px; flex-wrap: wrap; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+}
