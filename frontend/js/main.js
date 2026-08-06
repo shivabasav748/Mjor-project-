@@ -1,129 +1,437 @@
-/* ==================================================
-   VentureIQ — main.js
-   Handles all landing page interactions:
-   - navbar scroll shadow
-   - mobile menu open/close
-   - smooth scroll for in-page links
-   - scroll-reveal animation for sections
-   - dynamic footer year
-   - animated score ring / metric bars on the preview card
-================================================== */
+/* =========================================================
+   VENTUREIQ MAIN JAVASCRIPT
+   ========================================================= */
 
-document.addEventListener('DOMContentLoaded', function () {
 
-  /* -------------------- Navbar scroll shadow -------------------- */
-  // Adds a subtle shadow to the navbar once the page has been scrolled,
-  // so it feels "lifted" above the content instead of flat.
-  const navbar = document.getElementById('navbar');
+/* =========================================================
+   PAGE LOADER
+   ========================================================= */
 
-  function handleNavbarScroll() {
-    if (window.scrollY > 8) {
-      navbar.classList.add('is-scrolled');
-    } else {
-      navbar.classList.remove('is-scrolled');
-    }
-  }
-  handleNavbarScroll();
-  window.addEventListener('scroll', handleNavbarScroll);
+window.addEventListener("load", function () {
 
-  /* -------------------- Mobile menu toggle -------------------- */
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
+  const loader = document.getElementById("pageLoader");
 
-  navToggle.addEventListener('click', function () {
-    const isOpen = navLinks.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
+  setTimeout(function () {
 
-  // Close the mobile menu automatically when a link inside it is clicked
-  navLinks.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      navLinks.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
+    loader.classList.add("hide");
 
-  /* -------------------- Smooth scroll for in-page anchors -------------------- */
-  // Only intercepts links that point to an on-page section (start with "#").
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId.length <= 1) return; // ignore bare "#" links
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-      const offset = document.getElementById('navbar').offsetHeight;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    });
-  });
-
-  /* -------------------- Scroll-reveal animation -------------------- */
-  // Any element with [data-reveal] fades/slides in once it enters the viewport.
-  const revealItems = document.querySelectorAll('[data-reveal]');
-
-  const revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target); // animate once only
-      }
-    });
-  }, { threshold: 0.15 });
-
-  revealItems.forEach(function (item) {
-    revealObserver.observe(item);
-  });
-
-  /* -------------------- Animate the sample score ring + metric bars -------------------- */
-  // The preview card uses sample/mock data only (per project spec).
-  // We animate it in once it scrolls into view, so it feels alive rather than static.
-  const previewCard = document.querySelector('.preview__card');
-
-  if (previewCard) {
-    const scoreObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-
-        // Animate the circular score ring from empty to its target value.
-        const ringFill = previewCard.querySelector('.score-ring__fill');
-        const circumference = 2 * Math.PI * 60; // r = 60, matches the SVG circle
-        const targetScore = 82; // sample viability score out of 100
-
-        ringFill.style.strokeDasharray = circumference;
-        ringFill.style.strokeDashoffset = circumference; // start empty
-
-        // Trigger the transition on the next frame so the browser registers
-        // the starting state before animating to the target.
-        requestAnimationFrame(function () {
-          const offset = circumference - (targetScore / 100) * circumference;
-          ringFill.style.strokeDashoffset = offset;
-        });
-
-        // Metric bars: animate width from 0 to their sample target value.
-        previewCard.querySelectorAll('.metric__bar span').forEach(function (bar) {
-          const targetWidth = bar.style.width;
-          bar.style.width = '0%';
-          requestAnimationFrame(function () {
-            bar.style.transition = 'width 1s ease';
-            bar.style.width = targetWidth;
-          });
-        });
-
-        scoreObserver.unobserve(previewCard); // animate once only
-      });
-    }, { threshold: 0.3 });
-
-    scoreObserver.observe(previewCard);
-  }
-
-  /* -------------------- Footer year -------------------- */
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+  }, 700);
 
 });
+
+
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+const themeToggle = document.getElementById("themeToggle");
+
+const savedTheme = localStorage.getItem("ventureiq-theme");
+
+
+if (savedTheme === "light") {
+
+  document.body.classList.add("light-theme");
+
+}
+
+
+function updateThemeIcon() {
+
+  if (!themeToggle) return;
+
+  if (document.body.classList.contains("light-theme")) {
+
+    themeToggle.innerHTML =
+      '<i class="fa-solid fa-moon"></i>';
+
+  } else {
+
+    themeToggle.innerHTML =
+      '<i class="fa-solid fa-sun"></i>';
+
+  }
+
+}
+
+
+updateThemeIcon();
+
+
+if (themeToggle) {
+
+  themeToggle.addEventListener("click", function () {
+
+    document.body.classList.toggle("light-theme");
+
+    const isLight =
+      document.body.classList.contains("light-theme");
+
+
+    localStorage.setItem(
+      "ventureiq-theme",
+      isLight ? "light" : "dark"
+    );
+
+
+    updateThemeIcon();
+
+  });
+
+}
+
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+const mobileButton =
+  document.getElementById("mobileMenuButton");
+
+const mobileNav =
+  document.getElementById("mobileNav");
+
+
+if (mobileButton) {
+
+  mobileButton.addEventListener("click", function () {
+
+    mobileNav.classList.toggle("open");
+
+  });
+
+}
+
+
+document.querySelectorAll(".mobile-nav a").forEach(function (link) {
+
+  link.addEventListener("click", function () {
+
+    mobileNav.classList.remove("open");
+
+  });
+
+});
+
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+const revealElements =
+  document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+  new IntersectionObserver(
+
+    function (entries) {
+
+      entries.forEach(function (entry) {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add("visible");
+
+          revealObserver.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+
+    {
+      threshold: 0.12
+    }
+
+  );
+
+
+revealElements.forEach(function (element) {
+
+  revealObserver.observe(element);
+
+});
+
+
+
+/* =========================================================
+   PROCESS DATA
+   ========================================================= */
+
+const processData = {
+
+  1: {
+
+    number: "01",
+
+    icon: "fa-lightbulb",
+
+    label: "INPUT",
+
+    title: "Describe your startup idea",
+
+    text:
+      "Start with what you know. Explain the problem, your proposed solution, who it helps and why you believe it matters.",
+
+    preview:
+      '"An AI-powered financial coach that helps gig workers manage irregular income..."'
+
+  },
+
+
+  2: {
+
+    number: "02",
+
+    icon: "fa-brain",
+
+    label: "UNDERSTAND",
+
+    title: "AI understands the concept",
+
+    text:
+      "VentureIQ structures your idea into a clear startup hypothesis so the intelligence engine can evaluate the important dimensions.",
+
+    preview:
+      '"AI is structuring the problem, solution, audience and value proposition..."'
+
+  },
+
+
+  3: {
+
+    number: "03",
+
+    icon: "fa-chart-line",
+
+    label: "ANALYSIS",
+
+    title: "Intelligence layers activate",
+
+    text:
+      "Market, competition, viability and strategic intelligence layers work together to build a complete view of your opportunity.",
+
+    preview:
+      '"Market + Competition + Viability + Strategy analysis activated..."'
+
+  },
+
+
+  4: {
+
+    number: "04",
+
+    icon: "fa-file-lines",
+
+    label: "REPORT",
+
+    title: "Review your intelligence report",
+
+    text:
+      "Explore the structured findings and understand where your startup idea is strong and where risks or opportunities exist.",
+
+    preview:
+      '"Your VentureIQ intelligence report is ready for review..."'
+
+  },
+
+
+  5: {
+
+    number: "05",
+
+    icon: "fa-route",
+
+    label: "ACTION",
+
+    title: "Build your execution roadmap",
+
+    text:
+      "Turn your intelligence into practical next steps, from validation and prototyping to testing and launch.",
+
+    preview:
+      '"Validate → Prototype → Test → Launch..."'
+
+  }
+
+};
+
+
+
+/* =========================================================
+   PROCESS BUTTONS
+   ========================================================= */
+
+const processButtons =
+  document.querySelectorAll(".process-item");
+
+
+const processNumber =
+  document.querySelector(".process-big-number");
+
+const processIcon =
+  document.querySelector(".process-display-icon i");
+
+const processLabel =
+  document.querySelector(".process-display-label");
+
+const processTitle =
+  document.querySelector(".process-display h3");
+
+const processText =
+  document.querySelector(".process-display-content > p");
+
+const processPreview =
+  document.querySelector(".process-input-preview p");
+
+
+processButtons.forEach(function (button) {
+
+  button.addEventListener("click", function () {
+
+    const id = button.dataset.process;
+
+    const data = processData[id];
+
+    if (!data) return;
+
+
+    processButtons.forEach(function (item) {
+
+      item.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+
+    processNumber.textContent =
+      data.number;
+
+
+    processIcon.className =
+      "fa-solid " + data.icon;
+
+
+    processLabel.textContent =
+      data.label;
+
+
+    processTitle.textContent =
+      data.title;
+
+
+    processText.textContent =
+      data.text;
+
+
+    processPreview.textContent =
+      data.preview;
+
+  });
+
+});
+
+
+
+/* =========================================================
+   DASHBOARD NAV
+   ========================================================= */
+
+const dashboardItems =
+  document.querySelectorAll(".dashboard-nav-item");
+
+
+dashboardItems.forEach(function (item) {
+
+  item.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+
+    dashboardItems.forEach(function (nav) {
+
+      nav.classList.remove("active");
+
+    });
+
+
+    item.classList.add("active");
+
+  });
+
+});
+
+
+
+/* =========================================================
+   ACTIVE NAVIGATION ON SCROLL
+   ========================================================= */
+
+const sections =
+  document.querySelectorAll("main section[id]");
+
+
+const navLinks =
+  document.querySelectorAll(".desktop-nav .nav-link");
+
+
+window.addEventListener("scroll", function () {
+
+  let current = "";
+
+
+  sections.forEach(function (section) {
+
+    const sectionTop =
+      section.offsetTop - 150;
+
+
+    if (window.scrollY >= sectionTop) {
+
+      current = section.getAttribute("id");
+
+    }
+
+  });
+
+
+  navLinks.forEach(function (link) {
+
+    link.classList.remove("active");
+
+
+    if (
+      link.getAttribute("href") === "#" + current
+    ) {
+
+      link.classList.add("active");
+
+    }
+
+  });
+
+});
+
+
+
+/* =========================================================
+   FOOTER YEAR
+   ========================================================= */
+
+const footerYear =
+  document.getElementById("footerYear");
+
+
+if (footerYear) {
+
+  footerYear.textContent =
+    new Date().getFullYear();
+
+}
