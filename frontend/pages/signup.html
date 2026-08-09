@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Create your VentureIQ account and start validating your startup ideas with AI-powered intelligence."
+    >
+
+    <title>Create Account — VentureIQ</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Authentication CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/auth.css"
+    >
+
+
+    <style>
+
+        /* ==========================================
+           SIGNUP PAGE
+        ========================================== */
+
+        .signup-main {
+            min-height: calc(100vh - 120px);
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 70px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+
+        /* ==========================================
+           LEFT CONTENT
+        ========================================== */
+
+        .signup-intro {
+            max-width: 560px;
+        }
+
+        .signup-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .signup-eyebrow span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #c9a227;
+            box-shadow: 0 0 15px rgba(201, 162, 39, 0.7);
+        }
+
+        .signup-intro h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(42px, 5vw, 72px);
+            line-height: 1.02;
+            margin: 0 0 25px;
+            letter-spacing: -2px;
+        }
+
+        .signup-intro h1 em {
+            font-style: normal;
+            color: #c9a227;
+        }
+
+        .signup-intro > p {
+            max-width: 490px;
+            line-height: 1.8;
+            opacity: 0.65;
+            font-size: 16px;
+            margin-bottom: 38px;
+        }
+
+
+        /* ==========================================
+           BENEFITS
+        ========================================== */
+
+        .signup-benefits {
+            display: grid;
+            gap: 15px;
+        }
+
+        .signup-benefit {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 18px;
+            border: 1px solid rgba(201, 162, 39, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.025);
+            transition: 0.3s ease;
+        }
+
+        .signup-benefit:hover {
+            transform: translateX(6px);
+            border-color: rgba(201, 162, 39, 0.35);
+        }
+
+        .signup-benefit-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: rgba(201, 162, 39, 0.1);
+            color: #c9a227;
+        }
+
+        .signup-benefit strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .signup-benefit span {
+            font-size: 12px;
+            opacity: 0.55;
+        }
+
+
+        /* ==========================================
+           SIGNUP CARD
+        ========================================== */
+
+        .signup-card-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .signup-card {
+            width: 100%;
+            max-width: 520px;
+            padding: 38px;
+            border-radius: 25px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        .signup-card-header {
+            margin-bottom: 30px;
+        }
+
+        .signup-card-label {
+            display: block;
+            color: #c9a227;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 9px;
+        }
+
+        .signup-card-header h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 32px;
+            margin: 0 0 8px;
+        }
+
+        .signup-card-header p {
+            font-size: 13px;
+            opacity: 0.55;
+            margin: 0;
+        }
+
+
+        /* ==========================================
+           FORM
+        ========================================== */
+
+        .signup-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .signup-form .form-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .signup-form label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .signup-form .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .signup-form .input-wrapper > i {
+            position: absolute;
+            left: 16px;
+            color: #c9a227;
+            pointer-events: none;
+        }
+
+        .signup-form input {
+            width: 100%;
+            box-sizing: border-box;
+            height: 52px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.18);
+            color: inherit;
+            padding: 0 45px;
+            outline: none;
+            font-family: inherit;
+            transition: 0.25s ease;
+        }
+
+        .signup-form input:focus {
+            border-color: #c9a227;
+            box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
+        }
+
+        .signup-form input::placeholder {
+            opacity: 0.35;
+        }
+
+        .signup-form .password-toggle {
+            position: absolute;
+            right: 12px;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            opacity: 0.5;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .signup-form .password-toggle:hover {
+            opacity: 1;
+            color: #c9a227;
+        }
+
+
+        /* ==========================================
+           PASSWORD STRENGTH
+        ========================================== */
+
+        .password-strength {
+            height: 4px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.08);
+            overflow: hidden;
+            margin-top: 2px;
+        }
+
+        .password-strength span {
+            display: block;
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease;
+            background: #c9a227;
+        }
+
+        .password-strength-text {
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+
+        /* ==========================================
+           TERMS
+        ========================================== */
+
+        .signup-terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 11px;
+            line-height: 1.6;
+            opacity: 0.6;
+        }
+
+        .signup-terms input {
+            width: 15px;
+            height: 15px;
+            margin-top: 2px;
+            accent-color: #c9a227;
+        }
+
+        .signup-terms a {
+            color: #c9a227;
+            text-decoration: none;
+        }
+
+
+        /* ==========================================
+           SUBMIT
+        ========================================== */
+
+        .signup-submit {
+            height: 54px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(
+                135deg,
+                #e1bd48,
+                #b78d16
+            );
+            color: #111;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.3s ease;
+            box-shadow:
+                0 10px 25px rgba(201, 162, 39, 0.18);
+        }
+
+        .signup-submit:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 15px 35px rgba(201, 162, 39, 0.3);
+        }
+
+        .signup-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        /* ==========================================
+           DIVIDER
+        ========================================== */
+
+        .signup-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 2px 0;
+        }
+
+        .signup-divider span {
+            height: 1px;
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .signup-divider small {
+            font-size: 10px;
+            opacity: 0.4;
+        }
+
+
+        /* ==========================================
+           GOOGLE
+        ========================================== */
+
+        .signup-google {
+            height: 52px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: transparent;
+            color: inherit;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            transition: 0.25s ease;
+        }
+
+        .signup-google:hover {
+            border-color: rgba(201, 162, 39, 0.5);
+            background: rgba(201, 162, 39, 0.05);
+        }
+
+        .google-letter {
+            font-size: 18px;
+            font-weight: 700;
+            color: #c9a227;
+        }
+
+
+        /* ==========================================
+           LOGIN PROMPT
+        ========================================== */
+
+        .login-prompt {
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        .login-prompt a {
+            color: #c9a227;
+            text-decoration: none;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ==========================================
+           SECURITY
+        ========================================== */
+
+        .signup-security {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 22px;
+            font-size: 10px;
+            opacity: 0.4;
+        }
+
+        .signup-security i {
+            color: #c9a227;
+        }
+
+
+        /* ==========================================
+           LIGHT THEME
+        ========================================== */
+
+        body.light-theme .signup-card {
+            background: rgba(255,255,255,0.82);
+            border-color: rgba(180, 140, 25, 0.22);
+            box-shadow:
+                0 30px 80px rgba(100, 80, 20, 0.12);
+        }
+
+        body.light-theme .signup-benefit {
+            background: rgba(255,255,255,0.65);
+            border-color: rgba(180, 140, 25, 0.15);
+        }
+
+        body.light-theme .signup-form input {
+            background: rgba(255,255,255,0.75);
+            border-color: rgba(0,0,0,0.12);
+        }
+
+        body.light-theme .signup-google {
+            border-color: rgba(0,0,0,0.12);
+        }
+
+        body.light-theme .signup-divider span {
+            background: rgba(0,0,0,0.1);
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 950px) {
+
+            .signup-main {
+                grid-template-columns: 1fr;
+                gap: 45px;
+                padding-top: 40px;
+            }
+
+            .signup-intro {
+                max-width: 700px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .signup-intro > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .signup-benefits {
+                max-width: 520px;
+                margin: auto;
+                text-align: left;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .signup-main {
+                padding: 35px 18px;
+            }
+
+            .signup-card {
+                padding: 26px 20px;
+                border-radius: 20px;
+            }
+
+            .signup-intro h1 {
+                font-size: 42px;
+            }
+
+            .signup-intro > p {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         LOADER
+    ========================================== -->
+
+    <div
+        class="auth-loader"
+        id="authLoader"
+    >
+
+        <div class="loader-mark">
+            <span>V</span>
+        </div>
+
+        <div class="loader-line"></div>
+
+    </div>
+
+
+    <!-- ==========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="auth-background">
+
+        <div class="auth-grid"></div>
+
+        <div
+            class="auth-glow auth-glow-one"
+        ></div>
+
+        <div
+            class="auth-glow auth-glow-two"
+        ></div>
+
+    </div>
+
+
+    <!-- ==========================================
+         HEADER
+    ========================================== -->
+
+    <header class="auth-header">
+
+        <!-- HOME LINK -->
+
+        <a
+            href="../index.html"
+            class="auth-brand"
+        >
+
+            <span class="auth-brand-mark">
+                <span>V</span>
+            </span>
+
+            <span class="auth-brand-name">
+                Venture<span>IQ</span>
+            </span>
+
+        </a>
+
+
+        <div class="auth-header-right">
+
+            <span class="theme-label">
+                Theme
+            </span>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Toggle theme"
+            >
+
+                <i class="fa-solid fa-sun"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         MAIN
+    ========================================== -->
+
+    <main class="signup-main">
+
+
+        <!-- LEFT SIDE -->
+
+        <section class="signup-intro">
+
+            <div class="signup-eyebrow">
+
+                <span></span>
+
+                BUILD YOUR INTELLIGENCE WORKSPACE
+
+            </div>
+
+
+            <h1>
+
+                Your next idea
+                <br>
+
+                deserves
+                <em>clarity.</em>
+
+            </h1>
+
+
+            <p>
+
+                Create your VentureIQ account and get access
+                to an intelligent workspace designed to help
+                you validate ideas, understand markets and
+                make better startup decisions.
+
+            </p>
+
+
+            <!-- BENEFITS -->
+
+            <div class="signup-benefits">
+
+
+                <div class="signup-benefit">
+
+                    <div class="signup-benefit-icon">
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Validate your ideas
+                        </strong>
+
+                        <span>
+                            Turn rough concepts into structured startup hypotheses.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="signup-benefit">
+
+                    <div class="signup-benefit-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Understand the market
+                        </strong>
+
+                        <span>
+                            Explore opportunity, trends and competitive signals.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="signup-benefit">
+
+                    <div class="signup-benefit-icon">
+
+                        <i class="fa-solid fa-route"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Know what to do next
+                        </strong>
+
+                        <span>
+                            Turn intelligence into a practical execution roadmap.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+
+        <section class="signup-card-wrapper">
+
+            <div class="signup-card">
+
+
+                <!-- CARD HEADER -->
+
+                <div class="signup-card-header">
+
+                    <span class="signup-card-label">
+                        GET STARTED
+                    </span>
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        Start turning ideas into intelligence.
+                    </p>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form
+                    class="signup-form"
+                    id="signupForm"
+                >
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Your name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="signupEmail">
+                            Email address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="signupEmail"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="signupPassword"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="signupPasswordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i class="fa-regular fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="password-strength">
+
+                            <span
+                                id="passwordStrengthBar"
+                            ></span>
+
+                        </div>
+
+                        <span
+                            class="password-strength-text"
+                            id="passwordStrengthText"
+                        >
+                            Use at least 8 characters.
+                        </span>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Repeat your password"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="confirmPasswordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i class="fa-regular fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="signup-terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <span>
+
+                            I agree to the
+                            <a href="#">
+                                Terms of Service
+                            </a>
+                            and
+                            <a href="#">
+                                Privacy Policy
+                            </a>.
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="signup-submit"
+                        id="signupButton"
+                    >
+
+                        <span>
+                            Create my account
+                        </span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+
+                    <!-- DIVIDER -->
+
+                    <div class="signup-divider">
+
+                        <span></span>
+
+                        <small>
+                            OR
+                        </small>
+
+                        <span></span>
+
+                    </div>
+
+
+                    <!-- GOOGLE -->
+
+                    <button
+                        type="button"
+                        class="signup-google"
+                        id="signupGoogle"
+                    >
+
+                        <span class="google-letter">
+                            G
+                        </span>
+
+                        Continue with Google
+
+                    </button>
+
+
+                    <!-- LOGIN LINK -->
+
+                    <div class="login-prompt">
+
+                        Already have an account?
+
+                        <a href="login.html">
+
+                            Sign in
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+
+                </form>
+
+
+                <!-- SECURITY -->
+
+                <div class="signup-security">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <span>
+                        Your account is protected with secure authentication.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="auth-footer">
+
+        <span>
+            © 2026 VentureIQ
+        </span>
+
+        <span class="footer-dot">
+            •
+        </span>
+
+        <span>
+            AI-powered startup intelligence
+        </span>
+
+    </footer>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const loader =
+                document.getElementById("authLoader");
+
+            const themeToggle =
+                document.getElementById("themeToggle");
+
+            const signupForm =
+                document.getElementById("signupForm");
+
+            const signupButton =
+                document.getElementById("signupButton");
+
+            const password =
+                document.getElementById("signupPassword");
+
+            const confirmPassword =
+                document.getElementById("confirmPassword");
+
+            const strengthBar =
+                document.getElementById("passwordStrengthBar");
+
+            const strengthText =
+                document.getElementById("passwordStrengthText");
+
+
+            /* ==========================================
+               LOADER
+            ========================================== */
+
+            window.addEventListener("load", () => {
+
+                setTimeout(() => {
+
+                    if (loader) {
+                        loader.classList.add("hidden");
+                    }
+
+                }, 500);
+
+            });
+
+
+            /* ==========================================
+               THEME
+            ========================================== */
+
+            const savedTheme =
+                localStorage.getItem("ventureiq-theme");
+
+            if (savedTheme === "light") {
+
+                document.body.classList.add("light-theme");
+
+            }
+
+            updateThemeIcon();
+
+
+            themeToggle.addEventListener("click", () => {
+
+                document.body.classList.toggle("light-theme");
+
+                const theme =
+                    document.body.classList.contains("light-theme")
+                        ? "light"
+                        : "dark";
+
+                localStorage.setItem(
+                    "ventureiq-theme",
+                    theme
+                );
+
+                updateThemeIcon();
+
+            });
+
+
+            function updateThemeIcon() {
+
+                const icon =
+                    themeToggle.querySelector("i");
+
+                if (
+                    document.body.classList.contains("light-theme")
+                ) {
+
+                    icon.classList.remove("fa-sun");
+
+                    icon.classList.add("fa-moon");
+
+                } else {
+
+                    icon.classList.remove("fa-moon");
+
+                    icon.classList.add("fa-sun");
+
+                }
+
+            }
+
+
+            /* ==========================================
+               PASSWORD TOGGLE
+            ========================================== */
+
+            function setupPasswordToggle(
+                inputId,
+                buttonId
+            ) {
+
+                const input =
+                    document.getElementById(inputId);
+
+                const button =
+                    document.getElementById(buttonId);
+
+                if (!input || !button) return;
+
+                button.addEventListener("click", () => {
+
+                    const icon =
+                        button.querySelector("i");
+
+                    if (input.type === "password") {
+
+                        input.type = "text";
+
+                        icon.classList.remove("fa-eye");
+
+                        icon.classList.add("fa-eye-slash");
+
+                    } else {
+
+                        input.type = "password";
+
+                        icon.classList.remove("fa-eye-slash");
+
+                        icon.classList.add("fa-eye");
+
+                    }
+
+                });
+
+            }
+
+
+            setupPasswordToggle(
+                "signupPassword",
+                "signupPasswordToggle"
+            );
+
+
+            setupPasswordToggle(
+                "confirmPassword",
+                "confirmPasswordToggle"
+            );
+
+
+            /* ==========================================
+               PASSWORD STRENGTH
+            ========================================== */
+
+            password.addEventListener("input", () => {
+
+                const value = password.value;
+
+                let strength = 0;
+
+                if (value.length >= 8) {
+                    strength++;
+                }
+
+                if (/[A-Z]/.test(value)) {
+                    strength++;
+                }
+
+                if (/[0-9]/.test(value)) {
+                    strength++;
+                }
+
+                if (/[^A-Za-z0-9]/.test(value)) {
+                    strength++;
+                }
+
+
+                const widths = [
+                    "0%",
+                    "25%",
+                    "50%",
+                    "75%",
+                    "100%"
+                ];
+
+                strengthBar.style.width =
+                    widths[strength];
+
+
+                if (!value) {
+
+                    strengthText.textContent =
+                        "Use at least 8 characters.";
+
+                } else if (strength === 1) {
+
+                    strengthText.textContent =
+                        "Weak password.";
+
+                } else if (strength === 2) {
+
+                    strengthText.textContent =
+                        "Fair password.";
+
+                } else if (strength === 3) {
+
+                    strengthText.textContent =
+                        "Good password.";
+
+                } else {
+
+                    strengthText.textContent =
+                        "Strong password.";
+
+                }
+
+            });
+
+
+            /* ==========================================
+               FORM SUBMISSION
+            ========================================== */
+
+            signupForm.addEventListener("submit", (event) => {
+
+                event.preventDefault();
+
+
+                const fullName =
+                    document
+                        .getElementById("fullName")
+                        .value
+                        .trim();
+
+                const passwordValue =
+                    password.value;
+
+                const confirmValue =
+                    confirmPassword.value;
+
+                const terms =
+                    document
+                        .getElementById("terms")
+                        .checked;
+
+
+                if (!fullName) {
+
+                    alert(
+                        "Please enter your full name."
+                    );
+
+                    return;
+
+                }
+
+
+                if (passwordValue.length < 8) {
+
+                    alert(
+                        "Password must contain at least 8 characters."
+                    );
+
+                    return;
+
+                }
+
+
+                if (passwordValue !== confirmValue) {
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!terms) {
+
+                    alert(
+                        "Please accept the Terms of Service and Privacy Policy."
+                    );
+
+                    return;
+
+                }
+
+
+                signupButton.disabled = true;
+
+                signupButton.innerHTML = `
+                    <span>Creating account...</span>
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                `;
+
+
+                /* DEMO ACCOUNT CREATION */
+
+                setTimeout(() => {
+
+                    signupButton.innerHTML = `
+                        <span>Account created</span>
+                        <i class="fa-solid fa-check"></i>
+                    `;
+
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 900);
+
+                }, 1200);
+
+            });
+
+
+            /* ==========================================
+               GOOGLE BUTTON
+            ========================================== */
+
+            const googleButton =
+                document.getElementById("signupGoogle");
+
+
+            googleButton.addEventListener("click", () => {
+
+                googleButton.disabled = true;
+
+                googleButton.innerHTML = `
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    Connecting to Google...
+                `;
+
+
+                setTimeout(() => {
+
+                    googleButton.disabled = false;
+
+                    googleButton.innerHTML = `
+                        <span class="google-letter">G</span>
+                        Continue with Google
+                    `;
+
+                    alert(
+                        "Google authentication will be connected when we integrate Firebase."
+                    );
+
+                }, 1000);
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="VentureIQ Dashboard — AI-powered startup intelligence."
+    >
+
+    <title>Dashboard — VentureIQ</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         DASHBOARD APP
+    ====================================================== -->
+
+    <div class="dashboard-app">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+
+            <!-- Brand -->
+
+            <div class="sidebar-brand">
+
+                <a href="../index.html" class="brand-link">
+
+                    <span class="brand-mark">
+                        <span>V</span>
+                    </span>
+
+                    <span class="brand-name">
+                        Venture<span>IQ</span>
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- Workspace -->
+
+            <div class="workspace-switcher">
+
+                <div class="workspace-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+
+                <div class="workspace-info">
+
+                    <span class="workspace-label">
+                        WORKSPACE
+                    </span>
+
+                    <strong>
+                        My Venture
+                    </strong>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <nav class="sidebar-nav">
+
+
+                <div class="nav-section">
+
+                    <span class="nav-section-title">
+                        OVERVIEW
+                    </span>
+
+
+                    <a
+                        href="#"
+                        class="nav-item active"
+                        data-page="dashboard"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-grid-2"></i>
+                        </span>
+
+                        <span>
+                            Dashboard
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="ideas"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-regular fa-lightbulb"></i>
+                        </span>
+
+                        <span>
+                            My Ideas
+                        </span>
+
+                        <span class="nav-count">
+                            3
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="nav-section">
+
+                    <span class="nav-section-title">
+                        INTELLIGENCE
+                    </span>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="validator"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </span>
+
+                        <span>
+                            Idea Validator
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="market"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </span>
+
+                        <span>
+                            Market Intelligence
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="competitors"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </span>
+
+                        <span>
+                            Competitor Analysis
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="score"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </span>
+
+                        <span>
+                            Viability Score
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="roadmap"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-route"></i>
+                        </span>
+
+                        <span>
+                            Execution Roadmap
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="nav-section">
+
+                    <span class="nav-section-title">
+                        ACCOUNT
+                    </span>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="notifications"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-regular fa-bell"></i>
+                        </span>
+
+                        <span>
+                            Notifications
+                        </span>
+
+                        <span class="notification-dot"></span>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="nav-item"
+                        data-page="settings"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-sliders"></i>
+                        </span>
+
+                        <span>
+                            Settings
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </nav>
+
+
+            <!-- Sidebar Bottom -->
+
+            <div class="sidebar-bottom">
+
+
+                <!-- Upgrade -->
+
+                <div class="upgrade-card">
+
+                    <div class="upgrade-icon">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+
+                    <strong>
+                        Unlock more intelligence
+                    </strong>
+
+                    <p>
+                        Explore advanced startup insights.
+                    </p>
+
+                    <button type="button">
+                        Explore
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+
+                <!-- User -->
+
+                <div class="sidebar-user">
+
+                    <div class="user-avatar">
+                        S
+                    </div>
+
+                    <div class="user-details">
+
+                        <strong>
+                            Sampada
+                        </strong>
+
+                        <span>
+                            Founder workspace
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="user-menu"
+                        id="userMenu"
+                    >
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOP HEADER
+            ================================================== -->
+
+            <header class="dashboard-header">
+
+
+                <div class="header-left">
+
+                    <button
+                        type="button"
+                        class="mobile-menu"
+                        id="mobileMenu"
+                    >
+
+                        <i class="fa-solid fa-bars"></i>
+
+                    </button>
+
+
+                    <div>
+
+                        <span class="header-eyebrow">
+                            VENTUREIQ INTELLIGENCE
+                        </span>
+
+                        <h1 id="pageTitle">
+                            Dashboard
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="header-actions">
+
+
+                    <!-- Search -->
+
+                    <button
+                        type="button"
+                        class="header-icon"
+                        id="searchButton"
+                        aria-label="Search"
+                    >
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </button>
+
+
+                    <!-- Notification -->
+
+                    <button
+                        type="button"
+                        class="header-icon notification-button"
+                        id="notificationButton"
+                        aria-label="Notifications"
+                    >
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span></span>
+
+                    </button>
+
+
+                    <!-- Theme -->
+
+                    <button
+                        type="button"
+                        class="header-icon"
+                        id="themeToggle"
+                        aria-label="Toggle theme"
+                    >
+
+                        <i class="fa-solid fa-sun"></i>
+
+                    </button>
+
+
+                    <!-- Profile -->
+
+                    <div class="header-profile">
+
+                        <div class="header-avatar">
+                            S
+                        </div>
+
+                        <div class="header-profile-info">
+
+                            <strong>
+                                Sampada
+                            </strong>
+
+                            <span>
+                                Founder
+                            </span>
+
+                        </div>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 DASHBOARD CONTENT
+            ================================================== -->
+
+            <div class="dashboard-content">
+
+
+                <!-- =================================================
+                     WELCOME SECTION
+                ================================================== -->
+
+                <section class="welcome-section">
+
+
+                    <div class="welcome-copy">
+
+                        <span class="welcome-tag">
+
+                            <span></span>
+
+                            YOUR INTELLIGENCE WORKSPACE
+
+                        </span>
+
+
+                        <h2>
+
+                            Turn your ideas into
+                            <em>intelligent decisions.</em>
+
+                        </h2>
+
+
+                        <p>
+
+                            Welcome back, Sampada.
+                            Let's understand your ideas,
+                            discover opportunities and build
+                            your next move with confidence.
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-action"
+                        id="newIdeaButton"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        New Idea
+
+                    </button>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     OVERVIEW CARDS
+                ================================================== -->
+
+                <section class="overview-grid">
+
+
+                    <!-- Ideas -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-card-top">
+
+                            <div class="overview-icon">
+                                <i class="fa-regular fa-lightbulb"></i>
+                            </div>
+
+                            <span class="trend positive">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                12%
+                            </span>
+
+                        </div>
+
+
+                        <div class="overview-value">
+                            3
+                        </div>
+
+                        <div class="overview-label">
+                            Ideas explored
+                        </div>
+
+
+                        <div class="mini-progress">
+
+                            <span style="width: 62%;"></span>
+
+                        </div>
+
+                        <small>
+                            2 ideas currently active
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Viability -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-card-top">
+
+                            <div class="overview-icon">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+
+                            <span class="trend positive">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                8%
+                            </span>
+
+                        </div>
+
+
+                        <div class="overview-value">
+                            78<span>%</span>
+                        </div>
+
+                        <div class="overview-label">
+                            Average viability
+                        </div>
+
+
+                        <div class="mini-progress">
+
+                            <span style="width: 78%;"></span>
+
+                        </div>
+
+                        <small>
+                            Above your workspace average
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Market -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-card-top">
+
+                            <div class="overview-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+
+                            <span class="trend positive">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                5.4%
+                            </span>
+
+                        </div>
+
+
+                        <div class="overview-value">
+                            5
+                        </div>
+
+                        <div class="overview-label">
+                            Market signals
+                        </div>
+
+
+                        <div class="signal-bars">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <small>
+                            Strong opportunity signals detected
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Roadmap -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-card-top">
+
+                            <div class="overview-icon">
+                                <i class="fa-solid fa-route"></i>
+                            </div>
+
+                            <span class="trend">
+                                Active
+                            </span>
+
+                        </div>
+
+
+                        <div class="overview-value">
+                            64<span>%</span>
+                        </div>
+
+                        <div class="overview-label">
+                            Roadmap progress
+                        </div>
+
+
+                        <div class="mini-progress">
+
+                            <span style="width: 64%;"></span>
+
+                        </div>
+
+                        <small>
+                            Next milestone in 4 days
+                        </small>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     MAIN DASHBOARD GRID
+                ================================================== -->
+
+                <section class="dashboard-grid">
+
+
+                    <!-- =================================================
+                         RECENT IDEA
+                    ================================================== -->
+
+                    <div class="dashboard-panel idea-panel">
+
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    ACTIVE IDEA
+                                </span>
+
+                                <h3>
+                                    Caretroid
+                                </h3>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="panel-menu"
+                            >
+
+                                <i class="fa-solid fa-ellipsis"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="idea-description">
+
+                            <div class="idea-main-icon">
+
+                                <i class="fa-solid fa-robot"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    AI-powered elderly care assistant
+                                </strong>
+
+                                <p>
+                                    Intelligent robotics solution designed
+                                    to support independent living and
+                                    improve elderly care.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="idea-metrics">
+
+
+                            <div class="idea-metric">
+
+                                <span>
+                                    Viability
+                                </span>
+
+                                <strong>
+                                    82%
+                                </strong>
+
+                                <div class="metric-bar">
+                                    <span style="width:82%;"></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="idea-metric">
+
+                                <span>
+                                    Market fit
+                                </span>
+
+                                <strong>
+                                    76%
+                                </strong>
+
+                                <div class="metric-bar">
+                                    <span style="width:76%;"></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="idea-metric">
+
+                                <span>
+                                    Competition
+                                </span>
+
+                                <strong>
+                                    Moderate
+                                </strong>
+
+                                <div class="metric-bar">
+                                    <span style="width:55%;"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="idea-footer">
+
+                            <span>
+                                Last analyzed 2 days ago
+                            </span>
+
+                            <button type="button">
+
+                                View analysis
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         QUICK ACTIONS
+                    ================================================== -->
+
+                    <div class="dashboard-panel quick-panel">
+
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    QUICK ACTIONS
+                                </span>
+
+                                <h3>
+                                    What do you want to explore?
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-actions">
+
+
+                            <button
+                                type="button"
+                                class="quick-action"
+                                data-action="validator"
+                            >
+
+                                <span class="quick-action-icon">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Validate an idea
+                                    </strong>
+
+                                    <small>
+                                        Check your concept
+                                    </small>
+
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-action"
+                                data-action="market"
+                            >
+
+                                <span class="quick-action-icon">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Explore a market
+                                    </strong>
+
+                                    <small>
+                                        Find opportunity signals
+                                    </small>
+
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-action"
+                                data-action="competitors"
+                            >
+
+                                <span class="quick-action-icon">
+                                    <i class="fa-solid fa-users-viewfinder"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Analyze competitors
+                                    </strong>
+
+                                    <small>
+                                        Understand the landscape
+                                    </small>
+
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="quick-action"
+                                data-action="roadmap"
+                            >
+
+                                <span class="quick-action-icon">
+                                    <i class="fa-solid fa-route"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Build a roadmap
+                                    </strong>
+
+                                    <small>
+                                        Plan your next steps
+                                    </small>
+
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         INTELLIGENCE OVERVIEW
+                    ================================================== -->
+
+                    <div class="dashboard-panel intelligence-panel">
+
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    INTELLIGENCE OVERVIEW
+                                </span>
+
+                                <h3>
+                                    Startup health
+                                </h3>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="period-selector"
+                            >
+
+                                Last 30 days
+
+                                <i class="fa-solid fa-chevron-down"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="health-content">
+
+
+                            <div class="health-score">
+
+                                <div class="score-circle">
+
+                                    <svg viewBox="0 0 120 120">
+
+                                        <circle
+                                            class="score-track"
+                                            cx="60"
+                                            cy="60"
+                                            r="50"
+                                        ></circle>
+
+                                        <circle
+                                            class="score-progress"
+                                            cx="60"
+                                            cy="60"
+                                            r="50"
+                                        ></circle>
+
+                                    </svg>
+
+                                    <div class="score-center">
+
+                                        <strong>
+                                            78
+                                        </strong>
+
+                                        <span>
+                                            /100
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        Healthy momentum
+                                    </strong>
+
+                                    <p>
+                                        Your startup signals are
+                                        trending positively.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="health-factors">
+
+
+                                <div class="health-factor">
+
+                                    <div class="factor-top">
+
+                                        <span>
+                                            Market opportunity
+                                        </span>
+
+                                        <strong>
+                                            84
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="factor-bar">
+                                        <span style="width:84%;"></span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="health-factor">
+
+                                    <div class="factor-top">
+
+                                        <span>
+                                            Product clarity
+                                        </span>
+
+                                        <strong>
+                                            72
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="factor-bar">
+                                        <span style="width:72%;"></span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="health-factor">
+
+                                    <div class="factor-top">
+
+                                        <span>
+                                            Competitive position
+                                        </span>
+
+                                        <strong>
+                                            76
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="factor-bar">
+                                        <span style="width:76%;"></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         RECENT ACTIVITY
+                    ================================================== -->
+
+                    <div class="dashboard-panel activity-panel">
+
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-label">
+                                    ACTIVITY
+                                </span>
+
+                                <h3>
+                                    Recent activity
+                                </h3>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="text-button"
+                            >
+                                View all
+                            </button>
+
+                        </div>
+
+
+                        <div class="activity-list">
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Viability analysis completed
+                                    </strong>
+
+                                    <span>
+                                        Caretroid received a score of 82%
+                                    </span>
+
+                                </div>
+
+                                <time>
+                                    2h
+                                </time>
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Market signal detected
+                                    </strong>
+
+                                    <span>
+                                        Elderly care technology demand increased
+                                    </span>
+
+                                </div>
+
+                                <time>
+                                    1d
+                                </time>
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon">
+                                    <i class="fa-solid fa-route"></i>
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        Roadmap milestone completed
+                                    </strong>
+
+                                    <span>
+                                        Prototype planning stage completed
+                                    </span>
+
+                                </div>
+
+                                <time>
+                                    2d
+                                </time>
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+                                <div class="activity-icon">
+                                    <i class="fa-regular fa-lightbulb"></i>
+                                </div>
+
+                                <div class="activity-info">
+
+                                    <strong>
+                                        New idea created
+                                    </strong>
+
+                                    <span>
+                                        AI-powered student productivity tool
+                                    </span>
+
+                                </div>
+
+                                <time>
+                                    4d
+                                </time>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <footer class="dashboard-footer">
+
+                    <span>
+                        © 2026 VentureIQ
+                    </span>
+
+                    <span>
+                        AI-powered startup intelligence
+                    </span>
+
+                    <span>
+                        Validate smarter. Build with confidence.
+                    </span>
+
+                </footer>
+
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MOBILE SIDEBAR OVERLAY
+    ====================================================== -->
+
+    <div
+        class="sidebar-overlay"
+        id="sidebarOverlay"
+    ></div>
+
+
+
+    <!-- Dashboard JavaScript -->
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>

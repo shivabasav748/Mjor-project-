@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Idea Validation — Executive Startup Intelligence</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap');
+
+    :root {
+      --bg-dark: #050505;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-border-hover: rgba(212, 175, 55, 0.55);
+      --gold-primary: #D4AF37;
+      --gold-light: #F6E69F;
+      --gold-dark: #8F6F1D;
+      --gold-glow: rgba(212, 175, 55, 0.2);
+      --gold-gradient: linear-gradient(135deg, #FFE885 0%, #D4AF37 50%, #997316 100%);
+      --text-main: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.6);
+      --font-body: 'Helvetica Neue', Arial, 'Plus Jakarta Sans', sans-serif;
+      --font-heading: 'Helvetica Neue', Arial, sans-serif;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15), transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation Header Bar */
+    .top-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .gold-logo-box {
+      width: 32px;
+      height: 32px;
+      background-color: #D4AF37;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000000;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .gold-text {
+      color: #D4AF37;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+    }
+
+    .nav-links span {
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links span:hover {
+      color: #ffffff;
+    }
+
+    .nav-links span.active-link {
+      color: #D4AF37;
+    }
+
+    /* Background Ambient Glow & Grid overlay */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header Styling */
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--card-border);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+    }
+
+    .brand-badge span {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-primary);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--gold-primary);
+    }
+
+    h1.hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+    }
+
+    p.hero-subtitle {
+      color: var(--text-muted);
+      font-size: 17px;
+      max-width: 640px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* Main Glass Card */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+      transition: 0.8s;
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before {
+      left: 100%;
+    }
+
+    /* Form Layout */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    label .required-tag {
+      color: rgba(212, 175, 55, 0.7);
+      font-size: 11px;
+      text-transform: none;
+      font-weight: 400;
+    }
+
+    input, select, textarea {
+      background: rgba(10, 10, 15, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px var(--gold-glow), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+      background: rgba(15, 15, 22, 0.9);
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      padding-right: 44px;
+    }
+
+    select option {
+      background: #0f0f15;
+      color: var(--text-main);
+      padding: 10px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* Primary Gold Button with Ripple Effect */
+    .btn-gold {
+      position: relative;
+      background: var(--gold-gradient);
+      color: #08080a;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 18px 32px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+      filter: brightness(1.08);
+    }
+
+    .btn-gold:active {
+      transform: translateY(1px);
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(0);
+      animation: ripple-effect 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple-effect {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Secondary Glass Button */
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      color: var(--gold-light);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    /* Loading Overlay View */
+    #loading-section {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .spinner-box {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle-border {
+      width: 100%;
+      height: 100%;
+      padding: 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: linear-gradient(0deg, rgba(212,175,55,0.1) 33%, rgba(212,175,55,1) 100%);
+      animation: spin 1.2s linear infinite;
+    }
+
+    .circle-core {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-dark);
+      border-radius: 50%;
+    }
+
+    .loading-icon {
+      position: absolute;
+      color: var(--gold-primary);
+      font-size: 28px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .loading-title {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .loading-status-text {
+      color: var(--text-muted);
+      font-size: 15px;
+      min-height: 24px;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Results Dashboard View */
+    #result-section {
+      display: none;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .results-title-group h2 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      color: var(--gold-light);
+    }
+
+    .results-title-group p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Score Overview Grid */
+    .score-overview-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      margin-bottom: 36px;
+    }
+
+    .score-card {
+      background: rgba(10, 10, 15, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .circle-chart {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin-bottom: 16px;
+    }
+
+    .circle-chart svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.05);
+      stroke-width: 3.8;
+    }
+
+    .circle-progress {
+      fill: none;
+      stroke: url(#goldGradientSvg);
+      stroke-width: 3.8;
+      stroke-linecap: round;
+      stroke-dasharray: 100, 100;
+      stroke-dashoffset: 100;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .circle-score-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .circle-score-text .val {
+      font-size: 42px;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .circle-score-text .denom {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .score-verdict-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-primary);
+      border: 1px solid var(--gold-primary);
+    }
+
+    /* Sub Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .metric-item {
+      background: rgba(12, 12, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .metric-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--card-border);
+    }
+
+    .metric-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gold-gradient);
+      width: 0%;
+      border-radius: 10px;
+      transition: width 1.2s ease-out;
+    }
+
+    /* Summary Card */
+    .summary-box {
+      background: rgba(12, 12, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid var(--gold-primary);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .summary-box h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-box p {
+      color: var(--text-main);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* Strengths & Weaknesses Grid */
+    .analysis-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .analysis-card {
+      background: rgba(12, 12, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .analysis-card.strengths {
+      border-top: 3px solid #2ecc71;
+    }
+
+    .analysis-card.weaknesses {
+      border-top: 3px solid #e74c3c;
+    }
+
+    .analysis-card h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .analysis-card.strengths h3 { color: #2ecc71; }
+    .analysis-card.weaknesses h3 { color: #e74c3c; }
+
+    .analysis-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .analysis-list li {
+      position: relative;
+      padding-left: 26px;
+      font-size: 14px;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .analysis-list li::before {
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-weight: bold;
+    }
+
+    .strengths .analysis-list li::before {
+      content: "✓";
+      color: #2ecc71;
+    }
+
+    .weaknesses .analysis-list li::before {
+      content: "⚠";
+      color: #e74c3c;
+    }
+
+    /* Recommendations Roadmap */
+    .recommendations-box {
+      margin-bottom: 36px;
+    }
+
+    .recommendations-box h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+
+    .rec-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .rec-step-item {
+      background: rgba(12, 12, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .rec-step-item:hover {
+      transform: translateY(-2px);
+      border-color: var(--card-border);
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      color: var(--gold-light);
+      font-size: 15px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Action Footer Buttons */
+    .action-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      .score-overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px 60px 16px;
+      }
+
+      .glass-card {
+        padding: 24px 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .analysis-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .rec-steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .action-footer {
+        justify-content: stretch;
+      }
+
+      .action-footer button {
+        width: 100%;
+      }
+
+      .top-nav-bar {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* Bottom Footer Styling */
+    .bottom-footer {
+      padding: 16px 36px;
+      background: #000000;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: auto;
+      z-index: 10;
+    }
+
+    .footer-status {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .live-dot {
+      color: #2ecc71;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header Bar -->
+  <header class="top-nav-bar">
+    <a href="../index.html" class="nav-brand">
+      <div class="gold-logo-box">V</div>
+      <h1 class="brand-title">VentureIQ <span class="gold-text"></span></h1>
+    </a>
+    <div class="nav-links">
+      <span class="active-link">Validation Dashboard</span>
+      <span>Market Intel</span>
+      <span>Settings</span>
+    </div>
+  </header>
+
+  <!-- Ambient Grid Background -->
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    
+    <!-- Header -->
+    <header>
+      <div class="brand-badge">
+        <span></span> AI Startup Intelligence
+      </div>
+      <h1 class="hero-title">AI Idea Validation</h1>
+      <p class="hero-subtitle">Enter your startup parameters to simulate an executive market analysis, risk profile, and monetization readiness report.</p>
+    </header>
+
+    <!-- FORM SECTION -->
+    <section id="form-section" class="glass-card">
+      <form id="idea-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-grid">
+          
+          <div class="form-group">
+            <label for="startupName">Startup Name <span class="required-tag">Required</span></label>
+            <input type="text" id="startupName" placeholder="e.g. Apex AI" required />
+          </div>
+
+          <div class="form-group">
+            <label for="industry">Industry Sector <span class="required-tag">Required</span></label>
+            <select id="industry" required>
+              <option value="" disabled selected>Select Industry</option>
+              <option value="Healthcare">Healthcare & Biotech</option>
+              <option value="FinTech">FinTech & Banking</option>
+              <option value="SaaS">SaaS & Enterprise AI</option>
+              <option value="E-Commerce">E-Commerce & Retail</option>
+              <option value="Education">EdTech & Learning</option>
+              <option value="Food">Food & Beverage Logistics</option>
+              <option value="CleanTech">CleanTech & Renewable Energy</option>
+              <option value="CyberSecurity">Cybersecurity & Defense</option>
+              <option value="PropTech">Real Estate & PropTech</option>
+              <option value="Consumer">Consumer & Social Media</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="targetAudience">Target Audience <span class="required-tag">(Optional)</span></label>
+            <input type="text" id="targetAudience" placeholder="e.g. B2B Enterprise Compliance Managers, Gen Z Creators, Freelancers" />
+          </div>
+
+          <div class="form-group full-width">
+            <label for="problemStatement">Problem Statement <span class="required-tag">Required</span></label>
+            <textarea id="problemStatement" placeholder="What specific inefficiency, pain point, or friction in the market does your target audience experience?" required></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="proposedSolution">Proposed Solution <span class="required-tag">Required</span></label>
+            <textarea id="proposedSolution" placeholder="Describe your product or service and how it uniquely solves the target problem..." required></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="revenueModel">Revenue Model <span class="required-tag">Required</span></label>
+            <select id="revenueModel" required>
+              <option value="" disabled selected>Select Primary Revenue Model</option>
+              <option value="B2B Subscription">B2B SaaS / Monthly Recurring Subscription</option>
+              <option value="Transactional">Marketplace Fee / Transactional Commission</option>
+              <option value="Freemium">Freemium with Premium Tier Conversion</option>
+              <option value="Direct Sales">High-Ticket Enterprise Direct Sales</option>
+              <option value="Pay-per-use">Usage-Based / Pay-per-API Call</option>
+              <option value="Advertising">Monetized Data / Targeted Ad Sponsorship</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 32px;">
+          <button type="submit" class="btn-gold" id="btn-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Validate Idea
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- LOADING SECTION -->
+    <section id="loading-section" class="glass-card">
+      <div class="spinner-box">
+        <div class="circle-border">
+          <div class="circle-core"></div>
+        </div>
+        <div class="loading-icon">⚡</div>
+      </div>
+      <h2 class="loading-title">Synthesizing Startup Intelligence</h2>
+      <p id="loading-status" class="loading-status-text">Analyzing Idea Structure & Keyword Matrix...</p>
+    </section>
+
+    <!-- RESULT SECTION -->
+    <section id="result-section" class="glass-card">
+      
+      <!-- SVG Gradient Definition -->
+      <svg width="0" height="0" style="position:absolute;">
+        <defs>
+          <linearGradient id="goldGradientSvg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFE885" />
+            <stop offset="50%" stop-color="#D4AF37" />
+            <stop offset="100%" stop-color="#997316" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- Header Bar -->
+      <div class="results-header">
+        <div class="results-title-group">
+          <h2 id="res-startup-name">Apex AI Validation Report</h2>
+          <p id="res-subtitle">Industry Vector: <span id="res-industry-badge" style="color: var(--gold-light);">SaaS</span> | Model: <span id="res-model-badge" style="color: var(--gold-light);">Subscription</span></p>
+        </div>
+        <button class="btn-outline" onclick="exportReportText()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Export Report
+        </button>
+      </div>
+
+      <!-- Top Score + Metrics -->
+      <div class="score-overview-grid">
+        <!-- Main Circular Score Card -->
+        <div class="score-card">
+          <div class="circle-chart">
+            <svg viewBox="0 0 36 36">
+              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="circle-stroke" class="circle-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+            <div class="circle-score-text">
+              <div class="val" id="res-score-val">0</div>
+              <div class="denom">/ 100 Score</div>
+            </div>
+          </div>
+          <div class="score-verdict-badge" id="res-verdict-badge">High Viability</div>
+        </div>
+
+        <!-- 3 Sub Metrics Cards -->
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <div>
+              <div class="metric-label">Market Potential</div>
+              <div class="metric-value" id="res-market-val">0%</div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="bar-market"></div>
+            </div>
+          </div>
+
+          <div class="metric-item">
+            <div>
+              <div class="metric-label">Risk Index</div>
+              <div class="metric-value" id="res-risk-val">Medium</div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="bar-risk" style="background: linear-gradient(90deg, #3498db, #e74c3c);"></div>
+            </div>
+          </div>
+
+          <div class="metric-item">
+            <div>
+              <div class="metric-label">Uniqueness Moat</div>
+              <div class="metric-value" id="res-unique-val">0%</div>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="bar-unique"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Executive Business Summary -->
+      <div class="summary-box">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Executive Summary
+        </h3>
+        <p id="res-summary-text">Loading business synthesis...</p>
+      </div>
+
+      <!-- Strengths vs Weaknesses -->
+      <div class="analysis-columns">
+        <div class="analysis-card strengths">
+          <h3>Strategic Strengths</h3>
+          <ul class="analysis-list" id="res-strengths-list"></ul>
+        </div>
+
+        <div class="analysis-card weaknesses">
+          <h3>Vulnerabilities & Risk Vectors</h3>
+          <ul class="analysis-list" id="res-weaknesses-list"></ul>
+        </div>
+      </div>
+
+      <!-- Recommendations Roadmap -->
+      <div class="recommendations-box">
+        <h3>Actionable Roadmap</h3>
+        <div class="rec-steps-grid" id="res-roadmap-grid"></div>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="action-footer">
+        <button class="btn-outline" onclick="resetToForm()">
+          ← Validate Another Idea
+        </button>
+        <button class="btn-gold" style="padding: 14px 28px; font-size: 14px;" onclick="exportReportText()">
+          Download Report (.TXT)
+        </button>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Bottom App Footer -->
+  <footer class="bottom-footer">
+    <p>&copy; 2026 IDEALAB ADVANCED INTELLIGENCE SYSTEMS</p>
+    <div class="footer-status">
+      <span>SYSTEM STATUS: OPTIMAL</span>
+      <span class="live-dot">● AI ENGINE LIVE</span>
+    </div>
+  </footer>
+
+  <script>
+    // Button Ripple Effect
+    document.querySelectorAll('.btn-gold').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const x = e.clientX - e.target.getBoundingClientRect().left;
+        const y = e.clientY - e.target.getBoundingClientRect().top;
+        
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Global store for the active validation report
+    let currentReport = null;
+
+    // Handle Form Submit & Initiate Loading
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const startupName = document.getElementById('startupName').value.trim();
+      const industry = document.getElementById('industry').value;
+      const targetAudience = document.getElementById('targetAudience').value.trim();
+      const problemStatement = document.getElementById('problemStatement').value.trim();
+      const proposedSolution = document.getElementById('proposedSolution').value.trim();
+      const revenueModel = document.getElementById('revenueModel').value;
+
+      if (!startupName || !industry || !problemStatement || !proposedSolution || !revenueModel) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      // Hide Form, Show Loading
+      document.getElementById('form-section').style.display = 'none';
+      const loadingSec = document.getElementById('loading-section');
+      loadingSec.style.display = 'block';
+
+      // Sequence loading messages over 3 seconds
+      const statusText = document.getElementById('loading-status');
+      const messages = [
+        "Analyzing Idea Structure & Keyword Matrix...",
+        "Checking Industry Benchmark & Market Trajectory...",
+        "Evaluating Competition Density & Moat Potential...",
+        "Calculating Risk Vector & Monetization Feasibility...",
+        "Synthesizing AI Validation Executive Report..."
+      ];
+
+      let msgIndex = 0;
+      const interval = setInterval(() => {
+        msgIndex++;
+        if (msgIndex < messages.length) {
+          statusText.style.opacity = 0;
+          setTimeout(() => {
+            statusText.innerText = messages[msgIndex];
+            statusText.style.opacity = 1;
+          }, 150);
+        } else {
+          clearInterval(interval);
+        }
+      }, 550);
+
+      // After 3 seconds, generate report & render
+      setTimeout(() => {
+        loadingSec.style.display = 'none';
+        
+        // Execute rule-based analysis engine
+        currentReport = generateRuleBasedAnalysis({
+          startupName,
+          industry,
+          targetAudience,
+          problemStatement,
+          proposedSolution,
+          revenueModel
+        });
+
+        renderResults(currentReport);
+      }, 3000);
+    }
+
+    // Intelligent Deterministic Rule Engine
+    function generateRuleBasedAnalysis(input) {
+      const { startupName, industry, targetAudience, problemStatement, proposedSolution, revenueModel } = input;
+
+      // Base industry multipliers & characteristics
+      const industryProfiles = {
+        'Healthcare': { baseScore: 78, baseRisk: 'High', marketGrowth: 88, moatFactor: 85, trustReq: true, regBarrier: true },
+        'FinTech': { baseScore: 82, baseRisk: 'High', marketGrowth: 92, moatFactor: 80, trustReq: true, regBarrier: true },
+        'SaaS': { baseScore: 86, baseRisk: 'Low', marketGrowth: 95, moatFactor: 75, trustReq: false, regBarrier: false },
+        'E-Commerce': { baseScore: 68, baseRisk: 'Medium', marketGrowth: 78, moatFactor: 52, trustReq: false, regBarrier: false },
+        'Education': { baseScore: 74, baseRisk: 'Medium', marketGrowth: 80, moatFactor: 65, trustReq: false, regBarrier: false },
+        'Food': { baseScore: 62, baseRisk: 'High', marketGrowth: 70, moatFactor: 48, trustReq: false, regBarrier: true },
+        'CleanTech': { baseScore: 80, baseRisk: 'Medium', marketGrowth: 90, moatFactor: 82, trustReq: false, regBarrier: true },
+        'CyberSecurity': { baseScore: 88, baseRisk: 'Low', marketGrowth: 94, moatFactor: 88, trustReq: true, regBarrier: false },
+        'PropTech': { baseScore: 72, baseRisk: 'Medium', marketGrowth: 76, moatFactor: 68, trustReq: false, regBarrier: false },
+        'Consumer': { baseScore: 65, baseRisk: 'Very High', marketGrowth: 85, moatFactor: 50, trustReq: false, regBarrier: false }
+      };
+
+      const profile = industryProfiles[industry] || { baseScore: 70, baseRisk: 'Medium', marketGrowth: 75, moatFactor: 60 };
+
+      // Text depth & clarity analysis
+      const problemLen = problemStatement.length;
+      const solutionLen = proposedSolution.length;
+      
+      // Depth bonus (up to +10 pts)
+      let depthBonus = 0;
+      if (problemLen > 80 && solutionLen > 100) depthBonus = 10;
+      else if (problemLen > 40 && solutionLen > 50) depthBonus = 5;
+
+      // High-value tech keyword detection
+      const keywords = ['AI', 'automation', 'machine learning', 'proprietary', 'patent', 'analytics', 'real-time', 'api', 'platform', 'cloud', 'blockchain', 'cost reduction', 'workflow', 'integration'];
+      const combinedText = (problemStatement + " " + proposedSolution).toLowerCase();
+      let keywordHits = 0;
+      keywords.forEach(kw => {
+        if (combinedText.includes(kw.toLowerCase())) keywordHits++;
+      });
+      const techBonus = Math.min(keywordHits * 2, 8); // Max 8 pts
+
+      // Revenue Model adjustment
+      let revenueScoreMod = 0;
+      let revenueRiskMod = profile.baseRisk;
+      if (revenueModel === 'B2B Subscription') { revenueScoreMod = 6; }
+      else if (revenueModel === 'Direct Sales') { revenueScoreMod = 4; }
+      else if (revenueModel === 'Pay-per-use') { revenueScoreMod = 3; }
+      else if (revenueModel === 'Freemium') { revenueScoreMod = -2; revenueRiskMod = 'Medium'; }
+      else if (revenueModel === 'Advertising') { revenueScoreMod = -6; revenueRiskMod = 'High'; }
+
+      // Target audience specificity bonus
+      const audienceBonus = (targetAudience && targetAudience.length > 15) ? 4 : 0;
+
+      // Final score calculations bounded between 0 and 98
+      let rawScore = profile.baseScore + depthBonus + techBonus + revenueScoreMod + audienceBonus;
+      const overallScore = Math.min(Math.max(rawScore, 42), 98);
+
+      const marketPotential = Math.min(profile.marketGrowth + (depthBonus / 2), 99);
+      const uniquenessScore = Math.min(profile.moatFactor + techBonus + (keywordHits > 2 ? 6 : 0), 96);
+      
+      // Determine final Verdict Label
+      let verdict = "Promising Concept";
+      if (overallScore >= 85) verdict = "High Viability";
+      else if (overallScore >= 72) verdict = "Moderate Potential";
+      else verdict = "Requires Pivot";
+
+      // Build Industry-Tailored Strengths
+      const strengths = [];
+      strengths.push(`Clear product alignment within the fast-moving ${industry} sector.`);
+      if (revenueModel === 'B2B Subscription') {
+        strengths.push(`Predictable recurring revenue model (${revenueModel}) creates strong unit economics and high Customer Lifetime Value (LTV).`);
+      } else {
+        strengths.push(`Scalable monetization strategy centered around ${revenueModel}.`);
+      }
+      if (keywordHits > 0) {
+        strengths.push(`Leverages modern tech moat drivers including automated workflow capabilities.`);
+      } else {
+        strengths.push(`Direct focus on pain-point resolution with high market pull potential.`);
+      }
+
+      // Build Industry-Tailored Weaknesses & Risks
+      const weaknesses = [];
+      if (profile.trustReq || profile.regBarrier) {
+        weaknesses.push(`Elevated regulatory and trust compliance hurdles typical of ${industry} products.`);
+      } else {
+        weaknesses.push(`Potential threat from low barriers to entry and rapid copycat competitors.`);
+      }
+      if (revenueModel === 'Freemium' || revenueModel === 'Advertising') {
+        weaknesses.push(`User conversion metrics may suffer due to relying on ${revenueModel} without guaranteed upfront commitment.`);
+      } else {
+        weaknesses.push(`Customer acquisition cost (CAC) risk during initial market validation phase.`);
+      }
+      weaknesses.push(`Requires proof of initial retention metrics before institutional fundraising.`);
+
+      // Executive Summary Text
+      const audienceText = targetAudience ? ` targeting ${targetAudience}` : '';
+      const summaryText = `<strong>${startupName}</strong> presents a ${verdict.toLowerCase()} venture operating in the <strong>${industry}</strong> space${audienceText}. The proposed solution addresses key inefficiencies through a <strong>${revenueModel}</strong> model. With an estimated Market Potential of <strong>${marketPotential}%</strong> and a Uniqueness Moat of <strong>${uniquenessScore}%</strong>, the startup demonstrates clear product-market alignment, provided initial execution focuses heavily on customer acquisition speed and risk mitigation.`;
+
+      // Roadmap Steps
+      const roadmap = [
+        { title: "1. Build Low-Code MVP", desc: "Develop a functional prototype focusing purely on the core value proposition of " + startupName + " to gather immediate user feedback." },
+        { title: "2. Validate Unit Economics", desc: "Test the " + revenueModel + " structure with early adopters to confirm willingness to pay and establish baseline CAC." },
+        { title: "3. Establish Competitive Moat", desc: "Double down on proprietary features or network effects to protect market share against incumbents in " + industry + "." },
+        { title: "4. Scale Growth Channels", desc: "Initiate outbound sales or content-driven acquisition loops to expand overall market reach." }
+      ];
+
+      return {
+        startupName,
+        industry,
+        revenueModel,
+        overallScore,
+        marketPotential,
+        riskLevel: revenueRiskMod,
+        uniquenessScore,
+        verdict,
+        strengths,
+        weaknesses,
+        summaryText,
+        roadmap
+      };
+    }
+
+    // Render Results in Dashboard
+    function renderResults(data) {
+      document.getElementById('res-startup-name').innerText = data.startupName + " — AI Validation";
+      document.getElementById('res-industry-badge').innerText = data.industry;
+      document.getElementById('res-model-badge').innerText = data.revenueModel;
+      
+      document.getElementById('res-verdict-badge').innerText = data.verdict;
+      
+      // Animate Overall Score Number
+      let count = 0;
+      const scoreValElem = document.getElementById('res-score-val');
+      const targetScore = data.overallScore;
+      const scoreInterval = setInterval(() => {
+        if (count >= targetScore) {
+          scoreValElem.innerText = targetScore;
+          clearInterval(scoreInterval);
+        } else {
+          count += 2;
+          scoreValElem.innerText = count;
+        }
+      }, 20);
+
+      // Set Circular SVG Stroke Offset (100 - targetScore)
+      const strokeElem = document.getElementById('circle-stroke');
+      setTimeout(() => {
+        strokeElem.style.strokeDashoffset = (100 - targetScore);
+      }, 100);
+
+      // Sub Metrics
+      document.getElementById('res-market-val').innerText = data.marketPotential + "%";
+      document.getElementById('bar-market').style.width = data.marketPotential + "%";
+
+      document.getElementById('res-risk-val').innerText = data.riskLevel;
+      let riskWidth = '40%';
+      if (data.riskLevel === 'Low') riskWidth = '25%';
+      if (data.riskLevel === 'High') riskWidth = '75%';
+      if (data.riskLevel === 'Very High') riskWidth = '92%';
+      document.getElementById('bar-risk').style.width = riskWidth;
+
+      document.getElementById('res-unique-val').innerText = data.uniquenessScore + "%";
+      document.getElementById('bar-unique').style.width = data.uniquenessScore + "%";
+
+      // Summary
+      document.getElementById('res-summary-text').innerHTML = data.summaryText;
+
+      // Strengths List
+      const strengthsList = document.getElementById('res-strengths-list');
+      strengthsList.innerHTML = '';
+      data.strengths.forEach(st => {
+        const li = document.createElement('li');
+        li.innerText = st;
+        strengthsList.appendChild(li);
+      });
+
+      // Weaknesses List
+      const weaknessesList = document.getElementById('res-weaknesses-list');
+      weaknessesList.innerHTML = '';
+      data.weaknesses.forEach(wk => {
+        const li = document.createElement('li');
+        li.innerText = wk;
+        weaknessesList.appendChild(li);
+      });
+
+      // Roadmap
+      const roadmapGrid = document.getElementById('res-roadmap-grid');
+      roadmapGrid.innerHTML = '';
+      data.roadmap.forEach((item, index) => {
+        const stepDiv = document.createElement('div');
+        stepDiv.className = 'rec-step-item';
+        stepDiv.innerHTML = `
+          <div class="step-num">${index + 1}</div>
+          <div class="step-content">
+            <h4>${item.title}</h4>
+            <p>${item.desc}</p>
+          </div>
+        `;
+        roadmapGrid.appendChild(stepDiv);
+      });
+
+      // Show Result Section with animation
+      const resSec = document.getElementById('result-section');
+      resSec.style.display = 'block';
+      resSec.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reset back to Form
+    function resetToForm() {
+      document.getElementById('result-section').style.display = 'none';
+      const formSec = document.getElementById('form-section');
+      formSec.style.display = 'block';
+      formSec.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Export Report as .txt Download File
+    function exportReportText() {
+      if (!currentReport) return;
+
+      const r = currentReport;
+      const reportContent = `
+===================================================================
+                  AI IDEA VALIDATION REPORT
+===================================================================
+Startup Name:    ${r.startupName}
+Industry Sector: ${r.industry}
+Revenue Model:   ${r.revenueModel}
+Generated Date:  ${new Date().toLocaleDateString()}
+
+-------------------------------------------------------------------
+1. EXECUTIVE SCORES
+-------------------------------------------------------------------
+• Overall Validation Score: ${r.overallScore} / 100 (${r.verdict})
+• Market Potential:        ${r.marketPotential}%
+• Risk Level Index:        ${r.riskLevel}
+• Uniqueness Moat Score:   ${r.uniquenessScore}%
+
+-------------------------------------------------------------------
+2. EXECUTIVE SUMMARY
+-------------------------------------------------------------------
+${r.summaryText.replace(/<\/?[^>]+(>|$)/g, "")}
+
+-------------------------------------------------------------------
+3. STRATEGIC STRENGTHS
+-------------------------------------------------------------------
+${r.strengths.map(s => "• " + s).join("\n")}
+
+-------------------------------------------------------------------
+4. VULNERABILITIES & RISK VECTORS
+-------------------------------------------------------------------
+${r.weaknesses.map(w => "• " + w).join("\n")}
+
+-------------------------------------------------------------------
+5. ACTIONABLE ROADMAP
+-------------------------------------------------------------------
+${r.roadmap.map(rm => rm.title + "\n  " + rm.desc).join("\n\n")}
+
+===================================================================
+Report generated via AI Startup Intelligence System
+===================================================================
+`.trim();
+
+      const blob = new Blob([reportContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${r.startupName.replace(/[^a-z0-9]/gi, '_')}_AI_Validation_Report.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

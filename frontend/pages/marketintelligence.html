@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | Market Intelligence SaaS Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       1. VARIABLES & THEME ENGINE
+       ========================================================================== */
+    :root {
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      
+      /* Dark Theme Default */
+      --bg-primary: #0B0B0B;
+      --bg-secondary: #121215;
+      --bg-tertiary: #1A1A1E;
+      --card-bg: rgba(20, 20, 24, 0.75);
+      --card-bg-hover: rgba(30, 30, 36, 0.85);
+      --card-border: rgba(212, 175, 55, 0.18);
+      --card-border-hover: rgba(212, 175, 55, 0.45);
+      
+      --text-primary: #F3F4F6;
+      --text-secondary: #9CA3AF;
+      --text-muted: #6B7280;
+      
+      --gold-primary: #D4AF37;
+      --gold-light: #F3CE56;
+      --gold-dark: #A68215;
+      --gold-glow: rgba(212, 175, 55, 0.22);
+      --gold-glow-subtle: rgba(212, 175, 55, 0.08);
+      --gold-gradient: linear-gradient(135deg, #FFE885 0%, #D4AF37 50%, #A68215 100%);
+      
+      --input-bg: rgba(255, 255, 255, 0.04);
+      --input-border: rgba(255, 255, 255, 0.12);
+      --input-border-focus: rgba(212, 175, 55, 0.6);
+      
+      --accent-green: #10B981;
+      --accent-green-bg: rgba(16, 185, 129, 0.12);
+      --accent-blue: #3B82F6;
+      --accent-blue-bg: rgba(59, 130, 246, 0.12);
+      --accent-purple: #8B5CF6;
+      --accent-purple-bg: rgba(139, 92, 246, 0.12);
+      --accent-coral: #F43F5E;
+      --accent-coral-bg: rgba(244, 63, 94, 0.12);
+      
+      --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --modal-overlay: rgba(5, 5, 5, 0.85);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.light-theme {
+      --bg-primary: #F8F9FA;
+      --bg-secondary: #F0F2F5;
+      --bg-tertiary: #E5E7EB;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-bg-hover: rgba(255, 255, 255, 0.98);
+      --card-border: rgba(212, 175, 55, 0.28);
+      --card-border-hover: rgba(197, 155, 39, 0.6);
+      
+      --text-primary: #111827;
+      --text-secondary: #4B5563;
+      --text-muted: #6B7280;
+      
+      --gold-primary: #C59B27;
+      --gold-light: #D4AF37;
+      --gold-dark: #8C6B13;
+      --gold-glow: rgba(197, 155, 39, 0.2);
+      --gold-glow-subtle: rgba(197, 155, 39, 0.08);
+      --gold-gradient: linear-gradient(135deg, #DFC15B 0%, #C59B27 50%, #8C6B13 100%);
+      
+      --input-bg: rgba(255, 255, 255, 0.9);
+      --input-border: rgba(0, 0, 0, 0.12);
+      --input-border-focus: rgba(197, 155, 39, 0.8);
+      
+      --glass-shadow: 0 20px 40px rgba(212, 175, 55, 0.08);
+      --modal-overlay: rgba(245, 245, 247, 0.88);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--gold-glow-subtle) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, var(--gold-glow-subtle) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .brand-logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--gold-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      box-shadow: 0 4px 15px var(--gold-glow);
+    }
+
+    .brand-logo-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-title span.title-gold {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      background: var(--gold-glow-subtle);
+      border: 1px solid var(--card-border);
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-icon-toggle {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius-md);
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+
+    .btn-icon-toggle:hover {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px var(--gold-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-icon-toggle svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .btn-demo-preset {
+      background: transparent;
+      border: 1px dashed var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-demo-preset:hover {
+      background: var(--gold-glow-subtle);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       4. CONTAINER & HERO LAYOUT
+       ========================================================================== */
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem 1.5rem;
+    }
+
+    .hero-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 30px;
+      background: var(--gold-glow-subtle);
+      border: 1px solid var(--card-border);
+      color: var(--gold-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 20px var(--gold-glow-subtle);
+    }
+
+    .hero-pill svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       5. FORM CARD & INPUT STYLES
+       ========================================================================== */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold-gradient);
+      opacity: 0.7;
+    }
+
+    .form-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    .form-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .label-optional {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .form-control {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.1rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .form-control:focus {
+      border-color: var(--input-border-focus);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    body.light-theme .form-control:focus {
+      background: #FFFFFF;
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    select.form-control option {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-gold-submit {
+      width: 100%;
+      background: var(--gold-gradient);
+      color: #0B0B0B;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 1.1rem 2rem;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: var(--transition);
+      box-shadow: 0 10px 25px var(--gold-glow);
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .btn-gold-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px var(--gold-glow);
+      filter: brightness(1.08);
+    }
+
+    .btn-gold-submit:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-gold-submit svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-gold-submit:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ==========================================================================
+       6. LOADING MODAL & ANIMATIONS
+       ========================================================================== */
+    .loading-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--modal-overlay);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .loading-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .loading-content {
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      padding: 3rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--glass-shadow);
+      position: relative;
+    }
+
+    /* Animated Gold Radar / Pulse Ring */
+    .radar-spinner-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 2rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--gold-primary);
+      animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+
+    .radar-ring:nth-child(1) {
+      width: 100%;
+      height: 100%;
+      border-top-color: var(--gold-primary);
+    }
+
+    .radar-ring:nth-child(2) {
+      width: 75%;
+      height: 75%;
+      border-top-color: var(--gold-light);
+      animation-duration: 1.2s;
+      animation-direction: reverse;
+    }
+
+    .radar-ring:nth-child(3) {
+      width: 50%;
+      height: 50%;
+      border-top-color: var(--gold-dark);
+      animation-duration: 0.9s;
+    }
+
+    .radar-center-node {
+      width: 18px;
+      height: 18px;
+      background: var(--gold-gradient);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--gold-primary);
+      animation: pulseGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    .loading-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .loading-status-text {
+      font-size: 0.95rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      min-height: 1.5em;
+      margin-bottom: 1.75rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 6px;
+      background: var(--input-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--input-border);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gold-gradient);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    .loading-percentage {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       7. RESULT DASHBOARD & METRICS
+       ========================================================================== */
+    .dashboard-wrapper {
+      display: none;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .dashboard-wrapper.active {
+      display: block;
+    }
+
+    .dashboard-actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      backdrop-filter: blur(16px);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .startup-meta-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .startup-name-display {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+    }
+
+    .meta-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      background: var(--gold-glow-subtle);
+      border: 1px solid var(--card-border);
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .dash-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      padding: 0.55rem 1.1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .btn-action:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--gold-glow-subtle);
+    }
+
+    .btn-action svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-action.btn-primary-action {
+      background: var(--gold-gradient);
+      color: #0B0B0B;
+      border: none;
+      box-shadow: 0 4px 15px var(--gold-glow);
+    }
+
+    .btn-action.btn-primary-action:hover {
+      color: #0B0B0B;
+      filter: brightness(1.1);
+    }
+
+    /* Score & Key Stats Grid */
+    .dashboard-top-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .score-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .circular-score-wrapper {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin-bottom: 1.25rem;
+    }
+
+    .circular-score-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: var(--input-border);
+      stroke-width: 10;
+    }
+
+    .circle-progress {
+      fill: none;
+      stroke: url(#goldGradientSvg);
+      stroke-width: 12;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .circle-score-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      font-family: var(--font-display);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .score-max {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .score-verdict-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .score-verdict-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Key Metrics Grid */
+    .metrics-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .metric-tile {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .metric-tile:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--gold-glow-subtle);
+    }
+
+    .metric-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .metric-icon {
+      color: var(--gold-primary);
+      opacity: 0.9;
+    }
+
+    .metric-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .metric-sub {
+      font-size: 0.75rem;
+      color: var(--accent-green);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .metric-sub.status-neutral {
+      color: var(--text-secondary);
+    }
+
+    .metric-sub.status-warning {
+      color: #F59E0B;
+    }
+
+    /* ==========================================================================
+       8. INSIGHTS CARDS (5 Core Indicators)
+       ========================================================================== */
+    .section-title-wrapper {
+      margin: 2.5rem 0 1.25rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--gold-gradient);
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .insights-5-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .insight-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      text-align: center;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .insight-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--gold-glow-subtle);
+    }
+
+    .insight-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold-glow-subtle);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      margin-bottom: 0.85rem;
+    }
+
+    .insight-title {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .insight-value-badge {
+      padding: 0.3rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-green {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-gold {
+      background: var(--gold-glow-subtle);
+      color: var(--gold-primary);
+      border: 1px solid var(--card-border);
+    }
+
+    .badge-blue {
+      background: var(--accent-blue-bg);
+      color: var(--accent-blue);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-purple {
+      background: var(--accent-purple-bg);
+      color: var(--accent-purple);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .badge-coral {
+      background: var(--accent-coral-bg);
+      color: var(--accent-coral);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+
+    /* ==========================================================================
+       9. COMPETITOR ANALYSIS & AI SUMMARY
+       ========================================================================== */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .competitor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .competitor-item-card {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .competitor-item-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateX(4px);
+    }
+
+    .comp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .comp-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .comp-strength-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-weight: 600;
+      background: var(--gold-glow-subtle);
+      color: var(--gold-primary);
+      border: 1px solid var(--card-border);
+    }
+
+    .comp-meta-row {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .comp-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .comp-power-bar {
+      height: 5px;
+      background: var(--input-border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+
+    .comp-power-fill {
+      height: 100%;
+      background: var(--gold-gradient);
+      border-radius: 5px;
+    }
+
+    .comp-diff-box {
+      font-size: 0.82rem;
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 3px solid var(--gold-primary);
+      padding: 0.5rem 0.75rem;
+      border-radius: 0 6px 6px 0;
+      color: var(--text-primary);
+    }
+
+    /* Executive AI Summary Box */
+    .ai-summary-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .summary-paragraph-block {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+
+    .summary-block-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-block-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       10. RECOMMENDATIONS SECTION
+       ========================================================================== */
+    .recommendations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .rec-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .rec-card:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px var(--gold-glow-subtle);
+    }
+
+    .rec-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+    }
+
+    .rec-priority {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+    }
+
+    .rec-priority.high {
+      background: var(--accent-coral-bg);
+      color: var(--accent-coral);
+    }
+
+    .rec-priority.medium {
+      background: var(--gold-glow-subtle);
+      color: var(--gold-primary);
+    }
+
+    .rec-priority.growth {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+    }
+
+    .rec-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .rec-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .rec-footer-action {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-top: auto;
+    }
+
+    /* ==========================================================================
+       11. TOAST NOTIFICATIONS & FOOTER
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .toast-message {
+      background: var(--card-bg);
+      border: 1px solid var(--gold-primary);
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      backdrop-filter: blur(16px);
+      animation: slideInRight 0.4s ease, fadeOut 0.4s ease 3s forwards;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2.5rem 0 1.5rem 0;
+      border-top: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 4rem;
+    }
+
+    .footer span.gold {
+      color: var(--gold-primary);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       12. ANIMATIONS & KEYFRAMES
+       ========================================================================== */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.9); box-shadow: 0 0 10px var(--gold-primary); }
+      100% { transform: scale(1.15); box-shadow: 0 0 25px var(--gold-light); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* ==========================================================================
+       13. RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .dashboard-top-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-matrix-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .insights-5-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .two-col-grid {
+        grid-template-columns: 1fr;
+      }
+      .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+      .insights-5-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .recommendations-grid {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-actions-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .dash-btn-group {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .navbar {
+        padding: 0.85rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .metrics-matrix-grid {
+        grid-template-columns: 1fr;
+      }
+      .insights-5-grid {
+        grid-template-columns: 1fr;
+      }
+      .glass-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* ==========================================================================
+       14. PRINT STYLES
+       ========================================================================== */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .navbar, .hero-header, .form-wrapper, .dash-btn-group, .toast-container, .loading-modal-overlay {
+        display: none !important;
+      }
+      .dashboard-wrapper {
+        display: block !important;
+      }
+      .glass-card, .metric-tile, .insight-card, .competitor-item-card, .rec-card {
+        background: #FFFFFF !important;
+        border: 1px solid #DDD !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+      }
+      .score-number {
+        -webkit-text-fill-color: #D4AF37 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       SVG DEFS FOR GRADIENTS & ICONS
+       ========================================================================== -->
+  <svg style="display: none;">
+    <defs>
+      <linearGradient id="goldGradientSvg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FFE885" />
+        <stop offset="50%" stop-color="#D4AF37" />
+        <stop offset="100%" stop-color="#A68215" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== -->
+  <nav class="navbar" id="mainNavbar">
+    <a href="../index.html" class="nav-brand">
+      <div class="brand-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+          <polyline points="2 17 12 22 22 17"></polyline>
+          <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <span>VentureIQ</span>
+        <span class="title-gold"></span>
+        <span class="brand-badge"></span>
+      </div>
+    </a>
+
+    <div class="nav-actions">
+      <button class="btn-demo-preset" id="demoDataBtn" title="Fill with sample startup data">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+        </svg>
+        Load Demo Data
+      </button>
+
+      <button class="btn-icon-toggle" id="themeToggleBtn" aria-label="Toggle Theme" title="Switch Light/Dark Mode">
+        <svg id="themeIconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg id="themeIconSun" style="display:none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==========================================================================
+       MAIN APP CONTAINER
+       ========================================================================== -->
+  <main class="app-container">
+
+    <!-- HERO HEADER -->
+    <header class="hero-header" id="heroHeader">
+      <div class="hero-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        Institutional Market Research Engine
+      </div>
+      <h1 class="hero-title">
+        Validate Your Startup Idea <span>Before You Launch</span>
+      </h1>
+      <p class="hero-subtitle">
+        Input your venture details to generate dynamic market size estimates, competitor positioning metrics, demand evaluation, and growth vectors in seconds.
+      </p>
+    </header>
+
+    <!-- FORM SECTION -->
+    <section class="form-wrapper" id="formSection">
+      <div class="glass-card">
+        <form id="marketForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-grid">
+            
+            <div class="form-group">
+              <label class="form-label" for="startupName">Startup Name</label>
+              <input type="text" id="startupName" class="form-control" placeholder="e.g. Apex Analytics" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="industrySelect">Industry Vertical</label>
+              <select id="industrySelect" class="form-control" required>
+                <option value="" disabled selected>Select Industry</option>
+                <option value="AI & Machine Learning">AI & Machine Learning</option>
+                <option value="SaaS & Enterprise Software">SaaS & Enterprise Software</option>
+                <option value="FinTech & Banking">FinTech & Banking</option>
+                <option value="HealthTech & Bio">HealthTech & Digital Health</option>
+                <option value="E-Commerce & D2C">E-Commerce & Retail Tech</option>
+                <option value="EdTech & E-Learning">EdTech & Education</option>
+                <option value="CleanTech & Sustainability">CleanTech & Energy</option>
+                <option value="Cybersecurity & Infrastructure">Cybersecurity & Cloud</option>
+                <option value="Web3 & Crypto">Web3 & Blockchain</option>
+                <option value="Logistics & Supply Chain">Logistics & Mobility</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="productService">Product or Service Description</label>
+              <textarea id="productService" class="form-control" placeholder="Describe what your product does, key features, and core value proposition..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="targetAudience">Target Audience</label>
+              <input type="text" id="targetAudience" class="form-control" placeholder="e.g. Enterprise CTOs, SMB Owners, Gen-Z Creators" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regionSelect">Country / Target Region</label>
+              <select id="regionSelect" class="form-control" required>
+                <option value="Global">Global Market</option>
+                <option value="North America">North America (US & Canada)</option>
+                <option value="Europe">Europe (EU & UK)</option>
+                <option value="Asia Pacific">Asia Pacific (APAC)</option>
+                <option value="Latin America">Latin America (LATAM)</option>
+                <option value="Middle East & Africa">Middle East & Africa (MENA)</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="India">India</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="competitorsInput">
+                Known Competitors
+                <span class="label-optional">(Optional — separated by commas)</span>
+              </label>
+              <input type="text" id="competitorsInput" class="form-control" placeholder="e.g. Salesforce, HubSpot, Gong, Chorus">
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-gold-submit" id="analyzeBtn">
+            <span>Analyze Market Intelligence</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- LOADING MODAL OVERLAY -->
+    <div class="loading-modal-overlay" id="loadingModal">
+      <div class="loading-content">
+        <div class="radar-spinner-container">
+          <div class="radar-ring"></div>
+          <div class="radar-ring"></div>
+          <div class="radar-ring"></div>
+          <div class="radar-center-node"></div>
+        </div>
+
+        <h3 class="loading-title">Synthesizing Market Intelligence</h3>
+        <p class="loading-status-text" id="loadingStatus">Initializing Neural Analysis Engine...</p>
+
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="loadingProgressBar"></div>
+        </div>
+        <div class="loading-percentage" id="loadingPercentage">0% COMPLETE</div>
+      </div>
+    </div>
+
+    <!-- RESULT DASHBOARD -->
+    <section class="dashboard-wrapper" id="dashboardSection">
+      
+      <!-- TOP ACTION BAR -->
+      <div class="dashboard-actions-bar">
+        <div class="startup-meta-info">
+          <h2 class="startup-name-display" id="resStartupName">Apex Analytics</h2>
+          <span class="meta-tag" id="resIndustryTag">AI & Machine Learning</span>
+          <span class="meta-tag" id="resRegionTag">North America</span>
+        </div>
+
+        <div class="dash-btn-group">
+          <button class="btn-action" onclick="resetFormToSearch()" title="Search Another Startup">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+            New Search
+          </button>
+
+          <button class="btn-action" onclick="window.print()" title="Print Intelligence Dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Print
+          </button>
+
+          <button class="btn-action btn-primary-action" onclick="exportReportTxt()" title="Download Full Report TXT">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Export Report (.txt)
+          </button>
+        </div>
+      </div>
+
+      <!-- OVERALL SCORE & KEY METRICS GRID -->
+      <div class="dashboard-top-grid">
+        
+        <!-- SCORE CARD -->
+        <div class="glass-card score-card">
+          <div class="circular-score-wrapper">
+            <svg class="circular-score-svg" viewBox="0 0 160 160">
+              <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
+              <circle class="circle-progress" id="scoreCircleProgress" cx="80" cy="80" r="70"></circle>
+            </svg>
+            <div class="circle-score-inner">
+              <span class="score-number" id="scoreValue">0</span>
+              <span class="score-max">OUT OF 100</span>
+            </div>
+          </div>
+          <h3 class="score-verdict-title" id="scoreVerdictTitle">Strong Market Viability</h3>
+          <p class="score-verdict-subtitle" id="scoreVerdictSub">Calculated from market velocity, competitive gap & interest</p>
+        </div>
+
+        <!-- 8 METRICS MATRIX -->
+        <div class="metrics-matrix-grid">
+          
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Market Size</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valMarketSize">$48.5B</div>
+            <div class="metric-sub" id="subMarketSize">Large Total Addressable</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Market Demand</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valMarketDemand">88%</div>
+            <div class="metric-sub" id="subMarketDemand">High Consumer Sentiment</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Competition Level</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valCompetitionLevel">Moderate</div>
+            <div class="metric-sub status-warning" id="subCompetitionLevel">3 Main Key Players</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Growth CAGR</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valGrowthRate">+22.4%</div>
+            <div class="metric-sub" id="subGrowthRate">Rapid Annual Expansion</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Entry Barrier</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valEntryBarrier">Moderate</div>
+            <div class="metric-sub status-neutral" id="subEntryBarrier">Capital & IP Dependent</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Capital Needed</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valCapitalReq">$150k - $400k</div>
+            <div class="metric-sub status-neutral" id="subCapitalReq">Lean Seed Phase</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Customer Interest</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valCustomerInterest">Very High</div>
+            <div class="metric-sub" id="subCustomerInterest">Strong Pull Factor</div>
+          </div>
+
+          <div class="metric-tile">
+            <div class="metric-header">
+              <span class="metric-label">Margin & Profitability</span>
+              <span class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </span>
+            </div>
+            <div class="metric-value" id="valProfitability">High Margin</div>
+            <div class="metric-sub" id="subProfitability">Estimated 75%+ Gross</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 5 CORE INSIGHT CARDS -->
+      <div class="section-title-wrapper">
+        <h3 class="section-title">Core Market Indicators</h3>
+      </div>
+
+      <div class="insights-5-grid">
+        
+        <div class="insight-card">
+          <div class="insight-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+          </div>
+          <span class="insight-title">Market Size</span>
+          <span class="insight-value-badge badge-gold" id="badgeMarketSize">Large</span>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+          </div>
+          <span class="insight-title">Demand Level</span>
+          <span class="insight-value-badge badge-green" id="badgeDemand">High</span>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+          </div>
+          <span class="insight-title">Competition</span>
+          <span class="insight-value-badge badge-blue" id="badgeCompetition">Medium</span>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+          </div>
+          <span class="insight-title">Growth Rate</span>
+          <span class="insight-value-badge badge-purple" id="badgeGrowthRate">Growing</span>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <span class="insight-title">Risk Level</span>
+          <span class="insight-value-badge badge-coral" id="badgeRisk">Medium</span>
+        </div>
+
+      </div>
+
+      <!-- COMPETITOR BENCHMARK & AI SUMMARY -->
+      <div class="two-col-grid">
+        
+        <!-- COMPETITOR BENCHMARK CARD -->
+        <div class="glass-card">
+          <div class="section-title-wrapper" style="margin-top:0;">
+            <h3 class="section-title">Competitor Benchmark</h3>
+          </div>
+
+          <div class="competitor-list" id="competitorContainer">
+            <!-- Dynamic Competitor Items Render Here -->
+          </div>
+        </div>
+
+        <!-- AI EXECUTIVE SUMMARY CARD -->
+        <div class="glass-card">
+          <div class="section-title-wrapper" style="margin-top:0;">
+            <h3 class="section-title">Executive AI Summary</h3>
+          </div>
+
+          <div class="ai-summary-box">
+            
+            <div class="summary-paragraph-block">
+              <div class="summary-block-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                Current Market Condition
+              </div>
+              <p class="summary-block-desc" id="aiMarketCondition">Analyzing market climate...</p>
+            </div>
+
+            <div class="summary-paragraph-block">
+              <div class="summary-block-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                Business Opportunities
+              </div>
+              <p class="summary-block-desc" id="aiOpportunities">Identifying untapped gaps...</p>
+            </div>
+
+            <div class="summary-paragraph-block">
+              <div class="summary-block-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+                Challenges & Obstacles
+              </div>
+              <p class="summary-block-desc" id="aiChallenges">Evaluating potential risks...</p>
+            </div>
+
+            <div class="summary-paragraph-block">
+              <div class="summary-block-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                Likelihood of Success & Future Outlook
+              </div>
+              <p class="summary-block-desc" id="aiOutlook">Estimating trajectory...</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- STRATEGIC RECOMMENDATIONS -->
+      <div class="section-title-wrapper">
+        <h3 class="section-title">Strategic Action Recommendations</h3>
+      </div>
+
+      <div class="recommendations-grid" id="recommendationsContainer">
+        <!-- Dynamic Recommendations Render Here -->
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>AURA Market Intelligence Engine &copy; 2026. Designed for High-Growth Founders & Investors.</p>
+      <p style="margin-top: 0.3rem;">Powered by <span class="gold">Deterministic SaaS Rule Engine v2.4</span> • All calculations computed client-side.</p>
+    </footer>
+
+  </main>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC (RULE-BASED INTELLIGENCE ENGINE)
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       1. INITIALIZATION & THEME MANAGER
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      setupKeyListeners();
+    });
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('aura_theme') || 'dark';
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        document.getElementById('themeIconMoon').style.display = 'none';
+        document.getElementById('themeIconSun').style.display = 'block';
+      } else {
+        document.body.classList.remove('light-theme');
+        document.getElementById('themeIconMoon').style.display = 'block';
+        document.getElementById('themeIconSun').style.display = 'none';
+      }
+    }
+
+    document.getElementById('themeToggleBtn').addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      const isLight = document.body.classList.contains('light-theme');
+      localStorage.setItem('aura_theme', isLight ? 'light' : 'dark');
+      
+      document.getElementById('themeIconMoon').style.display = isLight ? 'none' : 'block';
+      document.getElementById('themeIconSun').style.display = isLight ? 'block' : 'none';
+      
+      showToast(isLight ? 'Switched to Light Theme' : 'Switched to Dark Theme');
+    });
+
+    function setupKeyListeners() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('loadingModal');
+          if (modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            showToast('Analysis cancelled');
+          }
+        }
+      });
+    }
+
+    /* ==========================================================================
+       2. DEMO DATA FILLER
+       ========================================================================== */
+    document.getElementById('demoDataBtn').addEventListener('click', () => {
+      document.getElementById('startupName').value = 'NexusFlow AI';
+      document.getElementById('industrySelect').value = 'AI & Machine Learning';
+      document.getElementById('productService').value = 'Autonomous AI agent workflows for enterprise customer support with self-healing knowledge bases and real-time sentiment escalation.';
+      document.getElementById('targetAudience').value = 'Enterprise Customer Experience VPs & Support Directors';
+      document.getElementById('regionSelect').value = 'North America';
+      document.getElementById('competitorsInput').value = 'Zendesk, Intercom, Sierra AI, Decagon';
+      
+      showToast('Demo dataset loaded');
+    });
+
+    /* ==========================================================================
+       3. FORM SUBMISSION & ROTATING LOADING MODAL
+       ========================================================================== */
+    let currentReportData = null;
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const startupName = document.getElementById('startupName').value.trim();
+      const industry = document.getElementById('industrySelect').value;
+      const productService = document.getElementById('productService').value.trim();
+      const targetAudience = document.getElementById('targetAudience').value.trim();
+      const region = document.getElementById('regionSelect').value;
+      const competitorsRaw = document.getElementById('competitorsInput').value.trim();
+
+      if (!startupName || !industry || !productService || !targetAudience || !region) {
+        showToast('Please fill out all required fields');
+        return;
+      }
+
+      // Show Loading Modal
+      const loadingModal = document.getElementById('loadingModal');
+      loadingModal.classList.add('active');
+
+      const loadingMessages = [
+        `Analyzing ${industry} Market Dynamics...`,
+        `Scanning Global Trends in ${region}...`,
+        `Benchmarking Competitor Positioning...`,
+        `Evaluating Consumer Demand & sentiment for ${targetAudience}...`,
+        `Calculating Viability & Growth Score for ${startupName}...`,
+        `Preparing Final Executive Market Intelligence Report...`
+      ];
+
+      let msgIndex = 0;
+      let progress = 0;
+      const loadingStatus = document.getElementById('loadingStatus');
+      const progressBar = document.getElementById('loadingProgressBar');
+      const loadingPercentage = document.getElementById('loadingPercentage');
+
+      // Update message every 700ms
+      const msgInterval = setInterval(() => {
+        msgIndex = (msgIndex + 1) % loadingMessages.length;
+        loadingStatus.style.opacity = '0';
+        setTimeout(() => {
+          loadingStatus.innerText = loadingMessages[msgIndex];
+          loadingStatus.style.opacity = '1';
+        }, 150);
+      }, 700);
+
+      // Smooth progress bar from 0 to 100 over ~3.8s
+      const progressInterval = setInterval(() => {
+        progress += Math.floor(Math.random() * 8) + 4;
+        if (progress > 100) progress = 100;
+        
+        progressBar.style.width = `${progress}%`;
+        loadingPercentage.innerText = `${progress}% COMPLETE`;
+
+        if (progress >= 100) {
+          clearInterval(msgInterval);
+          clearInterval(progressInterval);
+
+          setTimeout(() => {
+            loadingModal.classList.remove('active');
+            
+            // Generate Rule-Based Data
+            currentReportData = generateMarketIntelligence({
+              startupName,
+              industry,
+              productService,
+              targetAudience,
+              region,
+              competitorsRaw
+            });
+
+            // Render Dashboard
+            renderDashboard(currentReportData);
+
+            // Hide Hero Header & Form smoothly, show Dashboard
+            document.getElementById('heroHeader').style.display = 'none';
+            document.getElementById('formSection').style.display = 'none';
+            const dash = document.getElementById('dashboardSection');
+            dash.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast('Market Intelligence Report Generated!');
+          }, 400);
+        }
+      }, 150);
+    }
+
+    /* ==========================================================================
+       4. RULE-BASED INTELLIGENCE GENERATION ENGINE
+       ========================================================================== */
+    function generateMarketIntelligence(inputs) {
+      const { startupName, industry, productService, targetAudience, region, competitorsRaw } = inputs;
+
+      // Deterministic hash based on inputs for reproducible realism
+      const seedString = (startupName + industry + region + productService).toLowerCase();
+      let hash = 0;
+      for (let i = 0; i < seedString.length; i++) {
+        hash = (hash << 5) - hash + seedString.charCodeAt(i);
+        hash |= 0;
+      }
+      const pseudoRand = (offset = 0) => {
+        const x = Math.sin(Math.abs(hash + offset)) * 10000;
+        return x - Math.floor(x);
+      };
+
+      // Industry Baseline Profiles
+      const industryProfiles = {
+        "AI & Machine Learning": {
+          baseScore: 88,
+          marketSize: "$120.4B - $450B",
+          cagr: "+31.2%",
+          demand: "Very High (94%)",
+          competition: "High",
+          barrier: "Moderate - High",
+          capital: "$200k - $600k",
+          risk: "Low - Medium",
+          profitability: "82% Gross Margin",
+          defCompetitors: ["OpenAI Enterprise", "Anthropic", "Jasper", "Custom In-House"]
+        },
+        "SaaS & Enterprise Software": {
+          baseScore: 85,
+          marketSize: "$280B - $600B",
+          cagr: "+18.5%",
+          demand: "High (86%)",
+          competition: "High",
+          barrier: "Moderate",
+          capital: "$100k - $300k",
+          risk: "Low",
+          profitability: "78% Gross Margin",
+          defCompetitors: ["Salesforce", "HubSpot", "Atlassian", "ServiceNow"]
+        },
+        "FinTech & Banking": {
+          baseScore: 82,
+          marketSize: "$190B - $320B",
+          cagr: "+21.4%",
+          demand: "High (82%)",
+          competition: "High",
+          barrier: "High (Compliance)",
+          capital: "$300k - $800k",
+          risk: "Medium",
+          profitability: "72% Gross Margin",
+          defCompetitors: ["Stripe", "Plaid", "Revolut", "Adyen"]
+        },
+        "HealthTech & Bio": {
+          baseScore: 80,
+          marketSize: "$140B - $280B",
+          cagr: "+24.1%",
+          demand: "Very High (90%)",
+          competition: "Medium",
+          barrier: "Very High",
+          capital: "$400k - $1M+",
+          risk: "Medium - High",
+          profitability: "68% Gross Margin",
+          defCompetitors: ["Epic Systems", "Veeva", "Teladoc", "Ro Health"]
+        },
+        "E-Commerce & D2C": {
+          baseScore: 76,
+          marketSize: "$3.5T Global",
+          cagr: "+14.2%",
+          demand: "High (78%)",
+          competition: "Very High",
+          barrier: "Low - Moderate",
+          capital: "$50k - $200k",
+          risk: "Medium",
+          profitability: "45% Gross Margin",
+          defCompetitors: ["Shopify Ecosystem", "Amazon Sellers", "BigCommerce"]
+        },
+        "EdTech & E-Learning": {
+          baseScore: 78,
+          marketSize: "$85B - $160B",
+          cagr: "+16.8%",
+          demand: "Moderate (74%)",
+          competition: "Medium",
+          barrier: "Low",
+          capital: "$75k - $250k",
+          risk: "Medium",
+          profitability: "70% Gross Margin",
+          defCompetitors: ["Coursera", "Udemy", "Duolingo", "MasterClass"]
+        },
+        "CleanTech & Sustainability": {
+          baseScore: 84,
+          marketSize: "$90B - $210B",
+          cagr: "+27.5%",
+          demand: "Very High (89%)",
+          competition: "Low - Medium",
+          barrier: "High",
+          capital: "$350k - $900k",
+          risk: "Medium",
+          profitability: "62% Gross Margin",
+          defCompetitors: ["Tesla Energy", "Enphase", "Schneider Electric"]
+        },
+        "Cybersecurity & Cloud": {
+          baseScore: 87,
+          marketSize: "$175B - $340B",
+          cagr: "+22.8%",
+          demand: "Critical (96%)",
+          competition: "High",
+          barrier: "High",
+          capital: "$250k - $650k",
+          risk: "Low",
+          profitability: "80% Gross Margin",
+          defCompetitors: ["CrowdStrike", "Palo Alto Networks", "Cloudflare"]
+        },
+        "Web3 & Blockchain": {
+          baseScore: 72,
+          marketSize: "$45B - $110B",
+          cagr: "+35.0%",
+          demand: "Volatile (68%)",
+          competition: "Medium",
+          barrier: "Moderate",
+          capital: "$150k - $450k",
+          risk: "High",
+          profitability: "75% Gross Margin",
+          defCompetitors: ["Coinbase Infra", "Chainlink", "Alchemy"]
+        },
+        "Logistics & Supply Chain": {
+          baseScore: 81,
+          marketSize: "$210B - $480B",
+          cagr: "+19.2%",
+          demand: "High (85%)",
+          competition: "Medium",
+          barrier: "Moderate - High",
+          capital: "$200k - $500k",
+          risk: "Low - Medium",
+          profitability: "58% Gross Margin",
+          defCompetitors: ["Flexport", "Project44", "FourKites"]
+        }
+      };
+
+      const profile = industryProfiles[industry] || industryProfiles["SaaS & Enterprise Software"];
+
+      // Calculate Viability Score (70 - 96 range)
+      const scoreVariance = Math.floor(pseudoRand(1) * 12) - 4;
+      const score = Math.max(68, Math.min(97, profile.baseScore + scoreVariance));
+
+      // Parse user competitors or fallback
+      let userComps = competitorsRaw ? competitorsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+      if (userComps.length === 0) {
+        userComps = profile.defCompetitors;
+      }
+
+      const competitorDetails = userComps.slice(0, 4).map((compName, idx) => {
+        const share = Math.floor( pseudoRand(idx + 10) * 35 ) + 15;
+        const positions = ["Incumbent Leader", "Fast-Growing Challenger", "Legacy Dominant", "Niche Specialist"];
+        const gaps = [
+          "Legacy interface & slow onboarding friction",
+          "High enterprise pricing with lack of flexibility",
+          "Limited real-time automated workflows",
+          "Poor customer support & complex integration setup"
+        ];
+        const advantages = [
+          `${startupName} offers 10x faster deployment & modern UX`,
+          `AI-native workflow engine specifically tailored for ${targetAudience}`,
+          `Flexible usage-based pricing saving customers up to 40%`,
+          `Seamless 1-click integrations built for target region (${region})`
+        ];
+
+        return {
+          name: compName,
+          strength: `${share}% Market Share`,
+          powerPercent: share + 25,
+          position: positions[idx % positions.length],
+          gap: gaps[idx % gaps.length],
+          advantage: advantages[idx % advantages.length]
+        };
+      });
+
+      // Formulate AI Summary Texts
+      const marketCondition = `The ${industry} ecosystem in ${region} is experiencing robust momentum, driven by surging enterprise demand among ${targetAudience}. Market size currently sits at ${profile.marketSize} with an annual growth trajectory of ${profile.cagr}. Key industry tailwinds point toward automated efficiency and modular software solutions.`;
+
+      const opportunities = `${startupName} is uniquely positioned to capitalize on structural gaps left by incumbent players like ${userComps[0] || 'legacy solutions'}. By tailoring features specifically for ${targetAudience}, there is an immediate opportunity to capture early market share through product-led growth and superior user experience.`;
+
+      const challenges = `Primary hurdles include high customer acquisition costs (CAC) in ${region} and competitive noise from established platforms. Additionally, maintaining zero latency and high data security standards will be essential when selling to ${targetAudience}.`;
+
+      const outlook = `With a market viability score of ${score}/100, ${startupName} exhibits strong commercial potential. If an MVP is validated within 3–6 months targeting niche segment users, the venture can reasonably target profitability with gross margins reaching ${profile.profitability}.`;
+
+      // Formulate 6 Recommendations
+      const recommendations = [
+        {
+          priority: "High Impact",
+          priorityClass: "high",
+          title: "Focus on Niche Persona First",
+          desc: `Avoid target audience dilution. Target strictly ${targetAudience} in ${region} before broadening reach.`,
+          action: "Execute Persona Strategy →"
+        },
+        {
+          priority: "Quick Win",
+          priorityClass: "growth",
+          title: "Build & Deploy Lean MVP",
+          desc: `Develop a focused core loop solving the primary pain point for ${targetAudience} within 60 days.`,
+          action: "Launch Waitlist Page →"
+        },
+        {
+          priority: "Critical",
+          priorityClass: "high",
+          title: "Establish Differentiation vs " + (userComps[0] || 'Competitors'),
+          desc: `Emphasize superior speed, modern UX, and tailored workflow integration as primary selling propositions.`,
+          action: "View Competitive Matrix →"
+        },
+        {
+          priority: "Growth Vector",
+          priorityClass: "medium",
+          title: "Optimize Pricing Architecture",
+          desc: `Implement a freemium or usage-based tier to lower entry friction for ${targetAudience}.`,
+          action: "Design Pricing Tiers →"
+        },
+        {
+          priority: "Strategic",
+          priorityClass: "medium",
+          title: "Channel & Integration Partnerships",
+          desc: `Partner with non-competing tools in the ${industry} ecosystem to drive cost-effective customer acquisition.`,
+          action: "Identify Partners →"
+        },
+        {
+          priority: "Validation",
+          priorityClass: "growth",
+          title: "Run Paid Demand Tests",
+          desc: `Run $500 targeted ad campaigns or LinkedIn cold outreach to validate message-market fit before heavy engineering.`,
+          action: "Run Conversion Test →"
+        }
+      ];
+
+      return {
+        inputs,
+        score,
+        profile,
+        competitorDetails,
+        aiSummary: {
+          marketCondition,
+          opportunities,
+          challenges,
+          outlook
+        },
+        recommendations
+      };
+    }
+
+    /* ==========================================================================
+       5. RENDER DASHBOARD
+       ========================================================================== */
+    function renderDashboard(data) {
+      const { inputs, score, profile, competitorDetails, aiSummary, recommendations } = data;
+
+      // Meta Info
+      document.getElementById('resStartupName').innerText = inputs.startupName;
+      document.getElementById('resIndustryTag').innerText = inputs.industry;
+      document.getElementById('resRegionTag').innerText = inputs.region;
+
+      // Score Animated Circle
+      const scoreCircle = document.getElementById('scoreCircleProgress');
+      const scoreValueText = document.getElementById('scoreValue');
+      const scoreVerdictTitle = document.getElementById('scoreVerdictTitle');
+      const scoreVerdictSub = document.getElementById('scoreVerdictSub');
+
+      // Animate Number from 0 to Score
+      let currentScore = 0;
+      const scoreInterval = setInterval(() => {
+        currentScore++;
+        scoreValueText.innerText = currentScore;
+        if (currentScore >= score) {
+          clearInterval(scoreInterval);
+        }
+      }, 20);
+
+      // Circle dashoffset (440 total circumference)
+      const offset = 440 - (440 * score) / 100;
+      setTimeout(() => {
+        scoreCircle.style.strokeDashoffset = offset;
+      }, 100);
+
+      if (score >= 85) {
+        scoreVerdictTitle.innerText = "Exceptional Market Viability";
+        scoreVerdictSub.innerText = "High market demand with clear differentiation vector";
+      } else if (score >= 75) {
+        scoreVerdictTitle.innerText = "Strong Commercial Opportunity";
+        scoreVerdictSub.innerText = "Solid growth indicators; validate pricing & niche focus";
+      } else {
+        scoreVerdictTitle.innerText = "Moderate Market Viability";
+        scoreVerdictSub.innerText = "High competitive friction; pivot to underserved niche";
+      }
+
+      // Populate 8 Metrics
+      document.getElementById('valMarketSize').innerText = profile.marketSize.split(' ')[0];
+      document.getElementById('subMarketSize').innerText = profile.marketSize;
+
+      document.getElementById('valMarketDemand').innerText = profile.demand.split(' ')[0] + " " + (profile.demand.split(' ')[1] || '');
+      document.getElementById('subMarketDemand').innerText = "Targeting " + inputs.targetAudience;
+
+      document.getElementById('valCompetitionLevel').innerText = profile.competition;
+      document.getElementById('subCompetitionLevel').innerText = `${competitorDetails.length} Key Competitors Tagged`;
+
+      document.getElementById('valGrowthRate').innerText = profile.cagr;
+      document.getElementById('subGrowthRate').innerText = "CAGR Annual Expansion";
+
+      document.getElementById('valEntryBarrier').innerText = profile.barrier.split(' ')[0];
+      document.getElementById('subEntryBarrier').innerText = profile.barrier;
+
+      document.getElementById('valCapitalReq').innerText = profile.capital;
+      document.getElementById('subCapitalReq').innerText = "Estimated Pre-Seed Runway";
+
+      document.getElementById('valCustomerInterest').innerText = "Very High";
+      document.getElementById('subCustomerInterest').innerText = "Strong Demand Pull";
+
+      document.getElementById('valProfitability').innerText = profile.profitability.split(' ')[0] + " Gross";
+      document.getElementById('subProfitability').innerText = profile.profitability;
+
+      // Populate 5 Indicator Badges
+      document.getElementById('badgeMarketSize').innerText = profile.marketSize.includes('B') || profile.marketSize.includes('T') ? "Large" : "Medium";
+      document.getElementById('badgeDemand').innerText = profile.demand.includes('Very High') ? "High" : "Medium";
+      document.getElementById('badgeCompetition').innerText = profile.competition;
+      document.getElementById('badgeGrowthRate').innerText = "Growing";
+      document.getElementById('badgeRisk').innerText = profile.risk;
+
+      // Populate Competitor Matrix
+      const compContainer = document.getElementById('competitorContainer');
+      compContainer.innerHTML = competitorDetails.map(comp => `
+        <div class="competitor-item-card">
+          <div class="comp-header">
+            <div class="comp-name">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+              ${comp.name}
+            </div>
+            <span class="comp-strength-tag">${comp.position}</span>
+          </div>
+          <div class="comp-meta-row">
+            <span class="comp-meta-item">Est. Share: ${comp.strength}</span>
+          </div>
+          <div class="comp-power-bar">
+            <div class="comp-power-fill" style="width: ${comp.powerPercent}%;"></div>
+          </div>
+          <div class="comp-diff-box">
+            <strong>${inputs.startupName} Advantage:</strong> ${comp.advantage}
+          </div>
+        </div>
+      `).join('');
+
+      // Populate AI Summary
+      document.getElementById('aiMarketCondition').innerText = aiSummary.marketCondition;
+      document.getElementById('aiOpportunities').innerText = aiSummary.opportunities;
+      document.getElementById('aiChallenges').innerText = aiSummary.challenges;
+      document.getElementById('aiOutlook').innerText = aiSummary.outlook;
+
+      // Populate Recommendations Grid
+      const recContainer = document.getElementById('recommendationsContainer');
+      recContainer.innerHTML = recommendations.map(rec => `
+        <div class="rec-card">
+          <div>
+            <div class="rec-badge-row">
+              <span class="rec-priority ${rec.priorityClass}">${rec.priority}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            </div>
+            <h4 class="rec-title">${rec.title}</h4>
+            <p class="rec-desc">${rec.desc}</p>
+          </div>
+          <div class="rec-footer-action">
+            <span>${rec.action}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ==========================================================================
+       6. EXPORT REPORT (.TXT) & UTILS
+       ========================================================================== */
+    function exportReportTxt() {
+      if (!currentReportData) {
+        showToast('No report available to export');
+        return;
+      }
+
+      const { inputs, score, profile, competitorDetails, aiSummary, recommendations } = currentReportData;
+
+      const txtContent = `
+================================================================================
+                    AURA MARKET INTELLIGENCE REPORT
+================================================================================
+Generated Date: ${new Date().toLocaleDateString()}
+Startup Name  : ${inputs.startupName}
+Industry      : ${inputs.industry}
+Target Region : ${inputs.region}
+Target Audience: ${inputs.targetAudience}
+
+--------------------------------------------------------------------------------
+OVERALL MARKET VIABILITY SCORE: ${score} / 100
+--------------------------------------------------------------------------------
+
+KEY METRICS OVERVIEW:
+• Estimated Market Size : ${profile.marketSize}
+• Growth Rate (CAGR)    : ${profile.cagr}
+• Market Demand         : ${profile.demand}
+• Competition Level     : ${profile.competition}
+• Entry Barrier         : ${profile.barrier}
+• Est. Capital Required : ${profile.capital}
+• Profitability Margin  : ${profile.profitability}
+
+--------------------------------------------------------------------------------
+EXECUTIVE MARKET SUMMARY:
+--------------------------------------------------------------------------------
+1. CURRENT MARKET CONDITION:
+${aiSummary.marketCondition}
+
+2. BUSINESS OPPORTUNITIES:
+${aiSummary.opportunities}
+
+3. POTENTIAL CHALLENGES & RISKS:
+${aiSummary.challenges}
+
+4. SUCCESS LIKELIHOOD & OUTLOOK:
+${aiSummary.outlook}
+
+--------------------------------------------------------------------------------
+COMPETITOR BENCHMARK:
+--------------------------------------------------------------------------------
+${competitorDetails.map((c, i) => `${i + 1}. ${c.name} (${c.position})
+   - Market Share: ${c.strength}
+   - Strategic Advantage for ${inputs.startupName}: ${c.advantage}
+`).join('\n')}
+
+--------------------------------------------------------------------------------
+STRATEGIC ACTION RECOMMENDATIONS:
+--------------------------------------------------------------------------------
+${recommendations.map((r, i) => `${i + 1}. [${r.priority}] ${r.title}
+   Details: ${r.desc}
+`).join('\n')}
+
+================================================================================
+Report synthesized by AURA Deterministic Market Intelligence Engine.
+================================================================================
+      `.trim();
+
+      const blob = new Blob([txtContent], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${inputs.startupName.toLowerCase().replace(/\s+/g, '-')}-market-intelligence.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast('Report exported as .txt file');
+    }
+
+    function resetFormToSearch() {
+      document.getElementById('dashboardSection').classList.remove('active');
+      document.getElementById('heroHeader').style.display = 'block';
+      document.getElementById('formSection').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast('Ready for new analysis');
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast-message';
+      toast.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3400);
+    }
+  </script>
+</body>
+</html>

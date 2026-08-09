@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="VentureIQ Strategic Intelligence — AI-powered startup insights and recommendations."
+    >
+
+    <meta name="theme-color" content="#080808">
+
+    <title>Strategic Intelligence — VentureIQ</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Strategic Intelligence CSS -->
+    <link
+        rel="stylesheet"
+        href="../css/strategicintelligence.css"
+    >
+</head>
+
+<body>
+
+<div class="intelligence-app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- BRAND -->
+        <div class="sidebar-brand">
+            <a href="../index.html" class="brand-link">
+                <span class="brand-mark">V</span>
+
+                <span class="brand-name">
+                    Venture<span>IQ</span>
+                </span>
+            </a>
+        </div>
+
+        <!-- WORKSPACE -->
+        <div class="workspace-switcher">
+
+            <div class="workspace-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div class="workspace-info">
+                <span class="workspace-label">WORKSPACE</span>
+                <strong>My Venture</strong>
+            </div>
+
+            <i class="fa-solid fa-chevron-down workspace-arrow"></i>
+
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <!-- OVERVIEW -->
+            <div class="nav-section">
+
+                <span class="nav-section-title">OVERVIEW</span>
+
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-table-cells-large"></i>
+                    </span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </span>
+
+                    <span>My Ideas</span>
+
+                    <span class="nav-count">3</span>
+                </a>
+
+            </div>
+
+            <!-- INTELLIGENCE -->
+            <div class="nav-section">
+
+                <span class="nav-section-title">INTELLIGENCE</span>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </span>
+                    <span>Idea Validator</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </span>
+                    <span>Market Intelligence</span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                    </span>
+                    <span>Competitor Analysis</span>
+                </a>
+
+                <a href="viabilityscore.html" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </span>
+                    <span>Viability Score</span>
+                </a>
+
+                <a href="executionroadmap.html" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-route"></i>
+                    </span>
+                    <span>Execution Roadmap</span>
+                </a>
+
+                <a href="strategicintelligence.html" class="nav-item active">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </span>
+                    <span>Strategic Intelligence</span>
+                </a>
+
+            </div>
+
+            <!-- ACCOUNT -->
+            <div class="nav-section">
+
+                <span class="nav-section-title">ACCOUNT</span>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-regular fa-bell"></i>
+                    </span>
+
+                    <span>Notifications</span>
+
+                    <span class="notification-dot"></span>
+                </a>
+
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-sliders"></i>
+                    </span>
+                    <span>Settings</span>
+                </a>
+
+            </div>
+
+        </nav>
+
+        <!-- SIDEBAR BOTTOM -->
+        <div class="sidebar-bottom">
+
+            <!-- UPGRADE -->
+            <div class="upgrade-card">
+
+                <div class="upgrade-icon">
+                    <i class="fa-solid fa-sparkles"></i>
+                </div>
+
+                <strong>Unlock more intelligence</strong>
+
+                <p>
+                    Explore advanced startup insights.
+                </p>
+
+                <button type="button">
+                    Explore
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+            <!-- USER -->
+            <div class="sidebar-user">
+
+                <div class="user-avatar">S</div>
+
+                <div class="user-details">
+                    <strong>Sampada</strong>
+                    <span>Founder workspace</span>
+                </div>
+
+                <button type="button" class="user-menu" id="userMenu">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <span class="header-eyebrow">
+                        VENTUREIQ INTELLIGENCE
+                    </span>
+
+                    <h1>Strategic Intelligence</h1>
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    class="header-icon"
+                    id="searchButton"
+                    aria-label="Search"
+                >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <button
+                    type="button"
+                    class="header-icon"
+                    id="notificationButton"
+                    aria-label="Notifications"
+                >
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="header-notification-dot"></span>
+                </button>
+
+                <button
+                    type="button"
+                    class="header-icon"
+                    id="themeToggle"
+                    aria-label="Toggle theme"
+                >
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <div class="header-profile">
+
+                    <div class="header-avatar">S</div>
+
+                    <div class="header-profile-info">
+                        <strong>Sampada</strong>
+                        <span>Founder</span>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <div class="intelligence-content">
+
+            <!-- PAGE INTRO -->
+            <section class="page-intro">
+
+                <div>
+
+                    <span class="section-tag">
+                        AI STRATEGIC LAYER
+                    </span>
+
+                    <h2>
+                        Turn startup signals into
+                        <span>strategic action.</span>
+                    </h2>
+
+                    <p>
+                        VentureIQ synthesizes your startup's intelligence
+                        into practical insights, risks, opportunities and
+                        recommendations.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-action"
+                    id="generateInsightsButton"
+                >
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Generate Insights
+                </button>
+
+            </section>
+
+
+            <!-- ACTIVE IDEA -->
+            <section class="active-idea-card">
+
+                <div class="active-idea-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div class="active-idea-info">
+                    <span>CURRENTLY ANALYZING</span>
+                    <h3>Caretroid</h3>
+                    <p>AI-powered elderly care assistant</p>
+                </div>
+
+                <div class="analysis-status">
+                    <span class="status-dot"></span>
+                    AI analysis ready
+                </div>
+
+            </section>
+
+
+            <!-- AI OVERVIEW -->
+            <section class="ai-overview-card">
+
+                <div class="ai-overview-glow"></div>
+
+                <div class="ai-overview-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <div class="ai-overview-content">
+
+                    <span class="panel-label">
+                        VENTUREIQ AI SYNTHESIS
+                    </span>
+
+                    <h3>
+                        Caretroid has a meaningful opportunity
+                        in AI-assisted elderly care.
+                    </h3>
+
+                    <p>
+                        Your strongest signals are problem relevance,
+                        market opportunity and product differentiation.
+                        The biggest challenge is execution complexity
+                        and building trust with users and caregivers.
+                    </p>
+
+                </div>
+
+                <div class="ai-confidence">
+
+                    <span>AI CONFIDENCE</span>
+
+                    <strong>91%</strong>
+
+                    <small>High confidence</small>
+
+                </div>
+
+            </section>
+
+
+            <!-- INSIGHT OVERVIEW -->
+            <section class="insight-overview">
+
+                <div class="insight-stat-card">
+
+                    <div class="insight-stat-icon positive">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+
+                    <div>
+                        <span>STRENGTHS</span>
+                        <strong>04</strong>
+                        <small>Strong signals</small>
+                    </div>
+
+                </div>
+
+
+                <div class="insight-stat-card">
+
+                    <div class="insight-stat-icon opportunity">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <div>
+                        <span>OPPORTUNITIES</span>
+                        <strong>03</strong>
+                        <small>Growth areas</small>
+                    </div>
+
+                </div>
+
+
+                <div class="insight-stat-card">
+
+                    <div class="insight-stat-icon warning">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <div>
+                        <span>RISKS</span>
+                        <strong>03</strong>
+                        <small>Signals to monitor</small>
+                    </div>
+
+                </div>
+
+
+                <div class="insight-stat-card">
+
+                    <div class="insight-stat-icon action">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div>
+                        <span>PRIORITY</span>
+                        <strong>HIGH</strong>
+                        <small>Customer validation</small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- STRATEGIC INSIGHTS -->
+            <section class="strategic-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="panel-label">
+                            STRATEGIC SIGNALS
+                        </span>
+
+                        <h3>What the intelligence suggests</h3>
+                    </div>
+
+                    <span class="section-note">
+                        AI synthesized
+                    </span>
+
+                </div>
+
+
+                <div class="strategic-grid">
+
+                    <!-- STRENGTHS -->
+                    <article class="strategic-card strength-card">
+
+                        <div class="strategic-card-header">
+
+                            <div class="strategic-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+
+                            <div>
+                                <span>STRENGTHS</span>
+                                <h4>Where you're ahead</h4>
+                            </div>
+
+                        </div>
+
+
+                        <div class="signal-list">
+
+                            <div class="signal-item">
+
+                                <span class="signal-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Clear problem relevance</strong>
+
+                                    <p>
+                                        Elderly care is a meaningful
+                                        and clearly identifiable need.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="signal-item">
+
+                                <span class="signal-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Strong AI differentiation</strong>
+
+                                    <p>
+                                        AI assistance creates a
+                                        distinct product direction.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="signal-item">
+
+                                <span class="signal-check">
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Growing care demand</strong>
+
+                                    <p>
+                                        The problem space offers
+                                        potential for long-term demand.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- OPPORTUNITIES -->
+                    <article class="strategic-card opportunity-card">
+
+                        <div class="strategic-card-header">
+
+                            <div class="strategic-icon">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+
+                            <div>
+                                <span>OPPORTUNITIES</span>
+                                <h4>Where you can grow</h4>
+                            </div>
+
+                        </div>
+
+
+                        <div class="signal-list">
+
+                            <div class="signal-item">
+
+                                <span class="signal-opportunity">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Family caregiver segment</strong>
+
+                                    <p>
+                                        Positioning for caregivers
+                                        could expand adoption.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="signal-item">
+
+                                <span class="signal-opportunity">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Personalized assistance</strong>
+
+                                    <p>
+                                        Personalized AI support can
+                                        become a key product advantage.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="signal-item">
+
+                                <span class="signal-opportunity">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Healthcare partnerships</strong>
+
+                                    <p>
+                                        Partnerships could improve
+                                        credibility and distribution.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- RISKS -->
+                    <article class="strategic-card risk-card">
+
+                        <div class="strategic-card-header">
+
+                            <div class="strategic-icon">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+
+                            <div>
+                                <span>RISKS</span>
+                                <h4>What needs attention</h4>
+                            </div>
+
+                        </div>
+
+
+                        <div class="signal-list">
+
+                            <div class="signal-item">
+
+                                <span class="signal-warning">
+                                    <i class="fa-solid fa-exclamation"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Trust & reliability</strong>
+
+                                    <p>
+                                        Users may require strong
+                                        evidence before trusting AI.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="signal-item">
+
+                                <span class="signal-warning">
+                                    <i class="fa-solid fa-exclamation"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Technical complexity</strong>
+
+                                    <p>
+                                        Hardware and AI integration
+                                        may increase development effort.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="signal-item">
+
+                                <span class="signal-warning">
+                                    <i class="fa-solid fa-exclamation"></i>
+                                </span>
+
+                                <div>
+                                    <strong>User adoption</strong>
+
+                                    <p>
+                                        Early testing is required to
+                                        prove real-world usefulness.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- AI RECOMMENDATIONS -->
+            <section class="recommendation-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="panel-label">
+                            AI RECOMMENDATIONS
+                        </span>
+
+                        <h3>What should you do next?</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="recommendation-grid">
+
+                    <!-- 01 -->
+                    <article class="recommendation-card priority-high">
+
+                        <div class="recommendation-number">
+                            01
+                        </div>
+
+                        <div class="recommendation-content">
+
+                            <div class="recommendation-top">
+                                <span class="priority-label">
+                                    HIGH PRIORITY
+                                </span>
+
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+
+                            <h4>
+                                Validate with real caregivers
+                            </h4>
+
+                            <p>
+                                Interview potential users and caregivers
+                                to verify whether the current problem
+                                assumptions match their real needs.
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="recommendation-action"
+                        >
+                            Explore
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </article>
+
+
+                    <!-- 02 -->
+                    <article class="recommendation-card">
+
+                        <div class="recommendation-number">
+                            02
+                        </div>
+
+                        <div class="recommendation-content">
+
+                            <div class="recommendation-top">
+                                <span class="priority-label">
+                                    NEXT
+                                </span>
+
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+
+                            <h4>Focus the MVP</h4>
+
+                            <p>
+                                Reduce the first version to one
+                                high-value care workflow that can
+                                be tested quickly with real users.
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="recommendation-action"
+                        >
+                            Explore
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </article>
+
+
+                    <!-- 03 -->
+                    <article class="recommendation-card">
+
+                        <div class="recommendation-number">
+                            03
+                        </div>
+
+                        <div class="recommendation-content">
+
+                            <div class="recommendation-top">
+                                <span class="priority-label">
+                                    AFTER VALIDATION
+                                </span>
+
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+
+                            <h4>
+                                Explore strategic partnerships
+                            </h4>
+
+                            <p>
+                                Consider healthcare organizations,
+                                care centers and specialist partners
+                                once product-market signals improve.
+                            </p>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="recommendation-action"
+                        >
+                            Explore
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- STRATEGIC PRIORITY -->
+            <section class="priority-card">
+
+                <div class="priority-card-icon">
+                    <i class="fa-solid fa-crosshairs"></i>
+                </div>
+
+                <div class="priority-card-content">
+
+                    <span class="panel-label">
+                        VENTUREIQ STRATEGIC PRIORITY
+                    </span>
+
+                    <h3>
+                        Prove the problem before expanding the solution.
+                    </h3>
+
+                    <p>
+                        Your next major milestone should not be adding
+                        more features. It should be confirming that
+                        caregivers and elderly users genuinely value
+                        the core experience.
+                    </p>
+
+                </div>
+
+                <div class="priority-score">
+                    <span>PRIORITY</span>
+                    <strong>HIGH</strong>
+                </div>
+
+            </section>
+
+
+            <!-- DECISION SIGNAL -->
+            <section class="decision-card">
+
+                <div class="decision-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <div class="decision-content">
+
+                    <span class="panel-label">
+                        AI DECISION SIGNAL
+                    </span>
+
+                    <h3>
+                        Validate deeply before scaling.
+                    </h3>
+
+                    <p>
+                        VentureIQ recommends continuing with Caretroid,
+                        but keeping the next phase focused on customer
+                        validation, MVP testing and trust-building.
+                    </p>
+
+                </div>
+
+                <a
+                    href="executionroadmap.html"
+                    class="decision-action"
+                >
+                    View roadmap
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+
+                <span>© 2026 VentureIQ</span>
+
+                <span>AI-powered startup intelligence</span>
+
+                <span>Think smarter. Build stronger.</span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- MOBILE SIDEBAR OVERLAY -->
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>
+
+
+<!-- JavaScript -->
+<script src="../js/strategicintelligence.js"></script>
+
+</body>
+</html>

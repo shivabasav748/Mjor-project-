@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Sign in to VentureIQ — AI-powered startup intelligence."
+    >
+
+    <title>Sign In — VentureIQ</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         AUTHENTICATION CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../css/auth.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
+
+    <div
+        class="auth-loader"
+        id="authLoader"
+    >
+
+        <div class="loader-mark">
+
+            <span>V</span>
+
+        </div>
+
+        <div class="loader-line"></div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
+    <div class="auth-background">
+
+        <div class="auth-grid"></div>
+
+        <div
+            class="auth-glow auth-glow-one"
+        ></div>
+
+        <div
+            class="auth-glow auth-glow-two"
+        ></div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="auth-header">
+
+
+        <!-- VentureIQ Logo -->
+
+        <a
+            href="../index.html"
+            class="auth-brand"
+        >
+
+            <span class="auth-brand-mark">
+
+                <span>V</span>
+
+            </span>
+
+
+            <span class="auth-brand-name">
+
+                Venture<span>IQ</span>
+
+            </span>
+
+        </a>
+
+
+
+        <!-- Theme Toggle -->
+
+        <div class="auth-header-right">
+
+            <span class="theme-label">
+                Theme
+            </span>
+
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Toggle theme"
+            >
+
+                <i class="fa-solid fa-sun"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN AUTHENTICATION AREA
+    ====================================================== -->
+
+    <main class="auth-main">
+
+
+        <!-- =================================================
+             LEFT SIDE — INTRODUCTION
+        ================================================== -->
+
+        <section class="auth-intro">
+
+
+            <!-- Eyebrow -->
+
+            <div class="intro-eyebrow">
+
+                <span></span>
+
+                VENTUREIQ INTELLIGENCE
+
+            </div>
+
+
+
+            <!-- Heading -->
+
+            <h1>
+
+                Welcome back.
+
+                <br>
+
+                <em>
+
+                    Your next big idea
+
+                    <span>
+                        starts here.
+                    </span>
+
+                </em>
+
+            </h1>
+
+
+
+            <!-- Description -->
+
+            <p>
+
+                Sign in to continue exploring your startup ideas,
+                understanding your market and turning uncertainty
+                into intelligent decisions.
+
+            </p>
+
+
+
+            <!-- =================================================
+                 INTELLIGENCE VISUAL
+            ================================================== -->
+
+            <div class="intro-visual">
+
+
+                <div
+                    class="visual-ring visual-ring-one"
+                ></div>
+
+
+                <div
+                    class="visual-ring visual-ring-two"
+                ></div>
+
+
+
+                <!-- Core -->
+
+                <div class="visual-core">
+
+                    <div class="core-glow"></div>
+
+                    <i class="fa-solid fa-brain"></i>
+
+                </div>
+
+
+
+                <!-- Market -->
+
+                <div
+                    class="floating-node node-market"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Market
+                    </span>
+
+                </div>
+
+
+
+                <!-- Idea -->
+
+                <div
+                    class="floating-node node-idea"
+                >
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    <span>
+                        Idea
+                    </span>
+
+                </div>
+
+
+
+                <!-- Viability -->
+
+                <div
+                    class="floating-node node-score"
+                >
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    <span>
+                        Viability
+                    </span>
+
+                </div>
+
+
+
+                <!-- Roadmap -->
+
+                <div
+                    class="floating-node node-roadmap"
+                >
+
+                    <i class="fa-solid fa-route"></i>
+
+                    <span>
+                        Roadmap
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Bottom Statement -->
+
+            <div class="intro-bottom">
+
+                <span class="intro-line"></span>
+
+                <span>
+                    Validate smarter. Build with confidence.
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT SIDE — LOGIN CARD
+        ================================================== -->
+
+        <section class="auth-card-wrapper">
+
+
+            <div class="auth-card">
+
+
+                <!-- =================================================
+                     CARD HEADER
+                ================================================== -->
+
+                <div class="auth-card-top">
+
+
+                    <div>
+
+                        <span class="card-label">
+                            WELCOME BACK
+                        </span>
+
+
+                        <h2>
+                            Sign in to VentureIQ
+                        </h2>
+
+
+                        <p>
+                            Access your startup intelligence workspace.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- AI Status -->
+
+                    <div class="card-status">
+
+                        <span></span>
+
+                        AI ACTIVE
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOGIN FORM
+                ================================================== -->
+
+                <form
+                    id="loginForm"
+                    class="auth-form"
+                >
+
+
+                    <!-- =================================================
+                         EMAIL
+                    ================================================== -->
+
+                    <div class="form-group">
+
+
+                        <label for="email">
+                            Email address
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+
+                            <i
+                                class="fa-regular fa-envelope"
+                            ></i>
+
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+
+                        </div>
+
+
+                        <small
+                            class="form-error"
+                            id="emailError"
+                        ></small>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         PASSWORD
+                    ================================================== -->
+
+                    <div class="form-group">
+
+
+                        <div class="label-row">
+
+
+                            <label for="password">
+                                Password
+                            </label>
+
+
+                            <a
+                                href="#"
+                                id="forgotPassword"
+                            >
+                                Forgot password?
+                            </a>
+
+
+                        </div>
+
+
+
+                        <div class="input-wrapper">
+
+
+                            <i
+                                class="fa-solid fa-lock"
+                            ></i>
+
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+
+
+                            <!-- Show Password -->
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                ></i>
+
+                            </button>
+
+
+                        </div>
+
+
+                        <small
+                            class="form-error"
+                            id="passwordError"
+                        ></small>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         REMEMBER ME
+                    ================================================== -->
+
+                    <div class="form-options">
+
+
+                        <label class="remember-option">
+
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+
+                            <span
+                                class="custom-checkbox"
+                            ></span>
+
+
+                            <span>
+                                Remember me
+                            </span>
+
+
+                        </label>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SIGN IN BUTTON
+                    ================================================== -->
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                        id="loginButton"
+                    >
+
+                        <span>
+                            Sign in
+                        </span>
+
+
+                        <i
+                            class="fa-solid fa-arrow-right"
+                        ></i>
+
+                    </button>
+
+
+
+                    <!-- =================================================
+                         DIVIDER
+                    ================================================== -->
+
+                    <div class="auth-divider">
+
+
+                        <span></span>
+
+
+                        <small>
+                            OR
+                        </small>
+
+
+                        <span></span>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         GOOGLE LOGIN
+                    ================================================== -->
+
+                    <button
+                        type="button"
+                        class="social-login"
+                        id="googleLogin"
+                    >
+
+
+                        <span class="google-icon">
+                            G
+                        </span>
+
+
+                        Continue with Google
+
+
+                    </button>
+
+
+
+                    <!-- =================================================
+                         SIGNUP LINK
+                    ================================================== -->
+
+                    <div class="signup-prompt">
+
+
+                        <span>
+                            Don't have an account?
+                        </span>
+
+
+                        <a href="signup.html">
+
+                            Create one
+
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square"
+                            ></i>
+
+                        </a>
+
+
+                    </div>
+
+
+                </form>
+
+
+
+                <!-- =================================================
+                     SECURITY NOTE
+                ================================================== -->
+
+                <div class="security-note">
+
+
+                    <i
+                        class="fa-solid fa-shield-halved"
+                    ></i>
+
+
+                    <span>
+
+                        Your startup workspace is protected with
+                        secure authentication.
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 BACK TO HOMEPAGE
+            ================================================== -->
+
+            <a
+                href="../index.html"
+                class="back-home"
+            >
+
+                <i
+                    class="fa-solid fa-arrow-left"
+                ></i>
+
+
+                Back to VentureIQ
+
+
+            </a>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="auth-footer">
+
+
+        <span>
+            © 2026 VentureIQ
+        </span>
+
+
+        <span class="footer-dot">
+            •
+        </span>
+
+
+        <span>
+            AI-powered startup intelligence
+        </span>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         AUTHENTICATION JAVASCRIPT
+    ====================================================== -->
+
+    <script src="../js/auth.js"></script>
+
+
+</body>
+
+</html>

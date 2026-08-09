@@ -1,0 +1,2414 @@
+/* =========================================================
+   VENTUREIQ — VIABILITY SCORE
+   Premium Startup / AI Intelligence Theme
+   Theme: Black + Gold / White + Gold
+========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+
+    --gold: #c9a227;
+    --gold-light: #e5c45a;
+    --gold-dark: #a67c12;
+    --gold-soft: rgba(201, 162, 39, 0.10);
+    --gold-border: rgba(201, 162, 39, 0.18);
+
+    --bg: #080808;
+    --surface: #111111;
+    --surface-2: #171717;
+    --surface-3: #1d1d1d;
+
+    --text: #f5f5f5;
+    --muted: rgba(245, 245, 245, 0.58);
+    --muted-light: rgba(245, 245, 245, 0.75);
+
+    --danger: #d99b35;
+    --success: #c9a227;
+
+    --sidebar-width: 255px;
+    --header-height: 76px;
+
+    --radius: 18px;
+
+    --shadow:
+        0 20px 50px rgba(0, 0, 0, 0.28);
+
+    --transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   LIGHT THEME
+========================================================= */
+
+body.light-theme {
+
+    --bg: #f7f5ef;
+
+    --surface: #ffffff;
+    --surface-2: #faf9f5;
+    --surface-3: #f1eee5;
+
+    --text: #171717;
+    --muted: rgba(23, 23, 23, 0.58);
+    --muted-light: rgba(23, 23, 23, 0.75);
+
+    --gold-border: rgba(166, 124, 18, 0.18);
+
+    --shadow:
+        0 20px 50px rgba(100, 80, 20, 0.10);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    font-family: "DM Sans", sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   MAIN APPLICATION
+========================================================= */
+
+.viability-app {
+
+    min-height: 100vh;
+
+    background: var(--bg);
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: var(--sidebar-width);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(201, 162, 39, 0.045),
+            transparent 35%
+        ),
+        var(--surface);
+
+    border-right: 1px solid var(--gold-border);
+
+    z-index: 100;
+
+    transition:
+        transform 0.3s ease,
+        width 0.3s ease;
+}
+
+
+/* =========================================================
+   SIDEBAR BRAND
+========================================================= */
+
+.sidebar-brand {
+
+    padding: 0 10px;
+
+    margin-bottom: 28px;
+}
+
+.brand-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.brand-mark {
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    color: #111;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 25px rgba(201, 162, 39, 0.20);
+}
+
+.brand-name {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   WORKSPACE SWITCHER
+========================================================= */
+
+.workspace-switcher {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 11px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: 13px;
+
+    background:
+        rgba(201, 162, 39, 0.035);
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.workspace-switcher:hover {
+
+    border-color:
+        rgba(201, 162, 39, 0.35);
+
+    background:
+        rgba(201, 162, 39, 0.07);
+}
+
+.workspace-icon {
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: var(--gold-soft);
+
+    color: var(--gold);
+
+    font-size: 13px;
+}
+
+.workspace-info {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+.workspace-label {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.workspace-info strong {
+
+    display: block;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.workspace-arrow {
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+========================================================= */
+
+.sidebar-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    overflow-y: auto;
+
+    padding-right: 2px;
+}
+
+.nav-section {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.nav-section-title {
+
+    padding: 0 12px;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.7px;
+}
+
+.nav-item {
+
+    position: relative;
+
+    min-height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 12px;
+
+    border-radius: 11px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    transition:
+        color var(--transition),
+        background var(--transition),
+        transform var(--transition);
+}
+
+.nav-item:hover {
+
+    color: var(--text);
+
+    background:
+        rgba(201, 162, 39, 0.06);
+
+    transform: translateX(2px);
+}
+
+.nav-item.active {
+
+    color: var(--gold);
+
+    background:
+        rgba(201, 162, 39, 0.10);
+}
+
+.nav-item.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 9px;
+    bottom: 9px;
+
+    width: 3px;
+
+    border-radius: 5px;
+
+    background: var(--gold);
+
+    box-shadow:
+        0 0 12px rgba(201, 162, 39, 0.35);
+}
+
+.nav-icon {
+
+    width: 19px;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 13px;
+}
+
+.nav-item.active .nav-icon {
+
+    color: var(--gold);
+}
+
+.nav-count {
+
+    margin-left: auto;
+
+    min-width: 20px;
+
+    height: 20px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 20px;
+
+    background: var(--gold-soft);
+
+    color: var(--gold);
+
+    font-size: 8px;
+
+    font-weight: 700;
+}
+
+.notification-dot {
+
+    width: 6px;
+    height: 6px;
+
+    margin-left: auto;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(201, 162, 39, 0.10);
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    padding-top: 18px;
+}
+
+
+/* =========================================================
+   UPGRADE CARD
+========================================================= */
+
+.upgrade-card {
+
+    padding: 16px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(201, 162, 39, 0.10),
+            rgba(201, 162, 39, 0.025)
+        );
+}
+
+.upgrade-icon {
+
+    width: 31px;
+    height: 31px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 10px;
+
+    border-radius: 9px;
+
+    background: var(--gold);
+
+    color: #111;
+
+    font-size: 11px;
+}
+
+.upgrade-card strong {
+
+    display: block;
+
+    font-size: 10px;
+}
+
+.upgrade-card p {
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+.upgrade-card button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 11px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--gold);
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+.upgrade-card button i {
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   SIDEBAR USER
+========================================================= */
+
+.sidebar-user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px;
+
+    border-radius: 13px;
+
+    transition: var(--transition);
+}
+
+.sidebar-user:hover {
+
+    background:
+        rgba(201, 162, 39, 0.06);
+}
+
+.user-avatar {
+
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    color: #111;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.user-details {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+.user-details strong {
+
+    display: block;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.user-details span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    white-space: nowrap;
+}
+
+.user-menu {
+
+    width: 27px;
+    height: 27px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    transition: var(--transition);
+}
+
+.user-menu:hover {
+
+    color: var(--gold);
+
+    background: var(--gold-soft);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+
+    width: calc(100% - var(--sidebar-width));
+
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+
+    transition:
+        width 0.3s ease,
+        margin-left 0.3s ease;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dashboard-header {
+
+    position: sticky;
+
+    top: 0;
+
+    height: var(--header-height);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 38px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--bg) 88%,
+            transparent
+        );
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--gold-border);
+
+    z-index: 50;
+}
+
+
+/* =========================================================
+   HEADER LEFT
+========================================================= */
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.mobile-menu {
+
+    display: none;
+
+    width: 38px;
+    height: 38px;
+
+    place-items: center;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: 10px;
+
+    background: var(--surface);
+
+    color: var(--text);
+}
+
+.header-eyebrow {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--gold);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.header-left h1 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+
+    line-height: 1.15;
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+========================================================= */
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.header-icon {
+
+    position: relative;
+
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: 11px;
+
+    background: var(--surface);
+
+    color: var(--muted);
+
+    transition: var(--transition);
+}
+
+.header-icon:hover {
+
+    color: var(--gold);
+
+    border-color:
+        rgba(201, 162, 39, 0.40);
+
+    transform: translateY(-1px);
+}
+
+.header-notification-dot {
+
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    box-shadow:
+        0 0 0 2px var(--surface);
+}
+
+
+/* =========================================================
+   HEADER PROFILE
+========================================================= */
+
+.header-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-left: 6px;
+
+    padding: 4px 8px 4px 5px;
+
+    border: 1px solid transparent;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.header-profile:hover {
+
+    border-color: var(--gold-border);
+
+    background: var(--gold-soft);
+}
+
+.header-avatar {
+
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    color: #111;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.header-profile-info strong {
+
+    display: block;
+
+    font-size: 10px;
+}
+
+.header-profile-info span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.header-profile > i {
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    margin-left: 2px;
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.viability-content {
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding: 34px 38px 60px;
+}
+
+
+/* =========================================================
+   PAGE INTRO
+========================================================= */
+
+.page-intro {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 24px;
+}
+
+.section-tag,
+.panel-label {
+
+    display: block;
+
+    color: var(--gold);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.page-intro h2 {
+
+    margin-top: 8px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(27px, 3vw, 39px);
+
+    line-height: 1.12;
+
+    letter-spacing: -0.7px;
+}
+
+.page-intro p {
+
+    max-width: 650px;
+
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   PRIMARY ACTION
+========================================================= */
+
+.primary-action {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 42px;
+
+    padding: 0 17px;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    color: #111;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 25px rgba(201, 162, 39, 0.15);
+
+    transition: 0.3s ease;
+}
+
+.primary-action:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 32px rgba(201, 162, 39, 0.25);
+}
+
+.primary-action i {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   ACTIVE IDEA CARD
+========================================================= */
+
+.active-idea-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 17px 19px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(201, 162, 39, 0.075),
+            var(--surface)
+        );
+
+    box-shadow: var(--shadow);
+}
+
+.active-idea-icon {
+
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: var(--gold-soft);
+
+    color: var(--gold);
+
+    font-size: 17px;
+}
+
+.active-idea-info {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+.active-idea-info > span {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+.active-idea-info h3 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 18px;
+}
+
+.active-idea-info p {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.analysis-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(201, 162, 39, 0.08);
+
+    color: var(--gold);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(201, 162, 39, 0.10),
+        0 0 10px rgba(201, 162, 39, 0.5);
+}
+
+
+/* =========================================================
+   SCORE OVERVIEW
+========================================================= */
+
+.score-overview {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(300px, 0.65fr);
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   SCORE CARD
+========================================================= */
+
+.score-card,
+.summary-card {
+
+    min-width: 0;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: var(--radius);
+
+    background: var(--surface);
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+.score-card-header {
+
+    padding: 21px 23px;
+
+    border-bottom: 1px solid var(--gold-border);
+}
+
+.score-card-header h3 {
+
+    margin-top: 5px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   SCORE DISPLAY
+========================================================= */
+
+.score-display {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    padding: 27px 25px;
+}
+
+.score-circle {
+
+    position: relative;
+
+    width: 180px;
+    height: 180px;
+
+    flex-shrink: 0;
+}
+
+.score-circle svg {
+
+    width: 100%;
+    height: 100%;
+
+    transform: rotate(-90deg);
+}
+
+.score-track {
+
+    fill: none;
+
+    stroke:
+        rgba(201, 162, 39, 0.10);
+
+    stroke-width: 9;
+}
+
+.score-progress {
+
+    fill: none;
+
+    stroke: var(--gold);
+
+    stroke-width: 9;
+
+    stroke-linecap: round;
+
+    stroke-dasharray: 477.5;
+
+    stroke-dashoffset: 85.95;
+
+    filter:
+        drop-shadow(
+            0 0 7px rgba(201, 162, 39, 0.25)
+        );
+
+    transition:
+        stroke-dashoffset 1.2s ease;
+}
+
+.score-value {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+.score-value strong {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 49px;
+
+    line-height: 0.95;
+
+    color: var(--text);
+}
+
+.score-value span {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   SCORE STATUS
+========================================================= */
+
+.score-status {
+
+    max-width: 420px;
+}
+
+.score-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    background: var(--gold-soft);
+
+    color: var(--gold);
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.1px;
+}
+
+.score-status h4 {
+
+    margin-top: 12px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 19px;
+
+    line-height: 1.3;
+}
+
+.score-status p {
+
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SCORE SCALE
+========================================================= */
+
+.score-scale {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 25px 22px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.scale-line {
+
+    height: 4px;
+
+    flex: 1;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(201, 162, 39, 0.08),
+            rgba(201, 162, 39, 0.30)
+        );
+}
+
+.scale-line span {
+
+    display: block;
+
+    width: 82%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold-dark),
+            var(--gold-light)
+        );
+}
+
+
+/* =========================================================
+   SUMMARY CARD
+========================================================= */
+
+.summary-card {
+
+    padding: 23px;
+}
+
+.summary-card > h3 {
+
+    margin-top: 7px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+}
+
+.summary-card > p {
+
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SUMMARY LIST
+========================================================= */
+
+.summary-list {
+
+    display: grid;
+
+    gap: 13px;
+
+    margin-top: 21px;
+}
+
+.summary-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.summary-icon {
+
+    width: 29px;
+    height: 29px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    font-size: 9px;
+}
+
+.summary-icon.positive {
+
+    background:
+        rgba(201, 162, 39, 0.10);
+
+    color: var(--gold);
+}
+
+.summary-icon.warning {
+
+    background:
+        rgba(217, 155, 53, 0.10);
+
+    color: var(--danger);
+}
+
+.summary-item strong {
+
+    display: block;
+
+    font-size: 9px;
+}
+
+.summary-item div > span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   FACTORS SECTION
+========================================================= */
+
+.factors-section {
+
+    margin-bottom: 30px;
+}
+
+.section-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 14px;
+}
+
+.section-heading h3 {
+
+    margin-top: 5px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 21px;
+}
+
+.factor-note {
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   FACTORS GRID
+========================================================= */
+
+.factors-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.factor-card {
+
+    padding: 20px;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: var(--radius);
+
+    background: var(--surface);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.factor-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(201, 162, 39, 0.35);
+
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   FACTOR HEADER
+========================================================= */
+
+.factor-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.factor-icon {
+
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: var(--gold-soft);
+
+    color: var(--gold);
+
+    font-size: 13px;
+}
+
+.factor-header > div:nth-child(2) {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+.factor-header strong {
+
+    display: block;
+
+    font-size: 11px;
+}
+
+.factor-header span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.factor-header b {
+
+    color: var(--gold);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FACTOR BAR
+========================================================= */
+
+.factor-bar {
+
+    width: 100%;
+
+    height: 5px;
+
+    margin-top: 15px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        rgba(201, 162, 39, 0.08);
+}
+
+.factor-bar span {
+
+    display: block;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold-dark),
+            var(--gold-light)
+        );
+
+    box-shadow:
+        0 0 8px rgba(201, 162, 39, 0.18);
+}
+
+.factor-card p {
+
+    margin-top: 11px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   AI DECISION SIGNAL
+========================================================= */
+
+.decision-card {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 22px;
+
+    margin-bottom: 35px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(201, 162, 39, 0.25);
+
+    border-radius: var(--radius);
+
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(201, 162, 39, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(201, 162, 39, 0.075),
+            var(--surface)
+        );
+
+    box-shadow: var(--shadow);
+}
+
+.decision-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -100px;
+    bottom: -110px;
+
+    border: 1px solid rgba(201, 162, 39, 0.12);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.decision-icon {
+
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: var(--gold);
+
+    color: #111;
+
+    font-size: 17px;
+
+    box-shadow:
+        0 8px 20px rgba(201, 162, 39, 0.20);
+}
+
+.decision-content {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+.decision-content h3 {
+
+    margin-top: 6px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 19px;
+}
+
+.decision-content p {
+
+    max-width: 850px;
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    line-height: 1.65;
+}
+
+.decision-action {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+
+    padding: 10px 14px;
+
+    border: 1px solid var(--gold-border);
+
+    border-radius: 10px;
+
+    background: var(--surface);
+
+    color: var(--gold);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.decision-action:hover {
+
+    background: var(--gold);
+
+    color: #111;
+
+    border-color: var(--gold);
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.dashboard-footer {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid var(--gold-border);
+
+    color: var(--muted);
+
+    font-size: 8px;
+}
+
+.dashboard-footer span:nth-child(2) {
+
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   SIDEBAR OVERLAY
+========================================================= */
+
+.sidebar-overlay {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.60);
+
+    backdrop-filter: blur(3px);
+
+    z-index: 90;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(201, 162, 39, 0.30);
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(201, 162, 39, 0.50);
+}
+
+
+/* =========================================================
+   RESPONSIVE — 1200px
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    :root {
+        --sidebar-width: 225px;
+    }
+
+    .dashboard-header {
+
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+    .viability-content {
+
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+    .score-overview {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .score-display {
+
+        justify-content: center;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 950px
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .sidebar {
+
+        transform:
+            translateX(-100%);
+    }
+
+    .sidebar.open {
+
+        transform:
+            translateX(0);
+    }
+
+    .sidebar-overlay.active {
+
+        display: block;
+    }
+
+    .main-content {
+
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+    .mobile-menu {
+
+        display: grid;
+    }
+
+    .factors-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .score-display {
+
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 700px
+========================================================= */
+
+@media (max-width: 700px) {
+
+    :root {
+        --header-height: 68px;
+    }
+
+    .dashboard-header {
+
+        padding: 0 17px;
+    }
+
+    .viability-content {
+
+        padding:
+            23px 17px 45px;
+    }
+
+    .header-actions {
+
+        gap: 5px;
+    }
+
+    .header-icon {
+
+        width: 35px;
+        height: 35px;
+    }
+
+    .header-profile-info,
+    .header-profile > i {
+
+        display: none;
+    }
+
+    .page-intro {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 17px;
+    }
+
+    .page-intro h2 {
+
+        font-size: 29px;
+    }
+
+    .page-intro p {
+
+        font-size: 10px;
+    }
+
+    .primary-action {
+
+        margin-top: 0;
+    }
+
+    .active-idea-card {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .analysis-status {
+
+        margin-left: 60px;
+    }
+
+    .score-display {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        gap: 22px;
+    }
+
+    .score-status {
+
+        max-width: 500px;
+    }
+
+    .score-scale {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+    .section-heading {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+
+    .decision-card {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .decision-action {
+
+        margin-left: 62px;
+    }
+
+    .dashboard-footer {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 7px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 480px
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .sidebar {
+
+        width: 280px;
+    }
+
+    .header-eyebrow {
+
+        display: none;
+    }
+
+    .header-left h1 {
+
+        font-size: 19px;
+    }
+
+    .header-icon:nth-child(1) {
+
+        display: none;
+    }
+
+    .viability-content {
+
+        padding:
+            20px 14px 40px;
+    }
+
+    .page-intro h2 {
+
+        font-size: 26px;
+
+        letter-spacing: -0.5px;
+    }
+
+    .active-idea-card {
+
+        padding: 15px;
+    }
+
+    .active-idea-info h3 {
+
+        font-size: 16px;
+    }
+
+    .analysis-status {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .score-card-header {
+
+        padding: 18px;
+    }
+
+    .score-display {
+
+        padding: 24px 18px;
+    }
+
+    .score-circle {
+
+        width: 155px;
+
+        height: 155px;
+    }
+
+    .score-value strong {
+
+        font-size: 42px;
+    }
+
+    .score-status h4 {
+
+        font-size: 17px;
+    }
+
+    .score-scale {
+
+        padding:
+            0 18px 20px;
+    }
+
+    .summary-card {
+
+        padding: 18px;
+    }
+
+    .factor-card {
+
+        padding: 17px;
+    }
+
+    .factor-header b {
+
+        font-size: 14px;
+    }
+
+    .decision-card {
+
+        padding: 18px;
+    }
+
+    .decision-content h3 {
+
+        font-size: 17px;
+    }
+
+    .decision-action {
+
+        width: calc(100% - 62px);
+
+        justify-content: center;
+
+        margin-left: 62px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE — 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .header-actions .header-icon {
+
+        width: 32px;
+
+        height: 32px;
+    }
+
+    .header-left h1 {
+
+        font-size: 17px;
+    }
+
+    .page-intro h2 {
+
+        font-size: 24px;
+    }
+
+    .score-circle {
+
+        width: 140px;
+
+        height: 140px;
+    }
+
+    .score-value strong {
+
+        font-size: 38px;
+    }
+
+    .factor-header span {
+
+        font-size: 7px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        animation-duration:
+            0.01ms !important;
+    }
+}
