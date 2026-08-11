@@ -106,6 +106,11 @@ function goToWebsite() {
     */
 
     setTimeout(() => {
+        try {
+            localStorage.setItem('splashVisited', 'true');
+        } catch (e) {
+            /* ignore storage errors */
+        }
 
         window.location.href = "index.html";
 

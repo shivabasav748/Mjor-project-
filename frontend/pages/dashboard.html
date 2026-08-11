@@ -18,9 +18,14 @@
     <title>Dashboard — VentureIQ</title>
 
 
-    <!-- Google Fonts -->
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
     <link
         rel="preconnect"
@@ -34,7 +39,9 @@
     >
 
 
-    <!-- Font Awesome -->
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -42,7 +49,9 @@
     >
 
 
-    <!-- Dashboard CSS -->
+    <!-- =====================================================
+         DASHBOARD CSS
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -335,18 +344,23 @@
                 </div>
 
 
-                <!-- User -->
+                <!-- =================================================
+                     USER — DYNAMIC
+                ================================================== -->
 
                 <div class="sidebar-user">
 
-                    <div class="user-avatar">
-                        S
+                    <div
+                        class="user-avatar"
+                        id="profileInitial"
+                    >
+                        U
                     </div>
 
                     <div class="user-details">
 
-                        <strong>
-                            Sampada
+                        <strong id="profileName">
+                            User
                         </strong>
 
                         <span>
@@ -462,18 +476,23 @@
                     </button>
 
 
-                    <!-- Profile -->
+                    <!-- =================================================
+                         PROFILE — DYNAMIC
+                    ================================================== -->
 
                     <div class="header-profile">
 
-                        <div class="header-avatar">
-                            S
+                        <div
+                            class="header-avatar"
+                            id="headerProfileInitial"
+                        >
+                            U
                         </div>
 
                         <div class="header-profile-info">
 
-                            <strong>
-                                Sampada
+                            <strong id="headerProfileName">
+                                User
                             </strong>
 
                             <span>
@@ -525,9 +544,15 @@
                         </h2>
 
 
+                        <!-- =================================================
+                             DYNAMIC USER NAME
+                        ================================================== -->
+
                         <p>
 
-                            Welcome back, Sampada.
+                            Welcome back,
+                            <span id="welcomeName">User</span>.
+
                             Let's understand your ideas,
                             discover opportunities and build
                             your next move with confidence.
@@ -1359,9 +1384,242 @@
 
 
 
-    <!-- Dashboard JavaScript -->
+    <!-- =====================================================
+         SUPABASE CLIENT
+    ====================================================== -->
 
-    <script src="../js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script type="module">
+
+        import {
+            supabaseUrl,
+            supabaseKey
+        } from "../config/supabase.js";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                supabaseUrl,
+                supabaseKey
+            );
+
+
+        /*
+         * Make the client available to
+         * dashboard.js as well.
+         */
+
+        window.supabaseClient =
+            supabaseClient;
+
+
+        /* =================================================
+           LOAD CURRENT LOGGED-IN USER
+        ================================================= */
+
+        async function loadLoggedInUser() {
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.getUser();
+
+
+                if (error) {
+
+                    console.error(
+                        "Unable to get logged-in user:",
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                const user =
+                    data.user;
+
+
+                if (!user) {
+
+                    console.warn(
+                        "No logged-in user found."
+                    );
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "Logged-in user:",
+                    user
+                );
+
+
+                /* =================================================
+                   GET NAME FROM SIGNUP USER METADATA
+                ================================================= */
+
+                const fullName =
+                    user.user_metadata?.full_name ||
+                    user.user_metadata?.name ||
+                    "User";
+
+
+                const cleanName =
+                    fullName.trim();
+
+
+                const firstName =
+                    cleanName
+                        .split(/\s+/)[0] ||
+                    "User";
+
+
+                const initial =
+                    firstName
+                        .charAt(0)
+                        .toUpperCase();
+
+
+                /* =================================================
+                   SIDEBAR NAME
+                ================================================= */
+
+                const profileName =
+                    document.getElementById(
+                        "profileName"
+                    );
+
+
+                if (profileName) {
+
+                    profileName.textContent =
+                        cleanName;
+
+                }
+
+
+                /* =================================================
+                   SIDEBAR INITIAL
+                ================================================= */
+
+                const profileInitial =
+                    document.getElementById(
+                        "profileInitial"
+                    );
+
+
+                if (profileInitial) {
+
+                    profileInitial.textContent =
+                        initial;
+
+                }
+
+
+                /* =================================================
+                   HEADER NAME
+                ================================================= */
+
+                const headerProfileName =
+                    document.getElementById(
+                        "headerProfileName"
+                    );
+
+
+                if (headerProfileName) {
+
+                    headerProfileName.textContent =
+                        cleanName;
+
+                }
+
+
+                /* =================================================
+                   HEADER INITIAL
+                ================================================= */
+
+                const headerProfileInitial =
+                    document.getElementById(
+                        "headerProfileInitial"
+                    );
+
+
+                if (headerProfileInitial) {
+
+                    headerProfileInitial.textContent =
+                        initial;
+
+                }
+
+
+                /* =================================================
+                   WELCOME MESSAGE
+                ================================================= */
+
+                const welcomeName =
+                    document.getElementById(
+                        "welcomeName"
+                    );
+
+
+                if (welcomeName) {
+
+                    welcomeName.textContent =
+                        firstName;
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Error loading logged-in user:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /*
+         * Load user after page is ready.
+         */
+
+        if (
+            document.readyState ===
+            "loading"
+        ) {
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                loadLoggedInUser
+            );
+
+        } else {
+
+            loadLoggedInUser();
+
+        }
+
+    </script>
+
+
+
+    <!-- =====================================================
+         DASHBOARD JAVASCRIPT
+    ====================================================== -->
+
+    <script type="module" src="../js/dashboard.js"></script>
+
 
 </body>
 

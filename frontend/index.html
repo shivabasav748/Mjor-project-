@@ -16,6 +16,19 @@
 
   <title>VentureIQ — Turn Ideas Into Intelligence</title>
 
+  <script>
+    (function () {
+      try {
+        // If the splash hasn't been shown before, redirect to it.
+        if (localStorage.getItem('splashVisited') !== 'true') {
+          window.location.href = 'splash.html';
+        }
+      } catch (e) {
+        /* ignore storage errors */
+      }
+    })();
+  </script>
+
 
   <!-- GOOGLE FONTS -->
 
@@ -635,7 +648,54 @@
 
 
           <!-- =================================================
-               01 — AI IDEA VALIDATION
+               01 — IDEA FORM
+          ================================================== -->
+
+          <a
+            href="pages/form.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open Idea Form"
+          >
+
+            <div class="feature-card-number">
+              01
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-pen-to-square"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              START HERE
+            </span>
+
+            <h3>
+              Idea Form
+            </h3>
+
+            <p>
+
+              Capture your startup concept in VentureIQ and begin
+              the intelligence workflow with a structured idea
+              profile.
+
+            </p>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+
+          <!-- =================================================
+               02 — AI IDEA VALIDATION
           ================================================== -->
 
           <a
@@ -645,7 +705,7 @@
           >
 
             <div class="feature-card-number">
-              01
+              02
             </div>
 
             <div class="feature-icon">
@@ -682,9 +742,8 @@
           </a>
 
 
-
           <!-- =================================================
-               02 — MARKET INTELLIGENCE
+               03 — MARKET INTELLIGENCE
           ================================================== -->
 
           <a
@@ -694,7 +753,7 @@
           >
 
             <div class="feature-card-number">
-              02
+              03
             </div>
 
             <div class="feature-icon">
@@ -717,7 +776,6 @@
               trends and growth signals surrounding your idea.
 
             </p>
-
 
             <div class="feature-mini-visual">
 
@@ -746,9 +804,8 @@
           </a>
 
 
-
           <!-- =================================================
-               03 — COMPETITOR ANALYSIS
+               04 — COMPETITOR ANALYSIS
           ================================================== -->
 
           <a
@@ -758,7 +815,7 @@
           >
 
             <div class="feature-card-number">
-              03
+              04
             </div>
 
             <div class="feature-icon">
@@ -783,7 +840,6 @@
 
             </p>
 
-
             <div class="competitor-dots">
 
               <span></span>
@@ -805,9 +861,8 @@
           </a>
 
 
-
           <!-- =================================================
-               04 — STARTUP VIABILITY SCORE
+               05 — STARTUP VIABILITY SCORE
           ================================================== -->
 
           <a
@@ -817,7 +872,7 @@
           >
 
             <div class="feature-card-number">
-              04
+              05
             </div>
 
             <div class="feature-icon">
@@ -842,7 +897,6 @@
 
             </p>
 
-
             <span class="feature-link">
 
               Explore
@@ -854,9 +908,8 @@
           </a>
 
 
-
           <!-- =================================================
-               05 — EXECUTION ROADMAP
+               06 — EXECUTION ROADMAP
           ================================================== -->
 
           <a
@@ -866,7 +919,7 @@
           >
 
             <div class="feature-card-number">
-              05
+              06
             </div>
 
             <div class="feature-icon">
@@ -889,7 +942,6 @@
               sequence of next steps tailored to your startup.
 
             </p>
-
 
             <div class="roadmap-steps">
 
@@ -935,7 +987,6 @@
 
             </div>
 
-
             <span class="feature-link">
 
               Explore
@@ -945,74 +996,6 @@
             </span>
 
           </a>
-
-
-
-          <!-- =================================================
-               06 — STRATEGIC INTELLIGENCE
-          ================================================== -->
-
-          <a
-            href="pages/strategicintelligence.html"
-            class="feature-card feature-card-link feature-ai reveal"
-            aria-label="Open Strategic Intelligence"
-          >
-
-            <div class="feature-card-number">
-              06
-            </div>
-
-            <div class="feature-icon">
-
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-            </div>
-
-            <span class="feature-small-label">
-              AI INSIGHT
-            </span>
-
-            <h3>
-              Strategic Intelligence
-            </h3>
-
-            <p>
-
-              Receive AI-powered insights and recommendations
-              to strengthen your idea and improve your odds
-              of success.
-
-            </p>
-
-
-            <div class="ai-wave">
-
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-
-            </div>
-
-
-            <span class="feature-link">
-
-              Explore
-
-              <i class="fa-solid fa-arrow-right"></i>
-
-            </span>
-
-          </a>
-
 
         </div>
 
