@@ -1,1 +1,24 @@
+# Node modules
 frontend/node_modules/
+
+# Build artifacts and caches
+frontend/.vite/
+frontend/node_modules/
+
+# Python env and caches
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+__pycache__/
+*.pyc
+
+# Local database and secrets
+backend/ventureiq.db
+backend/.env
+
+# Logs and temporary output
+*.log
+err.txt
+error.txt
+out.txt
+output.txt
