@@ -1,18 +1,1795 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VentureIQ — Your AI Co-founder</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="VentureIQ — AI-powered startup idea validation, market intelligence, competitor analysis, viability scoring and execution planning."
+  >
+
+  <meta name="theme-color" content="#080808">
+
+  <title>VentureIQ — Turn Ideas Into Intelligence</title>
+
+  <script>
+    (function () {
+      try {
+        // If the splash hasn't been shown before, redirect to it.
+        if (localStorage.getItem('splashVisited') !== 'true') {
+          window.location.href = 'splash.html';
+        }
+      } catch (e) {
+        /* ignore storage errors */
+      }
+    })();
+  </script>
+
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- FONT AWESOME -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+
+  <!-- CSS -->
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOADER
+  ====================================================== -->
+
+  <div class="page-loader" id="pageLoader">
+
+    <div class="loader-logo">
+      <span>V</span>
+    </div>
+
+    <div class="loader-line"></div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       NAVBAR
+  ====================================================== -->
+
+  <header class="navbar" id="navbar">
+
+    <div class="nav-container">
+
+
+      <!-- LOGO -->
+
+      <a href="#home" class="brand">
+
+        <span class="brand-mark">
+          <span>V</span>
+        </span>
+
+        <span class="brand-name">
+          Venture<span>IQ</span>
+        </span>
+
+      </a>
+
+
+      <!-- DESKTOP NAV -->
+
+      <nav class="desktop-nav">
+
+        <a href="#home" class="nav-link active">
+          Home
+        </a>
+
+        <a href="#features" class="nav-link">
+          Intelligence
+        </a>
+
+        <a href="#how-it-works" class="nav-link">
+          Process
+        </a>
+
+        <a href="#why-ventureiq" class="nav-link">
+          Why VentureIQ
+        </a>
+
+      </nav>
+
+
+      <!-- NAV ACTIONS -->
+
+      <div class="nav-actions">
+
+        <a href="pages/login.html" class="nav-login">
+          Log in
+        </a>
+
+        <a href="#analyze" class="nav-cta">
+
+          Start validating
+
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+        </a>
+
+
+        <!-- THEME BUTTON -->
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="Toggle theme"
+        >
+
+          <i class="fa-solid fa-sun"></i>
+
+        </button>
+
+      </div>
+
+
+      <!-- MOBILE MENU -->
+
+      <button
+        class="mobile-menu-button"
+        id="mobileMenuButton"
+        aria-label="Open menu"
+      >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+
+    <!-- MOBILE NAV -->
+
+    <div class="mobile-nav" id="mobileNav">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#features">
+        Intelligence
+      </a>
+
+      <a href="#how-it-works">
+        Process
+      </a>
+
+      <a href="#why-ventureiq">
+        Why VentureIQ
+      </a>
+
+      <a href="pages/login.html" class="mobile-nav-cta">
+        Start validating
+      </a>
+
+    </div>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero" id="home">
+
+      <div class="hero-grid"></div>
+
+      <div class="hero-glow hero-glow-one"></div>
+
+      <div class="hero-glow hero-glow-two"></div>
+
+
+      <div class="hero-container">
+
+
+        <!-- HERO CONTENT -->
+
+        <div class="hero-content">
+
+          <div class="eyebrow reveal">
+
+            <span class="eyebrow-dot"></span>
+
+            AI-POWERED STARTUP INTELLIGENCE
+
+          </div>
+
+
+          <h1 class="hero-title reveal">
+
+            <span>
+              Ideas are easy.
+            </span>
+
+            <span class="hero-title-highlight">
+              Knowing which ones
+            </span>
+
+            <span>
+              will work is not.
+            </span>
+
+          </h1>
+
+
+          <p class="hero-description reveal">
+
+            VentureIQ transforms an early-stage startup idea into
+            a data-informed intelligence report — analyzing the
+            market, competitors, viability and next steps before
+            you invest months building.
+
+          </p>
+
+
+          <div class="hero-actions reveal">
+
+            <a href="pages/login.html" class="primary-button">
+
+              Analyze my idea
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+            <a href="#how-it-works" class="secondary-button">
+
+              See how it works
+
+              <i class="fa-solid fa-play"></i>
+
+            </a>
+
+          </div>
+
+
+          <div class="hero-trust reveal">
+
+            <div class="trust-avatars">
+
+              <span>F</span>
+              <span>A</span>
+              <span>S</span>
+              <span>+</span>
+
+            </div>
+
+            <div>
+
+              <strong>
+                Built for ambitious founders
+              </strong>
+
+              <small>
+                Validate before you build.
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual reveal">
+
+          <div class="intelligence-card">
+
+
+            <div class="intel-card-top">
+
+              <div class="intel-status">
+
+                <span class="status-pulse"></span>
+
+                AI ANALYSIS ACTIVE
+
+              </div>
+
+              <span>
+                Live
+              </span>
+
+            </div>
+
+
+            <div class="idea-input-card">
+
+              <div class="mini-icon">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+              </div>
+
+              <div>
+
+                <span>
+                  STARTUP IDEA
+                </span>
+
+                <p>
+                  AI-powered personal finance coach
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="intel-core-area">
+
+              <div class="core-line"></div>
+
+              <div class="intel-core">
+
+                <div class="core-inner">
+
+                  <i class="fa-solid fa-brain"></i>
+
+                </div>
+
+              </div>
+
+              <div class="core-line"></div>
+
+            </div>
+
+
+            <div class="intel-results">
+
+              <div class="result-card">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <div>
+
+                  <span>
+                    MARKET
+                  </span>
+
+                  <strong>
+                    Strong
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="result-card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <div>
+
+                  <span>
+                    COMPETITION
+                  </span>
+
+                  <strong>
+                    Moderate
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="result-card">
+
+                <i class="fa-solid fa-gauge-high"></i>
+
+                <div>
+
+                  <span>
+                    VIABILITY
+                  </span>
+
+                  <strong>
+                    82 / 100
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="roadmap-result">
+
+              <i class="fa-solid fa-route"></i>
+
+              <div>
+
+                <span>
+                  RECOMMENDED NEXT STEP
+                </span>
+
+                <strong>
+                  Validate with your first 20 users
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="floating-score">
+
+            <span>
+              VIABILITY
+            </span>
+
+            <strong>
+              82
+            </strong>
+
+            <small>
+              /100
+            </small>
+
+            <div>
+
+              <i class="fa-solid fa-arrow-up"></i>
+
+              Strong potential
+
+            </div>
+
+          </div>
+
+
+          <div class="floating-ai">
+
+            <i class="fa-solid fa-sparkles"></i>
+
+            AI insights
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- HERO METRICS -->
+
+      <div class="hero-metrics">
+
+        <div class="metric">
+
+          <strong>
+            5
+          </strong>
+
+          <span>
+            Intelligence layers
+          </span>
+
+        </div>
+
+        <div class="metric-divider"></div>
+
+        <div class="metric">
+
+          <strong>
+            1
+          </strong>
+
+          <span>
+            Unified report
+          </span>
+
+        </div>
+
+        <div class="metric-divider"></div>
+
+        <div class="metric">
+
+          <strong>
+            ∞
+          </strong>
+
+          <span>
+            Ideas to explore
+          </span>
+
+        </div>
+
+        <div class="metric-divider"></div>
+
+        <div class="metric">
+
+          <strong>
+            AI
+          </strong>
+
+          <span>
+            Powered intelligence
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STATEMENT STRIP
+    ====================================================== -->
+
+    <section class="statement-strip">
+
+      <div class="statement-track">
+
+        <span>IDEA</span>
+
+        <i class="fa-solid fa-asterisk"></i>
+
+        <span>INTELLIGENCE</span>
+
+        <i class="fa-solid fa-asterisk"></i>
+
+        <span>VALIDATION</span>
+
+        <i class="fa-solid fa-asterisk"></i>
+
+        <span>STRATEGY</span>
+
+        <i class="fa-solid fa-asterisk"></i>
+
+        <span>EXECUTION</span>
+
+        <i class="fa-solid fa-asterisk"></i>
+
+        <span>IDEA</span>
+
+        <i class="fa-solid fa-asterisk"></i>
+
+        <span>INTELLIGENCE</span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INTELLIGENCE ENGINE
+    ====================================================== -->
+
+    <section class="features-section" id="features">
+
+      <div class="section-container">
+
+
+        <div class="section-header reveal">
+
+          <span class="section-label">
+            THE INTELLIGENCE ENGINE
+          </span>
+
+          <h2>
+
+            From one idea to
+
+            <em>
+              complete clarity.
+            </em>
+
+          </h2>
+
+          <p>
+
+            VentureIQ connects five intelligence layers into one
+            continuous validation system — giving founders a
+            clearer picture before they commit time and money.
+
+          </p>
+
+        </div>
+
+
+        <!-- FEATURE GRID -->
+
+        <div class="feature-grid">
+
+
+          <!-- =================================================
+               01 — IDEA FORM
+          ================================================== -->
+
+          <a
+            href="pages/form.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open Idea Form"
+          >
+
+            <div class="feature-card-number">
+              01
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-pen-to-square"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              START HERE
+            </span>
+
+            <h3>
+              Idea Form
+            </h3>
+
+            <p>
+
+              Capture your startup concept in VentureIQ and begin
+              the intelligence workflow with a structured idea
+              profile.
+
+            </p>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+
+          <!-- =================================================
+               02 — AI IDEA VALIDATION
+          ================================================== -->
+
+          <a
+            href="pages/aivalidation.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open AI Idea Validation"
+          >
+
+            <div class="feature-card-number">
+              02
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-lightbulb"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              START HERE
+            </span>
+
+            <h3>
+              AI Idea Validation
+            </h3>
+
+            <p>
+
+              Turn a rough concept into a structured startup
+              hypothesis. VentureIQ evaluates clarity,
+              originality, problem-solution alignment and
+              potential before deeper analysis begins.
+
+            </p>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+
+          <!-- =================================================
+               03 — MARKET INTELLIGENCE
+          ================================================== -->
+
+          <a
+            href="pages/marketintelligence.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open Market Intelligence"
+          >
+
+            <div class="feature-card-number">
+              03
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-chart-line"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              OPPORTUNITY
+            </span>
+
+            <h3>
+              Market Intelligence
+            </h3>
+
+            <p>
+
+              Understand market opportunity, audience demand,
+              trends and growth signals surrounding your idea.
+
+            </p>
+
+            <div class="feature-mini-visual">
+
+              <div class="mini-chart">
+
+                <span style="height:28%"></span>
+                <span style="height:43%"></span>
+                <span style="height:38%"></span>
+                <span style="height:64%"></span>
+                <span style="height:58%"></span>
+                <span style="height:82%"></span>
+                <span style="height:94%"></span>
+
+              </div>
+
+            </div>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+
+          <!-- =================================================
+               04 — COMPETITOR ANALYSIS
+          ================================================== -->
+
+          <a
+            href="pages/competitoranalysis.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open Competitor Analysis"
+          >
+
+            <div class="feature-card-number">
+              04
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              LANDSCAPE
+            </span>
+
+            <h3>
+              Competitor Analysis
+            </h3>
+
+            <p>
+
+              Map direct and indirect competitors, identify
+              their strengths and reveal gaps your startup
+              could own.
+
+            </p>
+
+            <div class="competitor-dots">
+
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+
+          <!-- =================================================
+               05 — STARTUP VIABILITY SCORE
+          ================================================== -->
+
+          <a
+            href="pages/viabilityscore.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open Startup Viability Score"
+          >
+
+            <div class="feature-card-number">
+              05
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-gauge-high"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              DECISION SIGNAL
+            </span>
+
+            <h3>
+              Startup Viability Score
+            </h3>
+
+            <p>
+
+              Evaluate your startup idea across multiple
+              intelligence factors and understand its
+              overall potential.
+
+            </p>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+
+          <!-- =================================================
+               06 — EXECUTION ROADMAP
+          ================================================== -->
+
+          <a
+            href="pages/executionroadmap.html"
+            class="feature-card feature-card-link reveal"
+            aria-label="Open Execution Roadmap"
+          >
+
+            <div class="feature-card-number">
+              06
+            </div>
+
+            <div class="feature-icon">
+
+              <i class="fa-solid fa-route"></i>
+
+            </div>
+
+            <span class="feature-small-label">
+              TAKE ACTION
+            </span>
+
+            <h3>
+              Execution Roadmap
+            </h3>
+
+            <p>
+
+              Move from analysis to action with a structured
+              sequence of next steps tailored to your startup.
+
+            </p>
+
+            <div class="roadmap-steps">
+
+              <div class="roadmap-step">
+
+                <span>
+                  01
+                </span>
+
+                Validate
+
+              </div>
+
+              <div class="roadmap-step">
+
+                <span>
+                  02
+                </span>
+
+                Prototype
+
+              </div>
+
+              <div class="roadmap-step">
+
+                <span>
+                  03
+                </span>
+
+                Test
+
+              </div>
+
+              <div class="roadmap-step">
+
+                <span>
+                  04
+                </span>
+
+                Launch
+
+              </div>
+
+            </div>
+
+            <span class="feature-link">
+
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROCESS
+    ====================================================== -->
+
+    <section class="process-section" id="how-it-works">
+
+      <div class="section-container">
+
+        <div class="section-header reveal">
+
+          <span class="section-label">
+            SIMPLE PROCESS
+          </span>
+
+          <h2>
+
+            Five steps between
+
+            <em>
+              idea and insight.
+            </em>
+
+          </h2>
+
+          <p>
+
+            No complicated research workflow. Tell VentureIQ
+            what you're building and let the intelligence engine
+            organize the thinking.
+
+          </p>
+
+        </div>
+
+
+        <div class="process-layout">
+
+
+          <div class="process-list">
+
+            <button
+              class="process-item active"
+              data-process="1"
+            >
+
+              <span>
+                01
+              </span>
+
+              <strong>
+                Describe your idea
+              </strong>
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <button
+              class="process-item"
+              data-process="2"
+            >
+
+              <span>
+                02
+              </span>
+
+              <strong>
+                AI understands the concept
+              </strong>
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <button
+              class="process-item"
+              data-process="3"
+            >
+
+              <span>
+                03
+              </span>
+
+              <strong>
+                Intelligence layers activate
+              </strong>
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <button
+              class="process-item"
+              data-process="4"
+            >
+
+              <span>
+                04
+              </span>
+
+              <strong>
+                Review your intelligence report
+              </strong>
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <button
+              class="process-item"
+              data-process="5"
+            >
+
+              <span>
+                05
+              </span>
+
+              <strong>
+                Build your execution roadmap
+              </strong>
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+          </div>
+
+
+          <div class="process-display">
+
+            <div class="process-display-header">
+
+              <span>
+                VENTUREIQ / WORKFLOW
+              </span>
+
+              <span class="display-live">
+
+                <span></span>
+
+                LIVE PREVIEW
+
+              </span>
+
+            </div>
+
+
+            <div class="process-display-content">
+
+              <div class="process-big-number">
+                01
+              </div>
+
+              <div class="process-display-icon">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+              </div>
+
+              <span class="process-display-label">
+                INPUT
+              </span>
+
+              <h3>
+                Describe your startup idea
+              </h3>
+
+              <p>
+
+                Start with what you know. Explain the problem,
+                your proposed solution, who it helps and why
+                you believe it matters.
+
+              </p>
+
+
+              <div class="process-input-preview">
+
+                <span>
+                  YOUR IDEA
+                </span>
+
+                <p>
+
+                  "An AI-powered financial coach that helps
+                  gig workers manage irregular income..."
+
+                </p>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         VIABILITY
+    ====================================================== -->
+
+    <section class="viability-section">
+
+      <div class="section-container">
+
+        <div class="viability-layout">
+
+
+          <div class="viability-copy reveal">
+
+            <span class="section-label">
+              THE DECISION SIGNAL
+            </span>
+
+            <h2>
+
+              One score.
+
+              <em>
+                Four dimensions.
+              </em>
+
+              Complete clarity.
+
+            </h2>
+
+            <p>
+
+              VentureIQ turns multiple signals into a transparent
+              viability score so founders can quickly understand
+              where an idea is strong — and where it needs work.
+
+            </p>
+
+
+            <div class="score-breakdown">
+
+              <div class="score-row">
+
+                <div class="score-row-top">
+
+                  <span>
+                    Idea Strength
+                  </span>
+
+                  <strong>
+                    88%
+                  </strong>
+
+                </div>
+
+                <div class="score-bar">
+
+                  <span style="width:88%"></span>
+
+                </div>
+
+              </div>
+
+
+              <div class="score-row">
+
+                <div class="score-row-top">
+
+                  <span>
+                    Market Potential
+                  </span>
+
+                  <strong>
+                    79%
+                  </strong>
+
+                </div>
+
+                <div class="score-bar">
+
+                  <span style="width:79%"></span>
+
+                </div>
+
+              </div>
+
+
+              <div class="score-row">
+
+                <div class="score-row-top">
+
+                  <span>
+                    Competitive Position
+                  </span>
+
+                  <strong>
+                    71%
+                  </strong>
+
+                </div>
+
+                <div class="score-bar">
+
+                  <span style="width:71%"></span>
+
+                </div>
+
+              </div>
+
+
+              <div class="score-row">
+
+                <div class="score-row-top">
+
+                  <span>
+                    Feasibility
+                  </span>
+
+                  <strong>
+                    90%
+                  </strong>
+
+                </div>
+
+                <div class="score-bar">
+
+                  <span style="width:90%"></span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="score-visual reveal">
+
+            <div class="score-circle">
+
+              <div>
+
+                <span>
+                  VIABILITY
+                </span>
+
+                <strong>
+                  82
+                </strong>
+
+                <small>
+                  /100
+                </small>
+
+                <p>
+                  Strong potential
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHY VENTUREIQ
+    ====================================================== -->
+
+    <section
+      class="why-section"
+      id="why-ventureiq"
+    >
+
+      <div class="section-container">
+
+
+        <div class="why-header reveal">
+
+          <div>
+
+            <span class="section-label">
+              WHY VENTUREIQ
+            </span>
+
+            <h2>
+
+              Don't just build faster.
+
+              <em>
+                Build smarter.
+              </em>
+
+            </h2>
+
+          </div>
+
+          <p>
+
+            The most expensive mistake isn't building slowly.
+            It's building something nobody needs.
+
+          </p>
+
+        </div>
+
+
+        <div class="why-grid">
+
+
+          <article class="why-card reveal">
+
+            <span>
+              01
+            </span>
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h3>
+              AI-powered thinking
+            </h3>
+
+            <p>
+
+              Bring multiple dimensions of startup analysis
+              together through one intelligent workflow.
+
+            </p>
+
+          </article>
+
+
+          <article class="why-card reveal">
+
+            <span>
+              02
+            </span>
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <h3>
+              Faster validation
+            </h3>
+
+            <p>
+
+              Move from a raw idea to structured insight
+              without spending weeks organizing research manually.
+
+            </p>
+
+          </article>
+
+
+          <article class="why-card reveal">
+
+            <span>
+              03
+            </span>
+
+            <i class="fa-solid fa-crosshairs"></i>
+
+            <h3>
+              Sharper decisions
+            </h3>
+
+            <p>
+
+              See strengths, weaknesses, opportunities and risks
+              before committing serious resources.
+
+            </p>
+
+          </article>
+
+
+          <article class="why-card reveal">
+
+            <span>
+              04
+            </span>
+
+            <i class="fa-solid fa-route"></i>
+
+            <h3>
+              Action after analysis
+            </h3>
+
+            <p>
+
+              VentureIQ doesn't stop at scoring. It turns insight
+              into a practical path toward validation and execution.
+
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section
+      class="cta-section"
+      id="analyze"
+    >
+
+      <div class="section-container">
+
+        <div class="cta-box reveal">
+
+          <div class="cta-content">
+
+            <span class="section-label">
+              YOUR NEXT MOVE
+            </span>
+
+            <h2>
+
+              Have an idea?
+
+              <br>
+
+              <em>
+                Let's find out if it's worth building.
+              </em>
+
+            </h2>
+
+            <p>
+
+              Start with the idea in your head.
+              VentureIQ will help turn uncertainty into
+              a clearer direction.
+
+            </p>
+
+
+            <a
+              href="pages/login.html"
+              class="primary-button"
+            >
+
+              Analyze my idea
+
+              <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+          </div>
+
+
+          <div class="cta-visual">
+
+            <div class="cta-brain">
+
+              <i class="fa-solid fa-brain"></i>
+
+            </div>
+
+            <span>
+              Market
+            </span>
+
+            <span>
+              Viability
+            </span>
+
+            <span>
+              Roadmap
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="footer">
+
+    <div class="section-container">
+
+      <div class="footer-main">
+
+
+        <!-- FOOTER BRAND -->
+
+        <div class="footer-brand">
+
+          <a
+            href="#home"
+            class="brand"
+          >
+
+            <span class="brand-mark">
+
+              <span>
+                V
+              </span>
+
+            </span>
+
+            <span class="brand-name">
+
+              Venture<span>IQ</span>
+
+            </span>
+
+          </a>
+
+
+          <p>
+
+            AI-powered startup idea validation and intelligence
+            for founders building what comes next.
+
+          </p>
+
+        </div>
+
+
+        <!-- PLATFORM -->
+
+        <div class="footer-column">
+
+          <h4>
+            Platform
+          </h4>
+
+          <a href="#features">
+            Intelligence
+          </a>
+
+          <a href="#how-it-works">
+            Process
+          </a>
+
+          <a href="pages/aivalidation.html">
+            AI Idea Validation
+          </a>
+
+          <a href="pages/marketintelligence.html">
+            Market Intelligence
+          </a>
+
+          <a href="pages/competitoranalysis.html">
+            Competitor Analysis
+          </a>
+
+          <a href="pages/viabilityscore.html">
+            Viability Score
+          </a>
+
+          <a href="pages/executionroadmap.html">
+            Execution Roadmap
+          </a>
+
+          <a href="pages/strategicintelligence.html">
+            Strategic Intelligence
+          </a>
+
+          <a href="#analyze">
+            Analyze Idea
+          </a>
+
+        </div>
+
+
+        <!-- VENTUREIQ -->
+
+        <div class="footer-column">
+
+          <h4>
+            VentureIQ
+          </h4>
+
+          <a href="#why-ventureiq">
+            Why VentureIQ
+          </a>
+
+          <a href="#">
+            About
+          </a>
+
+          <a href="#">
+            Contact
+          </a>
+
+        </div>
+
+
+        <!-- CONNECT -->
+
+        <div class="footer-column">
+
+          <h4>
+            Connect
+          </h4>
+
+          <div class="footer-social">
+
+            <a href="#">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="#">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+
+        <span>
+
+          ©
+          <span id="footerYear"></span>
+          VentureIQ
+
+        </span>
+
+        <span>
+          Final-Year Major Project
+        </span>
+
+        <span>
+          Built with AI & ambition.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- JAVASCRIPT -->
+
+  <script src="js/main.js"></script>
+
+</body>
+
 </html>
