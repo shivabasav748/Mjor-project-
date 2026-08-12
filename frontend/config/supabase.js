@@ -3,11 +3,11 @@ import {
 } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
-const supabaseUrl =
+export const supabaseUrl =
     "https://rrlusbyelfrqdwvvilne.supabase.co";
 
 
-const supabaseKey =
+export const supabaseKey =
     "sb_publishable_v1wsdlvUMlPrWMHm-mAFZA_o-DW5akJ";
 
 
