@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="VentureIQ AI Assistant"
+    >
+
+    <title>VentureIQ AI Assistant</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- Chatbot CSS -->
+
+    <link
+        rel="stylesheet"
+        href="chatbot.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         CHATBOT
+    ====================================================== -->
+
+    <div class="chatbot-wrapper">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="chatbot-header">
+
+            <div class="bot-brand">
+
+                <div class="bot-logo">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+
+                <div class="bot-brand-info">
+
+                    <h1>
+                        VentureIQ AI
+                    </h1>
+
+                    <span class="online-status">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        Online
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="header-button"
+                id="clearChat"
+                title="Clear conversation"
+                aria-label="Clear conversation"
+            >
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+        </header>
+
+
+
+        <!-- =================================================
+             CHAT AREA
+        ================================================== -->
+
+        <main
+            class="chat-area"
+            id="chatArea"
+        >
+
+
+            <!-- INITIAL AI MESSAGE -->
+
+            <div class="message bot-message">
+
+                <div class="message-avatar">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+
+                <div class="message-content">
+
+                    <div class="message-name">
+                        VentureIQ AI
+                    </div>
+
+
+                    <div class="message-bubble">
+
+                        <p>
+                            Hi! I'm VentureIQ AI 👋
+                        </p>
+
+                        <p>
+                            I can help you with startup ideas,
+                            market research, competitors,
+                            validation and business strategy.
+                        </p>
+
+                    </div>
+
+
+                    <div class="message-actions">
+
+                        <button
+                            type="button"
+                            class="speak-button"
+                            data-speak="Hi! I'm VentureIQ AI. I can help you with startup ideas, market research, competitors, validation and business strategy."
+                            title="Read aloud"
+                            aria-label="Read message aloud"
+                        >
+
+                            <i class="fa-solid fa-volume-high"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="message-time">
+                        Just now
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUICK PROMPTS -->
+
+            <div
+                class="quick-prompts"
+                id="quickPrompts"
+            >
+
+                <button
+                    type="button"
+                    data-message="Help me validate my startup idea"
+                >
+
+                    <i class="fa-regular fa-lightbulb"></i>
+
+                    Validate idea
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-message="Help me analyze my market"
+                >
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Market analysis
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-message="Help me analyze my competitors"
+                >
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Competitors
+
+                </button>
+
+
+                <button
+                    type="button"
+                    data-message="Help me build a startup roadmap"
+                >
+
+                    <i class="fa-solid fa-route"></i>
+
+                    Roadmap
+
+                </button>
+
+            </div>
+
+        </main>
+
+
+
+        <!-- =================================================
+             SPEAKING BAR
+        ================================================== -->
+
+        <div
+            class="speaking-indicator"
+            id="speakingIndicator"
+        >
+
+            <i class="fa-solid fa-volume-high"></i>
+
+            <span>
+                VentureIQ AI is speaking...
+            </span>
+
+
+            <button
+                type="button"
+                id="stopSpeaking"
+            >
+
+                Stop
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INPUT
+        ================================================== -->
+
+        <footer class="chat-input-area">
+
+
+            <div class="input-wrapper">
+
+
+                <!-- MICROPHONE -->
+
+                <button
+                    type="button"
+                    class="input-button mic-button"
+                    id="micButton"
+                    title="Speak to VentureIQ AI"
+                    aria-label="Speak to VentureIQ AI"
+                >
+
+                    <i class="fa-solid fa-microphone"></i>
+
+                </button>
+
+
+
+                <!-- TEXT INPUT -->
+
+                <textarea
+                    id="messageInput"
+                    placeholder="Ask VentureIQ AI..."
+                    rows="1"
+                    aria-label="Message"
+                ></textarea>
+
+
+
+                <!-- SEND -->
+
+                <button
+                    type="button"
+                    class="send-button"
+                    id="sendButton"
+                    title="Send message"
+                    aria-label="Send message"
+                >
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="input-footer">
+
+                <span>
+
+                    <i class="fa-solid fa-microphone"></i>
+
+                    Voice enabled
+
+                </span>
+
+
+                <span>
+
+                    Enter to send
+
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CHATBOT JAVASCRIPT
+    ====================================================== -->
+
+    <script src="chatbot.js"></script>
+
+</body>
+
+</html>

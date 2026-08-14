@@ -1,0 +1,98 @@
+<!-- =====================================================
+     VENTUREIQ AI FLOATING CHATBOT WIDGET
+     Add this component to the end of your <body> tag on all pages
+================================================== -->
+
+<!-- CHATBOT WIDGET -->
+<div class="chatbot minimized">
+
+    <!-- TOGGLE BUTTON (Minimized State) -->
+    <button class="chatbot-toggle-button" title="Open VentureIQ AI">
+        <i class="fa-solid fa-comments"></i>
+    </button>
+
+    <!-- HEADER -->
+    <div class="chatbot-header">
+
+        <div class="bot-profile">
+
+            <div class="bot-avatar">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div>
+                <h3>VentureIQ AI</h3>
+                <span>
+                    <i class="fa-solid fa-circle"></i>
+                    Online
+                </span>
+            </div>
+
+        </div>
+
+        <button class="close-button" id="closeButton" title="Minimize">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <!-- CHAT AREA -->
+    <div class="chat-messages" id="chatMessages">
+
+        <!-- Welcome message -->
+        <div class="message bot">
+
+            <div class="message-avatar">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div class="message-bubble">
+                <p>
+                    Hi! I'm <strong>VentureIQ AI</strong> 👋
+                </p>
+
+                <p>
+                    I can help you with startup ideas,
+                    market research, competitors,
+                    validation and business strategy.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- QUICK QUESTIONS -->
+    <div class="quick-questions">
+
+        <button data-question="Help me validate my startup idea">
+            Validate idea
+        </button>
+
+        <button data-question="How can I analyze my market?">
+            Market analysis
+        </button>
+
+        <button data-question="How can I analyze my competitors?">
+            Competitors
+        </button>
+
+    </div>
+
+    <!-- INPUT -->
+    <form class="chat-input" id="chatForm">
+
+        <input
+            type="text"
+            id="messageInput"
+            placeholder="Ask VentureIQ AI..."
+            autocomplete="off"
+        >
+
+        <button type="submit" id="sendButton">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+    </form>
+
+</div>
