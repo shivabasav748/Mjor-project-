@@ -58,6 +58,12 @@ export default function Companies() {
           </div>
           <div className="flex items-center gap-3">
             <button
+              onClick={() => navigate('/idea-discovery')}
+              className="btn-secondary hidden sm:inline-flex px-3 py-2"
+            >
+              ✦ Idea discovery
+            </button>
+            <button
               onClick={toggle}
               id="theme-toggle-companies"
               className="p-2 rounded-xl transition-all duration-200"

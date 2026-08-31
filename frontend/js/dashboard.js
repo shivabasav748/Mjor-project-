@@ -1961,6 +1961,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "click",
                 event => {
 
+                    const href = item.getAttribute("href");
+
+                    if (href && href !== "#") {
+                        return;
+                    }
+
                     event.preventDefault();
 
 
@@ -1994,6 +2000,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                         pageTitle.textContent =
                             pageNames[page];
 
+                    }
+
+                    if (page === "ideas") {
+                        document.querySelector(".idea-panel")?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
                     }
 
 
@@ -2057,9 +2070,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             "click",
             () => {
 
-                alert(
-                    "New Idea feature will be connected here."
-                );
+                window.location.href = "aivalidation.html";
 
             }
         );

@@ -3,9 +3,10 @@ Central config — reads from .env file automatically.
 Import `settings` anywhere in the backend.
 """
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()  # loads .env file from the directory this file lives in
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 SECRET_KEY: str = os.getenv("SECRET_KEY", "CHANGE-ME-IN-PRODUCTION")

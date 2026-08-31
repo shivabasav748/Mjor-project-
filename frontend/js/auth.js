@@ -1,7 +1,9 @@
 /* =========================================================
    VENTUREIQ — AUTHENTICATION JAVASCRIPT
-   Login Page Interactions
+   Login Page Interactions — Supabase Auth
 ========================================================= */
+
+import { supabase } from "../config/supabase.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -311,41 +313,43 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
 
-            /*
-              TEMPORARY FRONTEND LOGIN
+            /* ---------------------------------------------
+               SUPABASE AUTH — SIGN IN
+            --------------------------------------------- */
 
-              Real authentication will be connected later
-              using Firebase / Supabase / backend API.
-            */
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+
+
+            if (error) {
+
+                loginButton.disabled = false;
+                loginButton.innerHTML = originalButtonHTML;
+
+                showAuthMessage(
+                    error.message || "Login failed. Please check your credentials.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               SUCCESS — REDIRECT TO DASHBOARD
+            --------------------------------------------- */
+
+            loginButton.innerHTML = `
+                <span>Login successful</span>
+                <i class="fa-solid fa-check"></i>
+            `;
 
             setTimeout(() => {
-
-                loginButton.innerHTML = `
-                    <span>Login successful</span>
-                    <i class="fa-solid fa-check"></i>
-                `;
-
-
-                /* -----------------------------------------
-                   TEMPORARY DEMO REDIRECT
-                ----------------------------------------- */
-
-                setTimeout(() => {
-
-                    /*
-                      For now we return to the homepage.
-
-                      Later this will become:
-                      dashboard.html
-                    */
-
-                    window.location.href =
-                        "../index.html";
-
-                }, 700);
-
-
-            }, 1200);
+                window.location.href = "dashboard.html";
+            }, 700);
 
         });
 
@@ -358,10 +362,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (googleLogin) {
 
-        googleLogin.addEventListener("click", () => {
+        googleLogin.addEventListener("click", async () => {
 
-            const originalHTML =
-                googleLogin.innerHTML;
+            const originalHTML = googleLogin.innerHTML;
 
             googleLogin.disabled = true;
 
@@ -370,26 +373,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 Connecting to Google...
             `;
 
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: window.location.origin + "/pages/dashboard.html",
+                },
+            });
 
-            /*
-              Google authentication will be connected later
-              using Firebase Authentication.
-            */
-
-            setTimeout(() => {
-
+            if (error) {
                 googleLogin.disabled = false;
-
-                googleLogin.innerHTML =
-                    originalHTML;
-
-
-                showAuthMessage(
-                    "Google authentication will be connected soon.",
-                    "info"
-                );
-
-            }, 1200);
+                googleLogin.innerHTML = originalHTML;
+                showAuthMessage(error.message, "error");
+            }
 
         });
 
@@ -402,19 +397,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (forgotPassword) {
 
-        forgotPassword.addEventListener(
-            "click",
-            (event) => {
+        forgotPassword.addEventListener("click", async (event) => {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                showAuthMessage(
-                    "Password recovery will be connected with authentication.",
-                    "info"
-                );
+            const email = emailInput?.value.trim();
 
+            if (!email) {
+                showAuthMessage("Enter your email address above first, then click Forgot Password.", "info");
+                return;
             }
-        );
+
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: window.location.origin + "/pages/login.html",
+            });
+
+            if (error) {
+                showAuthMessage(error.message, "error");
+            } else {
+                showAuthMessage("Password reset email sent! Check your inbox.", "success");
+            }
+
+        });
 
     }
 

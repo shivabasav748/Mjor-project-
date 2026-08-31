@@ -35,7 +35,7 @@ def _call_new(prompt: str, system: str = "") -> str:
         temperature=0.7,
     )
     response = _client.models.generate_content(
-        model="gemini-2.0-flash",
+        model="gemini-3.6-flash",
         contents=prompt,
         config=config,
     )
@@ -235,7 +235,7 @@ Give sharp, direct, founder-focused advice. Reference the company context when r
                 temperature=0.7,
             )
             response = _client.models.generate_content(
-                model="gemini-2.0-flash",
+                model="gemini-3.6-flash",
                 contents=contents,
                 config=config,
             )

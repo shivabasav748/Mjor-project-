@@ -8,10 +8,9 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from database import get_db
+from config import SECRET_KEY
 import models
 
-# NOTE: for a real deployment, load this from an environment variable, never hardcode it.
-SECRET_KEY = "dev-only-secret-change-me"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 1 week, fine for a student project demo
 

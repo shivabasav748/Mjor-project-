@@ -10,6 +10,7 @@ import Chat from './pages/Chat'
 import Market from './pages/Market'
 import Dashboard from './pages/Dashboard'
 import Growth from './pages/Growth'
+import IdeaDiscovery from './pages/IdeaDiscovery'
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
@@ -35,6 +36,7 @@ function AppRoutes() {
       <Route path="/"       element={<Landing />} />
       <Route path="/login"  element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/idea-discovery" element={<PrivateRoute><IdeaDiscovery /></PrivateRoute>} />
 
       {/* Protected */}
       <Route path="/companies"                              element={<PrivateRoute><Companies /></PrivateRoute>} />

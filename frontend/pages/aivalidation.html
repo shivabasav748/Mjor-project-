@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -860,6 +860,7 @@
       color: #2ecc71;
     }
   </style>
+    <link rel="stylesheet" href="../css/quickhand.css">
 </head>
 <body>
 
@@ -1162,7 +1163,7 @@
       }, 550);
 
       // After 3 seconds, generate report & render
-      setTimeout(() => {
+      setTimeout(async () => {
         loadingSec.style.display = 'none';
         
         // Execute rule-based analysis engine
@@ -1175,8 +1176,41 @@
           revenueModel
         });
 
+        await saveIdea(currentReport, {
+          targetAudience,
+          problemStatement,
+          proposedSolution,
+          revenueModel
+        });
+
         renderResults(currentReport);
       }, 3000);
+    }
+
+    async function saveIdea(report, input) {
+      const client = window.supabaseClient;
+      if (!client) return;
+
+      const { data: { user }, error: userError } = await client.auth.getUser();
+      if (userError || !user) {
+        alert('Your session has expired. Please log in again before saving this idea.');
+        return;
+      }
+
+      const { error } = await client.from('ideas').insert({
+        user_id: user.id,
+        name: report.startupName,
+        description: input.proposedSolution,
+        viability_score: report.overallScore,
+        market_fit_score: report.marketPotential,
+        competition_level: report.riskLevel,
+        status: 'active'
+      });
+
+      if (error) {
+        console.error('Idea save error:', error);
+        alert('The validation report was generated, but the idea could not be saved. Check your Supabase ideas table permissions.');
+      }
     }
 
     // Intelligent Deterministic Rule Engine
@@ -1449,5 +1483,10 @@ Report generated via AI Startup Intelligence System
       URL.revokeObjectURL(url);
     }
   </script>
+    <script type="module">
+      import { supabase } from '../config/supabase.js';
+      window.supabaseClient = supabase;
+    </script>
+    <script src="../js/quickhand.js" defer></script>
 </body>
 </html>

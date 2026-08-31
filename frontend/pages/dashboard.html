@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,6 +58,7 @@
         href="../css/dashboard.css"
     >
 
+    <link rel="stylesheet" href="../css/quickhand.css">
 </head>
 
 
@@ -182,7 +183,7 @@
 
 
                     <a
-                        href="#"
+                        href="aivalidation.html"
                         class="nav-item"
                         data-page="validator"
                     >
@@ -199,7 +200,23 @@
 
 
                     <a
-                        href="#"
+                        href="ideadiscovery.html"
+                        class="nav-item"
+                    >
+
+                        <span class="nav-icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </span>
+
+                        <span>
+                            Idea Discovery
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="marketintelligence.html"
                         class="nav-item"
                         data-page="market"
                     >
@@ -216,7 +233,7 @@
 
 
                     <a
-                        href="#"
+                        href="competitoranalysis.html"
                         class="nav-item"
                         data-page="competitors"
                     >
@@ -233,7 +250,7 @@
 
 
                     <a
-                        href="#"
+                        href="viabilityscore.html"
                         class="nav-item"
                         data-page="score"
                     >
@@ -250,7 +267,7 @@
 
 
                     <a
-                        href="#"
+                        href="executionroadmap.html"
                         class="nav-item"
                         data-page="roadmap"
                     >
@@ -765,7 +782,7 @@
                          RECENT IDEA
                     ================================================== -->
 
-                    <div class="dashboard-panel idea-panel">
+                    <div class="dashboard-panel idea-panel" id="ideas">
 
 
                         <div class="panel-header">
@@ -1621,6 +1638,7 @@
     <script type="module" src="../js/dashboard.js"></script>
 
 
+    <script src="../js/quickhand.js" defer></script>
 </body>
 
 </html>
