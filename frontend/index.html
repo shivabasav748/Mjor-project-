@@ -136,6 +136,21 @@
           Log in
         </a>
 
+        <a href="pages/dashboard.html" class="nav-login" id="homeDashboardLink" hidden>
+          Dashboard
+        </a>
+
+        <div class="home-user-menu" id="homeUserMenu" hidden>
+          <button type="button" class="nav-login home-user-button" id="homeUserButton" aria-expanded="false" aria-controls="homeUserDropdown">
+            <span id="homeUserName">Founder</span>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="home-user-dropdown" id="homeUserDropdown" role="menu" hidden>
+            <a href="pages/dashboard.html" role="menuitem"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i> Dashboard</a>
+            <button type="button" id="homeLogoutButton" role="menuitem"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Log out</button>
+          </div>
+        </div>
+
         <a href="#analyze" class="nav-cta">
 
           Start validating
@@ -200,6 +215,14 @@
       <a href="pages/login.html" class="mobile-nav-cta">
         Start validating
       </a>
+
+      <a href="pages/dashboard.html" class="mobile-nav-cta" id="homeMobileDashboardLink" hidden>
+        Dashboard
+      </a>
+
+      <button type="button" class="mobile-nav-cta" id="homeMobileLogoutButton" hidden>
+        Log out
+      </button>
 
     </div>
 
@@ -1794,6 +1817,7 @@
   <!-- JAVASCRIPT -->
 
   <script src="js/main.js"></script>
+  <script type="module" src="js/home-session.js"></script>
 
     <script src="./js/quickhand.js" defer></script>
 </body>

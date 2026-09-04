@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="VentureIQ AI Startup Idea Discovery — Discover startup opportunities intelligently."
+        content="VentureIQ AI Lab — Idea Discovery. Turn problems, trends and market signals into startup opportunities."
     >
 
     <title>Idea Discovery — VentureIQ</title>
@@ -62,7 +62,7 @@
 
 
             <a
-                    href="dashboard.html"
+                href="dashboard.html"
                 class="brand-link"
             >
 
@@ -84,6 +84,14 @@
                 </span>
 
 
+                <!-- AI STATUS -->
+
+                <span class="ai-status" aria-live="polite">
+                    <span class="ai-status-dot" aria-hidden="true"></span>
+                    VentureIQ AI Ready
+                </span>
+
+
                 <!-- THEME TOGGLE -->
 
                 <button
@@ -94,7 +102,7 @@
                     title="Toggle theme"
                 >
 
-                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
 
                 </button>
 
@@ -104,7 +112,7 @@
                     class="back-button"
                 >
 
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
 
                     Dashboard
 
@@ -134,9 +142,9 @@
 
                     <span class="eyebrow">
 
-                        <i class="fa-solid fa-sparkles"></i>
+                        <i class="fa-solid fa-flask" aria-hidden="true"></i>
 
-                        VENTUREIQ IDEA DISCOVERY
+                        VENTUREIQ AI LAB
 
                     </span>
 
@@ -146,7 +154,7 @@
                         Discover your next
 
                         <em>
-                            startup opportunity.
+                            opportunity.
                         </em>
 
                     </h1>
@@ -154,16 +162,35 @@
 
                     <p>
 
-                        Tell VentureIQ what interests you.
-                        Our intelligence engine will help you
-                        discover startup opportunities worth exploring.
+                        Turn problems, trends and market signals
+                        into startup opportunities worth exploring.
 
                     </p>
+
+
+                    <div class="hero-mini-stats" aria-hidden="true">
+
+                        <div>
+                            <strong>8</strong>
+                            <span>domains</span>
+                        </div>
+
+                        <div>
+                            <strong>5</strong>
+                            <span>signal layers</span>
+                        </div>
+
+                        <div>
+                            <strong>&#8734;</strong>
+                            <span>ideas to explore</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
 
-                <div class="hero-visual">
+                <div class="hero-visual" aria-hidden="true">
 
                     <div class="orbit orbit-one"></div>
 
@@ -204,10 +231,10 @@
 
 
             <!-- =================================================
-                 DISCOVERY SECTION
+                 DISCOVERY INPUT WORKSPACE
             ================================================== -->
 
-            <section class="discovery-section">
+            <section class="discovery-section" aria-labelledby="discoveryInputHeading">
 
 
                 <div class="section-heading">
@@ -216,7 +243,7 @@
                         STEP 01
                     </span>
 
-                    <h2>
+                    <h2 id="discoveryInputHeading">
                         Choose your domain
                     </h2>
 
@@ -229,20 +256,22 @@
 
                 <!-- DOMAIN GRID -->
 
-                <div class="domain-grid">
+                <div class="domain-grid" id="domainGrid" role="group" aria-label="Startup domain">
 
 
                     <button
+                        type="button"
                         class="domain-card"
-                        data-domain="AI & Machine Learning"
+                        data-domain="AI &amp; Machine Learning"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-brain"></i>
                         </span>
 
                         <strong>
-                            AI & ML
+                            AI &amp; ML
                         </strong>
 
                         <small>
@@ -253,11 +282,13 @@
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="FinTech"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-coins"></i>
                         </span>
 
@@ -266,18 +297,20 @@
                         </strong>
 
                         <small>
-                            Finance & payments
+                            Finance &amp; payments
                         </small>
 
                     </button>
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="HealthTech"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-heart-pulse"></i>
                         </span>
 
@@ -293,11 +326,13 @@
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="AgriTech"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-seedling"></i>
                         </span>
 
@@ -313,11 +348,13 @@
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="EdTech"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </span>
 
@@ -333,11 +370,13 @@
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="Robotics"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-robot"></i>
                         </span>
 
@@ -353,11 +392,13 @@
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="GreenTech"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-leaf"></i>
                         </span>
 
@@ -373,11 +414,13 @@
 
 
                     <button
+                        type="button"
                         class="domain-card"
                         data-domain="E-Commerce"
+                        aria-pressed="false"
                     >
 
-                        <span class="domain-icon">
+                        <span class="domain-icon" aria-hidden="true">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </span>
 
@@ -413,7 +456,7 @@
                         </h2>
 
                         <p>
-                            These preferences help VentureIQ generate more relevant opportunities.
+                            These preferences help VentureIQ shape more relevant opportunities.
                         </p>
 
                     </div>
@@ -426,32 +469,38 @@
 
                         <div class="preference-group">
 
-                            <label>
+                            <label id="investmentLabel">
                                 Investment level
                             </label>
 
-                            <div class="option-row">
+                            <div class="option-row" role="group" aria-labelledby="investmentLabel">
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="investment"
                                     data-value="Low"
+                                    aria-pressed="false"
                                 >
                                     Low
                                 </button>
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="investment"
                                     data-value="Medium"
+                                    aria-pressed="false"
                                 >
                                     Medium
                                 </button>
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="investment"
                                     data-value="High"
+                                    aria-pressed="false"
                                 >
                                     High
                                 </button>
@@ -465,32 +514,38 @@
 
                         <div class="preference-group">
 
-                            <label>
+                            <label id="customerLabel">
                                 Target customer
                             </label>
 
-                            <div class="option-row">
+                            <div class="option-row" role="group" aria-labelledby="customerLabel">
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="customer"
                                     data-value="Consumers"
+                                    aria-pressed="false"
                                 >
                                     Consumers
                                 </button>
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="customer"
                                     data-value="Businesses"
+                                    aria-pressed="false"
                                 >
                                     Businesses
                                 </button>
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="customer"
                                     data-value="Both"
+                                    aria-pressed="false"
                                 >
                                     Both
                                 </button>
@@ -504,32 +559,38 @@
 
                         <div class="preference-group">
 
-                            <label>
+                            <label id="experienceLabel">
                                 Your experience
                             </label>
 
-                            <div class="option-row">
+                            <div class="option-row" role="group" aria-labelledby="experienceLabel">
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="experience"
                                     data-value="Beginner"
+                                    aria-pressed="false"
                                 >
                                     Beginner
                                 </button>
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="experience"
                                     data-value="Intermediate"
+                                    aria-pressed="false"
                                 >
                                     Intermediate
                                 </button>
 
                                 <button
+                                    type="button"
                                     class="option-button"
                                     data-group="experience"
                                     data-value="Advanced"
+                                    aria-pressed="false"
                                 >
                                     Advanced
                                 </button>
@@ -610,15 +671,52 @@
                         id="discoverButton"
                     >
 
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span class="discover-button-spinner" aria-hidden="true"></span>
 
-                        Discover Startup Ideas
+                        <i class="fa-solid fa-wand-magic-sparkles discover-button-icon" aria-hidden="true"></i>
 
-                        <i class="fa-solid fa-arrow-right"></i>
+                        <span class="discover-button-text">Discover Opportunities</span>
+
+                        <i class="fa-solid fa-arrow-right discover-button-arrow" aria-hidden="true"></i>
 
                     </button>
 
+                    <p class="discover-note">
+                        AI-generated insights are based on the information you provide.
+                    </p>
+
+                    <p class="discover-hint" id="discoverHint" role="alert" hidden>
+                        Select a domain above to begin discovery.
+                    </p>
+
                 </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <section class="empty-state" id="emptyState" aria-hidden="true">
+
+                <div class="empty-illustration" aria-hidden="true">
+                    <span class="empty-ring"></span>
+                    <span class="empty-ring empty-ring-2"></span>
+                    <span class="empty-spark empty-spark-1"></span>
+                    <span class="empty-spark empty-spark-2"></span>
+                    <span class="empty-spark empty-spark-3"></span>
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+
+                <h2>Your next opportunity starts here.</h2>
+
+                <p>
+                    Tell VentureIQ what you're interested in and we'll help
+                    uncover promising opportunities &mdash; scored, compared
+                    and ready to analyse.
+                </p>
 
             </section>
 
@@ -631,9 +729,10 @@
             <section
                 class="loading-section"
                 id="loadingSection"
+                aria-live="polite"
             >
 
-                <div class="loading-animation">
+                <div class="loading-animation" aria-hidden="true">
 
                     <div class="loading-ring"></div>
 
@@ -643,13 +742,25 @@
 
 
                 <h2>
-                    VentureIQ is thinking...
+                    VentureIQ AI is working
                 </h2>
 
-                <p>
-                    Analyzing opportunities, market patterns
-                    and startup possibilities.
+                <p id="loadingStatus">
+                    Analyzing market signals&hellip;
                 </p>
+
+
+                <div class="loading-progress" aria-hidden="true">
+                    <span class="loading-progress-bar"></span>
+                </div>
+
+
+                <ul class="loading-steps" id="loadingSteps" aria-hidden="true">
+                    <li data-step="0">Analyzing market signals</li>
+                    <li data-step="1">Finding customer problems</li>
+                    <li data-step="2">Evaluating competition</li>
+                    <li data-step="3">Identifying opportunity gaps</li>
+                </ul>
 
             </section>
 
@@ -662,6 +773,7 @@
             <section
                 class="results-section"
                 id="resultsSection"
+                aria-labelledby="resultsHeading"
             >
 
                 <div class="results-heading">
@@ -673,7 +785,7 @@
                             AI DISCOVERY RESULTS
                         </span>
 
-                        <h2>
+                        <h2 id="resultsHeading">
                             Opportunities worth exploring
                         </h2>
 
@@ -685,11 +797,12 @@
 
 
                     <button
+                        type="button"
                         class="reset-button"
                         id="resetButton"
                     >
 
-                        <i class="fa-solid fa-rotate-left"></i>
+                        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
 
                         Discover Again
 
@@ -698,10 +811,281 @@
                 </div>
 
 
-                <div
-                    class="idea-results"
-                    id="ideaResults"
-                ></div>
+                <!-- ===== ERROR STATE ===== -->
+
+                <div class="discovery-error" id="errorState" hidden role="alert">
+
+                    <div class="discovery-error-icon" aria-hidden="true">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <h3>Unable to generate opportunities right now.</h3>
+
+                    <p>Please check your connection and try again.</p>
+
+                    <button type="button" class="retry-button" id="retryButton">
+                        <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                        Retry
+                    </button>
+
+                </div>
+
+
+                <!-- ===== SCORE + RADAR ===== -->
+
+                <div class="result-block score-radar-block" id="scoreRadarBlock">
+
+
+                    <div class="opp-score-card">
+
+                        <span class="result-eyebrow">OPPORTUNITY SCORE</span>
+
+                        <div class="opp-score-visual">
+
+                            <div class="opp-score-ring">
+
+                                <svg viewBox="0 0 120 120" aria-hidden="true">
+                                    <circle class="opp-ring-track" cx="60" cy="60" r="50"></circle>
+                                    <circle class="opp-ring-progress" id="oppRingProgress" cx="60" cy="60" r="50"></circle>
+                                </svg>
+
+                                <div class="opp-score-center">
+                                    <strong id="oppScoreValue" data-count-to="0">0</strong>
+                                    <span>/ 100</span>
+                                </div>
+
+                            </div>
+
+                            <p class="opp-score-caption" id="oppScoreCaption">
+                                Aggregate potential across discovered opportunities.
+                            </p>
+
+                        </div>
+
+                        <div class="opp-breakdown" id="oppBreakdown">
+                            <!-- rows injected by ideadiscovery.js -->
+                        </div>
+
+                    </div>
+
+
+                    <div class="opp-radar-card">
+
+                        <span class="result-eyebrow">OPPORTUNITY RADAR</span>
+
+                        <div class="opp-radar-wrap">
+
+                            <svg
+                                class="opp-radar"
+                                viewBox="0 0 240 220"
+                                role="img"
+                                aria-label="Opportunity radar across market demand, innovation, competition, feasibility and growth potential"
+                            >
+
+                                <polygon class="radar-grid" points="120,25 205,88 172,192 68,192 35,88"></polygon>
+                                <polygon class="radar-grid" points="120,63 163,94 146,146 94,146 77,94"></polygon>
+
+                                <line class="radar-spoke" x1="120" y1="110" x2="120" y2="25"></line>
+                                <line class="radar-spoke" x1="120" y1="110" x2="205" y2="88"></line>
+                                <line class="radar-spoke" x1="120" y1="110" x2="172" y2="192"></line>
+                                <line class="radar-spoke" x1="120" y1="110" x2="68" y2="192"></line>
+                                <line class="radar-spoke" x1="120" y1="110" x2="35" y2="88"></line>
+
+                                <polygon
+                                    class="radar-shape"
+                                    id="oppRadarShape"
+                                    data-center="120,110"
+                                    data-outer="120,25 205,88 172,192 68,192 35,88"
+                                    data-axes="0,0,0,0,0"
+                                    points="120,110 120,110 120,110 120,110 120,110"
+                                ></polygon>
+
+                                <text class="radar-label" x="120" y="16" text-anchor="middle">Market demand</text>
+                                <text class="radar-label" x="214" y="86" text-anchor="start">Innovation</text>
+                                <text class="radar-label" x="178" y="208" text-anchor="middle">Growth</text>
+                                <text class="radar-label" x="62" y="208" text-anchor="middle">Competition</text>
+                                <text class="radar-label" x="26" y="86" text-anchor="end">Feasibility</text>
+
+                            </svg>
+
+                        </div>
+
+                        <p class="result-note">Illustrative &mdash; derived from the discovered set</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ===== DISCOVERED IDEA CARDS ===== -->
+
+                <div class="result-block">
+
+                    <div class="result-block-head">
+                        <div>
+                            <span class="result-eyebrow">DISCOVERED OPPORTUNITIES</span>
+                            <h3>Startup opportunities in <span id="resultDomainName">your domain</span></h3>
+                        </div>
+                        <span class="result-note">Illustrative data</span>
+                    </div>
+
+                    <div
+                        class="idea-results"
+                        id="ideaResults"
+                    ></div>
+
+                </div>
+
+
+                <!-- ===== COMPARISON ===== -->
+
+                <div class="result-block" id="comparisonBlock">
+
+                    <div class="result-block-head">
+                        <div>
+                            <span class="result-eyebrow">OPPORTUNITY COMPARISON</span>
+                            <h3>How the opportunities stack up</h3>
+                        </div>
+                        <span class="result-note">Illustrative data</span>
+                    </div>
+
+                    <div class="comparison-legend" aria-hidden="true">
+                        <span data-k="score">Opportunity score</span>
+                        <span data-k="demand">Market demand</span>
+                        <span data-k="competition">Low competition</span>
+                        <span data-k="feasibility">Feasibility</span>
+                    </div>
+
+                    <div class="comparison-chart" id="comparisonChart">
+                        <!-- rows injected by ideadiscovery.js -->
+                    </div>
+
+                </div>
+
+
+                <!-- ===== MARKET GAP ===== -->
+
+                <div class="result-block gap-block">
+
+                    <div class="result-block-head">
+                        <div>
+                            <span class="result-eyebrow">MARKET GAP</span>
+                            <h3>Where the market is still open</h3>
+                        </div>
+                        <span class="result-note">Illustrative</span>
+                    </div>
+
+                    <div class="gap-flow">
+
+                        <div class="gap-stage">
+                            <div class="gap-stage-icon"><i class="fa-solid fa-user-group" aria-hidden="true"></i></div>
+                            <strong>Customer need</strong>
+                            <p id="gapNeed">A real, recurring problem people already pay to work around.</p>
+                        </div>
+
+                        <div class="gap-connector" aria-hidden="true"><i class="fa-solid fa-arrow-down"></i></div>
+
+                        <div class="gap-stage">
+                            <div class="gap-stage-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+                            <strong>Existing solutions</strong>
+                            <p id="gapExisting">Incumbents solve part of it &mdash; slowly, expensively or for the wrong segment.</p>
+                        </div>
+
+                        <div class="gap-connector" aria-hidden="true"><i class="fa-solid fa-arrow-down"></i></div>
+
+                        <div class="gap-stage gap-stage-focus">
+                            <div class="gap-stage-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></div>
+                            <span class="gap-focus-tag">THE UNMET GAP</span>
+                            <strong id="gapUnmet">Fast, affordable, focused on the underserved user.</strong>
+                            <p>This is the space a new venture can own.</p>
+                        </div>
+
+                        <div class="gap-connector" aria-hidden="true"><i class="fa-solid fa-arrow-down"></i></div>
+
+                        <div class="gap-stage">
+                            <div class="gap-stage-icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div>
+                            <strong>Startup opportunity</strong>
+                            <p id="gapOpportunity">Enter narrow, win a beachhead segment, then expand.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ===== AI PERSPECTIVE ===== -->
+
+                <div class="result-block perspective-block">
+
+                    <div class="result-block-head">
+                        <div>
+                            <span class="result-eyebrow">VENTUREIQ AI PERSPECTIVE</span>
+                            <h3>How to think about this space</h3>
+                        </div>
+                        <span class="result-note">Illustrative insight</span>
+                    </div>
+
+                    <div class="perspective-grid">
+
+                        <article class="perspective-card">
+                            <div class="perspective-icon" aria-hidden="true"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                            <h4>Why now</h4>
+                            <p id="perspWhyNow">&mdash;</p>
+                        </article>
+
+                        <article class="perspective-card">
+                            <div class="perspective-icon" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+                            <h4>Who needs it</h4>
+                            <p id="perspWhoNeeds">&mdash;</p>
+                        </article>
+
+                        <article class="perspective-card">
+                            <div class="perspective-icon" aria-hidden="true"><i class="fa-solid fa-fingerprint"></i></div>
+                            <h4>What makes it different</h4>
+                            <p id="perspDifferent">&mdash;</p>
+                        </article>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ===== TREND SIGNALS ===== -->
+
+                <div class="result-block signals-block">
+
+                    <div class="result-block-head">
+                        <div>
+                            <span class="result-eyebrow">EMERGING SIGNALS</span>
+                            <h3>What the market is telling us</h3>
+                        </div>
+                        <span class="result-note">Illustrative</span>
+                    </div>
+
+                    <div class="signal-grid" id="signalGrid">
+                        <!-- cards injected by ideadiscovery.js -->
+                    </div>
+
+                </div>
+
+
+                <!-- ===== LEARN THE SPACE ===== -->
+
+                <div class="result-block learn-block">
+
+                    <div class="result-block-head">
+                        <div>
+                            <span class="result-eyebrow">LEARN THE SPACE</span>
+                            <h3>Go deeper on <span id="learnDomainName">your domain</span></h3>
+                        </div>
+                        <span class="result-note">Opens YouTube</span>
+                    </div>
+
+                    <div class="learn-grid" id="learnGrid">
+                        <!-- cards injected by ideadiscovery.js -->
+                    </div>
+
+                </div>
 
             </section>
 
@@ -716,7 +1100,7 @@
         <footer class="discovery-footer">
 
             <span>
-                © 2026 VentureIQ
+                &copy; 2026 VentureIQ
             </span>
 
             <span>
@@ -731,6 +1115,7 @@
 
     <!-- JAVASCRIPT -->
 
+    <script type="module" src="../js/session-guard.js"></script>
     <script src="../js/ideadiscovery.js"></script>
 
 </body>

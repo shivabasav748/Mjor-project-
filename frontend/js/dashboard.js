@@ -58,10 +58,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const {
             data: {
-                user
+                session
             },
             error
-        } = await supabase.auth.getUser();
+        } = await supabase.auth.getSession();
 
 
         if (error) {
@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
+
+        const user = session?.user;
 
         if (!user) {
 
@@ -189,8 +191,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "Profile loading error:",
                 error
             );
-
-            return;
         }
 
 
@@ -199,10 +199,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
         const name =
-            profile?.full_name ||
             metadata.full_name ||
-            metadata.name ||
-            currentUser.email?.split("@")[0] ||
+            profile?.full_name ||
+            currentUser.email ||
             "Founder";
 
 
@@ -2153,6 +2152,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     /* =====================================================
        LOAD SAVED THEME
+       Light is the default experience for the dashboard;
+       dark is applied only when explicitly saved. The
+       toggle mechanism and stored key/values are unchanged.
     ===================================================== */
 
     const savedTheme =
@@ -2162,7 +2164,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
     if (
-        savedTheme === "light"
+        savedTheme !== "dark"
     ) {
 
         document.body.classList.add(
@@ -2300,3 +2302,263 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
 });
+
+
+/* =========================================================
+   =========================================================
+   VENTUREIQ — PREMIUM DASHBOARD UI ENHANCEMENTS
+   Progressive enhancement only. Everything is feature-
+   detected and wrapped in try/catch so a failure here can
+   never break the Supabase-connected dashboard logic above.
+   No API calls, no auth, no navigation changes.
+   =========================================================
+========================================================= */
+
+(function premiumDashboardUI() {
+    "use strict";
+
+    var prefersReduced = false;
+    try {
+        prefersReduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+    } catch (e) { /* noop */ }
+
+    function ready(fn) {
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", fn, { once: true });
+        } else {
+            fn();
+        }
+    }
+
+    /* ---- Animated number count-up ---------------------- */
+
+    function countUp(el, duration) {
+        try {
+            var textNode = null;
+            for (var i = 0; i < el.childNodes.length; i++) {
+                if (el.childNodes[i].nodeType === 3 &&
+                    /\d/.test(el.childNodes[i].nodeValue)) {
+                    textNode = el.childNodes[i];
+                    break;
+                }
+            }
+            var raw = (textNode ? textNode.nodeValue : el.textContent) || "";
+            var match = raw.replace(/,/g, "").match(/-?\d+(\.\d+)?/);
+            if (!match) return;
+
+            var target = parseFloat(match[0]);
+            if (!isFinite(target)) return;
+
+            var isFloat = match[0].indexOf(".") !== -1;
+            var start = performance.now();
+            var dur = duration || 900;
+
+            function frame(now) {
+                var p = Math.min((now - start) / dur, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                var val = target * eased;
+                var out = isFloat ? val.toFixed(1) : String(Math.round(val));
+                if (textNode) {
+                    textNode.nodeValue = out;
+                } else {
+                    el.textContent = out;
+                }
+                if (p < 1) requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        } catch (e) { /* noop */ }
+    }
+
+    /* ---- Score ring ----------------------------------- */
+
+    function animateScoreRing() {
+        try {
+            var ring = document.querySelector(
+                ".intelligence-panel .score-progress"
+            );
+            var label = document.querySelector(
+                ".intelligence-panel .score-center strong"
+            );
+            if (!ring) return;
+
+            var circumference = 314;
+            var score = 78;
+            if (label) {
+                var m = (label.getAttribute("data-count-to") ||
+                    label.textContent || "").match(/\d+/);
+                if (m) score = parseInt(m[0], 10);
+            }
+            score = Math.max(0, Math.min(100, score));
+            var offset = circumference - (score / 100) * circumference;
+
+            if (prefersReduced) {
+                ring.style.strokeDashoffset = String(offset);
+                return;
+            }
+            ring.style.strokeDashoffset = String(circumference);
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    ring.style.strokeDashoffset = String(offset);
+                });
+            });
+        } catch (e) { /* noop */ }
+    }
+
+    /* ---- Radar polygon from data-axes ----------------- */
+
+    function renderRadar() {
+        try {
+            var shape = document.querySelector(".radar-shape");
+            if (!shape) return;
+
+            var center = (shape.getAttribute("data-center") || "120,105")
+                .split(",").map(Number);
+            var outer = (shape.getAttribute("data-outer") || "")
+                .trim().split(/\s+/).map(function (pair) {
+                    return pair.split(",").map(Number);
+                });
+            var axes = (shape.getAttribute("data-axes") || "")
+                .split(",").map(Number);
+
+            if (outer.length < 3 || axes.length !== outer.length) return;
+
+            var cx = center[0], cy = center[1];
+            var pts = outer.map(function (o, idx) {
+                var v = Math.max(0, Math.min(100, axes[idx])) / 100;
+                var x = cx + (o[0] - cx) * v;
+                var y = cy + (o[1] - cy) * v;
+                return x.toFixed(1) + "," + y.toFixed(1);
+            });
+            shape.setAttribute("points", pts.join(" "));
+        } catch (e) { /* noop */ }
+    }
+
+    /* ---- Market line draw-in + tooltips --------------- */
+
+    function initMarketChart() {
+        try {
+            var line = document.querySelector(".market-line");
+            var area = document.querySelector(".market-area");
+            var wrap = document.querySelector(".market-chart-wrap");
+            var tip = document.getElementById("marketTip");
+            var points = document.querySelectorAll(".market-point");
+
+            if (line && !prefersReduced && typeof line.getTotalLength === "function") {
+                var len = line.getTotalLength();
+                line.style.strokeDasharray = len;
+                line.style.strokeDashoffset = len;
+                line.style.transition = "stroke-dashoffset 1.4s cubic-bezier(0.2,0.7,0.2,1)";
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        line.style.strokeDashoffset = "0";
+                    });
+                });
+            }
+            if (area) {
+                requestAnimationFrame(function () { area.classList.add("viq-in"); });
+            }
+
+            if (!wrap || !tip || !points.length) return;
+
+            points.forEach(function (pt) {
+                function show() {
+                    var rect = wrap.getBoundingClientRect();
+                    var pRect = pt.getBoundingClientRect();
+                    tip.innerHTML =
+                        "<strong>" + (pt.getAttribute("data-value") || "") + "</strong>" +
+                        (pt.getAttribute("data-label") || "");
+                    tip.style.left =
+                        (pRect.left - rect.left + pRect.width / 2) + "px";
+                    tip.style.top =
+                        (pRect.top - rect.top - 10) + "px";
+                    tip.classList.add("is-visible");
+                }
+                function hide() { tip.classList.remove("is-visible"); }
+                pt.addEventListener("mouseenter", show);
+                pt.addEventListener("mouseleave", hide);
+                pt.addEventListener("focus", show);
+                pt.addEventListener("blur", hide);
+            });
+        } catch (e) { /* noop */ }
+    }
+
+    /* ---- Reveal-on-scroll ----------------------------- */
+
+    var REVEAL_SELECTOR = [
+        ".welcome-section",
+        ".block-head",
+        ".overview-card",
+        ".dashboard-panel",
+        ".ai-insight-card",
+        ".exec-progress .exec-step"
+    ].join(",");
+
+    function initReveal() {
+        var nodes = Array.prototype.slice.call(
+            document.querySelectorAll(REVEAL_SELECTOR)
+        );
+        if (!nodes.length) return;
+
+        if (prefersReduced || !("IntersectionObserver" in window)) {
+            // No motion: run the value animations once, leave everything visible.
+            document.querySelectorAll(".overview-value").forEach(function (el) {
+                countUp(el, 1);
+            });
+            animateScoreRing();
+            renderRadar();
+            initMarketChart();
+            return;
+        }
+
+        document.body.classList.add("viq-anim-ready");
+        nodes.forEach(function (el, i) {
+            el.classList.add("viq-reveal");
+            el.style.transitionDelay = Math.min(i * 45, 320) + "ms";
+        });
+
+        var seen = false;
+
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                var el = entry.target;
+                el.classList.add("viq-in");
+                io.unobserve(el);
+
+                if (el.classList.contains("overview-card")) {
+                    var v = el.querySelector(".overview-value");
+                    if (v) countUp(v);
+                }
+                if (el.classList.contains("intelligence-panel")) {
+                    animateScoreRing();
+                    var rs = el.querySelector(".radar-shape");
+                    if (rs) {
+                        renderRadar();
+                        requestAnimationFrame(function () {
+                            rs.classList.add("viq-in");
+                        });
+                    }
+                    el.querySelectorAll(".health-factor .factor-top strong")
+                        .forEach(function (s) { countUp(s, 800); });
+                }
+                if (el.classList.contains("market-panel") && !seen) {
+                    seen = true;
+                    initMarketChart();
+                }
+            });
+        }, { threshold: 0.16, rootMargin: "0px 0px -40px 0px" });
+
+        nodes.forEach(function (el) { io.observe(el); });
+    }
+
+    ready(function () {
+        try {
+            initReveal();
+        } catch (e) {
+            // Absolute fallback: make sure nothing stays hidden.
+            document.body.classList.remove("viq-anim-ready");
+        }
+    });
+})();

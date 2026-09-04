@@ -308,20 +308,56 @@
                 <div>
 
                     <span class="section-tag">
-                        AI STRATEGIC LAYER
+                        VENTUREIQ STRATEGIC INTELLIGENCE
                     </span>
 
                     <h2>
                         Turn startup signals into
-                        <span>strategic action.</span>
+                        <span>strategy.</span>
                     </h2>
 
                     <p>
-                        VentureIQ synthesizes your startup's intelligence
-                        into practical insights, risks, opportunities and
-                        recommendations.
+                        Bring validation, market signals and competitive
+                        intelligence together to decide what to do next.
                     </p>
 
+                    <div class="si-hero-badge" role="status" aria-live="polite">
+                        <span class="si-live-dot" aria-hidden="true"></span>
+                        Strategy Engine
+                        <span class="si-engine-state">Ready</span>
+                    </div>
+
+                    <div class="si-hero-cta-row">
+                        <button type="button" class="si-cta-primary" id="siBuildStrategyBtn">
+                            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                            Build Strategy
+                        </button>
+                        <a href="marketintelligence.html" class="si-cta-secondary">
+                            <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                            View Market Intelligence
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="si-hero-viz" aria-hidden="true">
+                    <svg viewBox="0 0 240 220" role="img" aria-label="Abstract strategic network visualization">
+                        <g>
+                            <line class="si-hero-link" x1="120" y1="110" x2="35" y2="55" style="animation-delay:.2s"></line>
+                            <line class="si-hero-link" x1="120" y1="110" x2="205" y2="55" style="animation-delay:.35s"></line>
+                            <line class="si-hero-link" x1="120" y1="110" x2="35" y2="165" style="animation-delay:.5s"></line>
+                            <line class="si-hero-link" x1="120" y1="110" x2="205" y2="165" style="animation-delay:.65s"></line>
+                            <line class="si-hero-link" x1="120" y1="110" x2="120" y2="25" style="animation-delay:.8s"></line>
+                            <line class="si-hero-link" x1="120" y1="110" x2="120" y2="195" style="animation-delay:.95s"></line>
+                        </g>
+                        <circle class="si-hero-node you" cx="120" cy="110" r="10" style="animation-delay:.1s"></circle>
+                        <circle class="si-hero-node" cx="35" cy="55" r="6" style="animation-delay:.4s"></circle>
+                        <circle class="si-hero-node" cx="205" cy="55" r="6" style="animation-delay:.55s"></circle>
+                        <circle class="si-hero-node" cx="35" cy="165" r="6" style="animation-delay:.7s"></circle>
+                        <circle class="si-hero-node" cx="205" cy="165" r="6" style="animation-delay:.85s"></circle>
+                        <circle class="si-hero-node" cx="120" cy="25" r="5" style="animation-delay:1s"></circle>
+                        <circle class="si-hero-node" cx="120" cy="195" r="5" style="animation-delay:1.1s"></circle>
+                    </svg>
                 </div>
 
                 <button
@@ -334,6 +370,26 @@
                 </button>
 
             </section>
+
+            <!-- STRATEGY LOADING OVERLAY -->
+            <div class="si-loading-overlay" id="siLoadingOverlay" role="alert" aria-live="assertive">
+                <div class="si-loading-box">
+                    <div class="si-loading-spin" aria-hidden="true"></div>
+                    <h3 class="si-loading-title">Building Your Strategy</h3>
+                    <p class="si-loading-status" id="siLoadingStatus">Gathering startup signals...</p>
+                    <div class="si-loading-track"><div class="si-loading-fill" id="siLoadingFill"></div></div>
+                </div>
+            </div>
+
+            <!-- STRATEGY ERROR STATE -->
+            <div class="si-error-state" id="siErrorState" role="alert">
+                <h3>Strategic intelligence is temporarily unavailable.</h3>
+                <p>Try again or review the available analysis modules.</p>
+                <div class="si-error-actions">
+                    <button type="button" class="si-cta-primary" id="siRetryBtn">Retry</button>
+                    <a href="marketintelligence.html" class="si-cta-secondary">Review analysis modules</a>
+                </div>
+            </div>
 
 
             <!-- ACTIVE IDEA -->
@@ -931,6 +987,443 @@
             </section>
 
 
+            <!-- ==========================================================
+                 PREMIUM STRATEGY WORKSPACE — illustrative / demo data
+                 ========================================================== -->
+            <div class="si-workspace" id="siWorkspace">
+
+                <!-- 2. STRATEGY HEALTH OVERVIEW -->
+                <section class="si-section si-reveal" aria-labelledby="siOverviewTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siOverviewTitle">Strategy Health Overview</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-kpi-grid si-stagger">
+                        <div class="si-kpi">
+                            <div class="si-kpi-label">Strategic Readiness</div>
+                            <div class="si-kpi-value"><span data-count="82" data-suffix="%">0%</span></div>
+                            <div class="si-kpi-note">Blended market, product &amp; execution signal</div>
+                            <div class="si-kpi-trend si-trend-up">&#9650; Strengthening</div>
+                            <svg class="si-kpi-spark" viewBox="0 0 60 26" aria-hidden="true"><path d="M0,20 L10,17 L20,18 L30,12 L40,10 L50,6 L60,4"/></svg>
+                        </div>
+                        <div class="si-kpi">
+                            <div class="si-kpi-label">Market Fit</div>
+                            <div class="si-kpi-value"><span data-count="76" data-suffix="%">0%</span></div>
+                            <div class="si-kpi-note">Problem relevance vs. target audience</div>
+                            <div class="si-kpi-trend si-trend-up">&#9650; Improving</div>
+                            <svg class="si-kpi-spark" viewBox="0 0 60 26" aria-hidden="true"><path d="M0,18 L10,16 L20,17 L30,13 L40,11 L50,9 L60,7"/></svg>
+                        </div>
+                        <div class="si-kpi">
+                            <div class="si-kpi-label">Competitive Position</div>
+                            <div class="si-kpi-value"><span data-count="84" data-suffix="%">0%</span></div>
+                            <div class="si-kpi-note">Differentiation vs. tracked competitors</div>
+                            <div class="si-kpi-trend si-trend-up">&#9650; Favorable</div>
+                            <svg class="si-kpi-spark" viewBox="0 0 60 26" aria-hidden="true"><path d="M0,16 L10,14 L20,15 L30,10 L40,9 L50,7 L60,5"/></svg>
+                        </div>
+                        <div class="si-kpi">
+                            <div class="si-kpi-label">Growth Potential</div>
+                            <div class="si-kpi-value"><span data-count="88" data-suffix="%">0%</span></div>
+                            <div class="si-kpi-note">Category demand &amp; expansion headroom</div>
+                            <div class="si-kpi-trend si-trend-up">&#9650; High</div>
+                            <svg class="si-kpi-spark" viewBox="0 0 60 26" aria-hidden="true"><path d="M0,14 L10,12 L20,13 L30,8 L40,7 L50,5 L60,3"/></svg>
+                        </div>
+                        <div class="si-kpi">
+                            <div class="si-kpi-label">Execution Confidence</div>
+                            <div class="si-kpi-value"><span data-count="79" data-suffix="%">0%</span></div>
+                            <div class="si-kpi-note">Team &amp; technical delivery readiness</div>
+                            <div class="si-kpi-trend si-trend-flat">&#9644; Watch</div>
+                            <svg class="si-kpi-spark" viewBox="0 0 60 26" aria-hidden="true"><path d="M0,12 L10,13 L20,11 L30,14 L40,12 L50,13 L60,11"/></svg>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. STRATEGIC SCORE -->
+                <section class="si-section active-idea-card si-reveal" id="siScoreSection" aria-labelledby="siScoreTitle" style="display:block; padding:26px;">
+                    <div class="si-sec-head" style="margin-bottom:22px;">
+                        <h3 id="siScoreTitle">Strategic Readiness</h3>
+                        <span class="si-demo-tag">Illustrative composite</span>
+                    </div>
+                    <div class="si-score-wrap">
+                        <div class="si-score-ring">
+                            <svg viewBox="0 0 200 200" role="img" aria-label="Strategic readiness score out of 100. Illustrative.">
+                                <defs>
+                                    <linearGradient id="siGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#f0d878" />
+                                        <stop offset="100%" stop-color="#9f7d18" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="si-score-bg" cx="100" cy="100" r="80"></circle>
+                                <circle class="si-score-fg" id="siScoreArc" cx="100" cy="100" r="80"></circle>
+                            </svg>
+                            <div class="si-score-inner">
+                                <span class="si-score-num" data-count="82">0</span>
+                                <span class="si-score-max">OUT OF 100</span>
+                            </div>
+                        </div>
+                        <div class="si-breakdown si-stagger" id="siBreakdown">
+                            <div><div class="si-bar-top"><span>Market</span><span>82/100</span></div><div class="si-bar-track"><div class="si-bar-fill" data-pct="82"></div></div></div>
+                            <div><div class="si-bar-top"><span>Product</span><span>85/100</span></div><div class="si-bar-track"><div class="si-bar-fill" data-pct="85"></div></div></div>
+                            <div><div class="si-bar-top"><span>Competition</span><span>78/100</span></div><div class="si-bar-track"><div class="si-bar-fill" data-pct="78"></div></div></div>
+                            <div><div class="si-bar-top"><span>Customer</span><span>88/100</span></div><div class="si-bar-track"><div class="si-bar-fill" data-pct="88"></div></div></div>
+                            <div><div class="si-bar-top"><span>Execution</span><span>79/100</span></div><div class="si-bar-track"><div class="si-bar-fill" data-pct="79"></div></div></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. SWOT ANALYSIS -->
+                <section class="si-section si-reveal" aria-labelledby="siSwotTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siSwotTitle">SWOT Analysis</h3>
+                        <span class="si-demo-tag">Illustrative strategic assessment</span>
+                    </div>
+                    <p class="si-sec-sub">Strengths, opportunities and risks mirror the strategic signals above; weaknesses are a new, clearly-labelled illustrative extension of that same assessment.</p>
+                    <div class="si-swot-grid">
+                        <div class="si-swot-quad strengths">
+                            <div class="si-swot-head"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span>STRENGTHS</span></div>
+                            <div class="si-swot-list">
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Clear problem relevance <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Elderly care is a meaningful and clearly identifiable need.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Strong AI differentiation <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>AI assistance creates a distinct product direction.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Growing care demand <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>The problem space offers potential for long-term demand.</p></div></div>
+                            </div>
+                        </div>
+                        <div class="si-swot-quad weaknesses">
+                            <div class="si-swot-head"><i class="fa-solid fa-circle-minus" aria-hidden="true"></i><span>WEAKNESSES</span></div>
+                            <div class="si-swot-list">
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">No established brand or trust yet <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Early-stage products in health-adjacent categories start with a credibility gap.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">No healthcare partnerships in place <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Distribution through care organizations is an opportunity, not yet an asset.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Unproven hardware/software integration <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>The assistant's real-world reliability has not been tested at scale.</p></div></div>
+                            </div>
+                        </div>
+                        <div class="si-swot-quad opportunities">
+                            <div class="si-swot-head"><i class="fa-solid fa-bullseye" aria-hidden="true"></i><span>OPPORTUNITIES</span></div>
+                            <div class="si-swot-list">
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Family caregiver segment <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Positioning for caregivers could expand adoption.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Personalized assistance <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Personalized AI support can become a key product advantage.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Healthcare partnerships <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Partnerships could improve credibility and distribution.</p></div></div>
+                            </div>
+                        </div>
+                        <div class="si-swot-quad threats">
+                            <div class="si-swot-head"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span>THREATS</span></div>
+                            <div class="si-swot-list">
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Trust &amp; reliability <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Users may require strong evidence before trusting AI.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">Technical complexity <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Hardware and AI integration may increase development effort.</p></div></div>
+                                <div class="si-swot-item" data-open="false"><button type="button" class="si-swot-item-head" aria-expanded="false">User adoption <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="si-swot-item-body"><p>Early testing is required to prove real-world usefulness.</p></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. STRATEGIC PRIORITIES -->
+                <section class="si-section si-reveal" aria-labelledby="siPrioritiesTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siPrioritiesTitle">Top Strategic Priorities</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-priority-list si-stagger">
+                        <div class="si-priority-item">
+                            <div class="si-priority-num">1</div>
+                            <div class="si-priority-body"><strong>Validate the highest-value customer segment</strong><p>Confirm which buyer — elderly users or family caregivers — feels the problem most acutely.</p></div>
+                            <div class="si-priority-meta"><div class="si-priority-tags"><span class="si-tag si-tag-impact-high">High impact</span><span class="si-tag si-tag-urgency-high">Urgent</span></div><span class="si-tag si-tag-status pending">In progress</span></div>
+                        </div>
+                        <div class="si-priority-item">
+                            <div class="si-priority-num">2</div>
+                            <div class="si-priority-body"><strong>Strengthen product differentiation</strong><p>Sharpen the AI-native angle that separates this from generic monitoring tools.</p></div>
+                            <div class="si-priority-meta"><div class="si-priority-tags"><span class="si-tag si-tag-impact-high">High impact</span><span class="si-tag si-tag-urgency-medium">Soon</span></div><span class="si-tag si-tag-status pending">Not started</span></div>
+                        </div>
+                        <div class="si-priority-item">
+                            <div class="si-priority-num">3</div>
+                            <div class="si-priority-body"><strong>Test core MVP assumptions</strong><p>Ship one focused care workflow and observe real usage before adding scope.</p></div>
+                            <div class="si-priority-meta"><div class="si-priority-tags"><span class="si-tag si-tag-impact-high">High impact</span><span class="si-tag si-tag-urgency-high">Urgent</span></div><span class="si-tag si-tag-status pending">In progress</span></div>
+                        </div>
+                        <div class="si-priority-item">
+                            <div class="si-priority-num">4</div>
+                            <div class="si-priority-body"><strong>Build competitive advantage</strong><p>Turn personalization and trust-building into a durable moat, not just a feature.</p></div>
+                            <div class="si-priority-meta"><div class="si-priority-tags"><span class="si-tag si-tag-impact-medium">Medium impact</span><span class="si-tag si-tag-urgency-medium">Soon</span></div><span class="si-tag si-tag-status pending">Not started</span></div>
+                        </div>
+                        <div class="si-priority-item">
+                            <div class="si-priority-num">5</div>
+                            <div class="si-priority-body"><strong>Prepare scalable execution</strong><p>Plan the technical and support model needed once early validation succeeds.</p></div>
+                            <div class="si-priority-meta"><div class="si-priority-tags"><span class="si-tag si-tag-impact-medium">Medium impact</span><span class="si-tag si-tag-impact-medium">Later</span></div><span class="si-tag si-tag-status pending">Not started</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. PRIORITY MATRIX -->
+                <section class="si-section active-idea-card si-reveal" id="siMatrixSection" aria-labelledby="siMatrixTitle" style="display:block; padding:26px;">
+                    <div class="si-sec-head" style="margin-bottom:6px;">
+                        <h3 id="siMatrixTitle">Priority Matrix</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <p class="si-sec-sub">Where each priority sits by effort required and expected impact.</p>
+                    <div class="si-matrix-wrap">
+                        <div class="si-matrix" id="siMatrix" role="group" aria-label="Two by two matrix of effort versus impact showing quick wins, major initiatives, fill-ins and deferred items. Illustrative. Each marker below is a focusable point with its own description.">
+                            <div class="si-matrix-grid-bg">
+                                <div class="si-matrix-cell quick-wins"><span>Quick Wins</span></div>
+                                <div class="si-matrix-cell"><span>Major Initiatives</span></div>
+                                <div class="si-matrix-cell"><span>Fill-ins</span></div>
+                                <div class="si-matrix-cell"><span>Defer</span></div>
+                            </div>
+                            <span class="si-matrix-label-x">Low Effort &rarr; High Effort</span>
+                            <span class="si-matrix-label-y">Low Impact &rarr; High Impact</span>
+                            <button type="button" class="si-matrix-point" style="left:22%; top:20%;" data-tip="Customer segment validation|Low effort, high impact — a quick win." aria-label="Customer segment validation: low effort, high impact"></button>
+                            <button type="button" class="si-matrix-point" style="left:70%; top:15%;" data-tip="Test core MVP assumptions|Higher effort, high impact — a major initiative." aria-label="Test core MVP assumptions: high effort, high impact"></button>
+                            <button type="button" class="si-matrix-point" style="left:65%; top:65%;" data-tip="Build competitive advantage|Meaningful effort for medium impact — a major initiative to sequence carefully." aria-label="Build competitive advantage: high effort, medium impact"></button>
+                            <button type="button" class="si-matrix-point" style="left:25%; top:70%;" data-tip="Product differentiation copy|Low effort, moderate impact — a fill-in." aria-label="Product differentiation copy: low effort, medium impact"></button>
+                            <button type="button" class="si-matrix-point" style="left:78%; top:85%;" data-tip="Prepare scalable execution|High effort, lower near-term impact — defer until validation lands." aria-label="Prepare scalable execution: high effort, low near-term impact"></button>
+                            <div class="si-mtip" id="siMatrixTip"></div>
+                        </div>
+                        <div class="si-matrix-legend">
+                            <div class="si-matrix-legend-item"><b>Quick Wins</b>Low effort, high impact — do these first.</div>
+                            <div class="si-matrix-legend-item"><b>Major Initiatives</b>High effort, high impact — plan and resource properly.</div>
+                            <div class="si-matrix-legend-item"><b>Fill-ins</b>Low effort, lower impact — useful but not urgent.</div>
+                            <div class="si-matrix-legend-item"><b>Defer</b>High effort, lower near-term impact — revisit later.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. STRATEGIC ROADMAP -->
+                <section class="si-section si-reveal" aria-labelledby="siRoadmapTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siRoadmapTitle">Strategic Path</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-roadmap si-stagger">
+                        <div class="si-road-stage"><span class="si-road-node" aria-hidden="true"></span><div class="si-road-name">Validate</div><div class="si-road-obj"><b>Objective:</b> Confirm the problem is real and urgent.</div><div class="si-road-action"><b>Key action:</b> Interview caregivers &amp; elderly users.</div><div class="si-road-signal"><b>Success signal:</b> Users describe the pain unprompted.</div></div>
+                        <div class="si-road-stage"><span class="si-road-node" aria-hidden="true"></span><div class="si-road-name">Differentiate</div><div class="si-road-obj"><b>Objective:</b> Establish a defensible AI-native edge.</div><div class="si-road-action"><b>Key action:</b> Ship personalized assistance features.</div><div class="si-road-signal"><b>Success signal:</b> Users prefer it over manual alternatives.</div></div>
+                        <div class="si-road-stage"><span class="si-road-node" aria-hidden="true"></span><div class="si-road-name">Acquire</div><div class="si-road-obj"><b>Objective:</b> Land the first cohort of real users.</div><div class="si-road-action"><b>Key action:</b> Partner with a care organization pilot.</div><div class="si-road-signal"><b>Success signal:</b> Repeatable, low-cost signups.</div></div>
+                        <div class="si-road-stage"><span class="si-road-node" aria-hidden="true"></span><div class="si-road-name">Scale</div><div class="si-road-obj"><b>Objective:</b> Grow usage without breaking trust.</div><div class="si-road-action"><b>Key action:</b> Expand partnerships and onboarding.</div><div class="si-road-signal"><b>Success signal:</b> Retention holds as volume grows.</div></div>
+                        <div class="si-road-stage"><span class="si-road-node" aria-hidden="true"></span><div class="si-road-name">Defend</div><div class="si-road-obj"><b>Objective:</b> Protect the position once it's proven.</div><div class="si-road-action"><b>Key action:</b> Deepen data and integration moats.</div><div class="si-road-signal"><b>Success signal:</b> Competitors struggle to match trust built.</div></div>
+                    </div>
+                </section>
+
+                <!-- 8. STRATEGIC VALUE PROPOSITION -->
+                <section class="si-section si-reveal" aria-labelledby="siValuePropTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siValuePropTitle">Strategic Value Proposition</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-valueprop">
+                        <div class="si-vp-card"><b>Customer Problem</b><p>Elderly individuals need daily support and monitoring; family caregivers can't always be present.</p></div>
+                        <i class="fa-solid fa-arrow-down si-vp-arrow" aria-hidden="true"></i>
+                        <div class="si-vp-card"><b>The Solution</b><p>Caretroid — an AI-powered assistant that supports elderly users and keeps caregivers informed.</p></div>
+                        <i class="fa-solid fa-arrow-down si-vp-arrow" aria-hidden="true"></i>
+                        <div class="si-vp-card key"><b>Unique Advantage</b><p>Personalized, AI-native assistance instead of generic monitoring hardware.</p></div>
+                        <i class="fa-solid fa-arrow-down si-vp-arrow" aria-hidden="true"></i>
+                        <div class="si-vp-card"><b>Expected Outcome</b><p>Elderly users feel supported; caregivers gain peace of mind and stay informed.</p></div>
+                    </div>
+                </section>
+
+                <!-- 9. CUSTOMER STRATEGY -->
+                <section class="si-section si-reveal" aria-labelledby="siCustTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siCustTitle">Customer Strategy</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-cust-grid si-stagger">
+                        <div class="si-cust-card">
+                            <span class="si-cust-tag">Primary Segment</span>
+                            <div class="si-cust-name">Elderly Users</div>
+                            <div class="si-cust-metric"><span>Problem intensity</span><b>High</b></div>
+                            <div class="si-cust-mini"><i style="width:88%"></i></div>
+                            <div class="si-cust-metric"><span>Opportunity level</span><b>High</b></div>
+                            <div class="si-cust-mini"><i style="width:82%"></i></div>
+                            <div class="si-cust-msg"><b>Message:</b> "A gentle companion that helps you stay independent, safely."</div>
+                        </div>
+                        <div class="si-cust-card">
+                            <span class="si-cust-tag">Secondary Segment</span>
+                            <div class="si-cust-name">Family Caregivers</div>
+                            <div class="si-cust-metric"><span>Problem intensity</span><b>High</b></div>
+                            <div class="si-cust-mini"><i style="width:80%"></i></div>
+                            <div class="si-cust-metric"><span>Opportunity level</span><b>Medium-High</b></div>
+                            <div class="si-cust-mini"><i style="width:70%"></i></div>
+                            <div class="si-cust-msg"><b>Message:</b> "Peace of mind, even when you can't be there."</div>
+                        </div>
+                        <div class="si-cust-card">
+                            <span class="si-cust-tag">Early Adopter</span>
+                            <div class="si-cust-name">Healthcare Pilots</div>
+                            <div class="si-cust-metric"><span>Problem intensity</span><b>Medium</b></div>
+                            <div class="si-cust-mini"><i style="width:60%"></i></div>
+                            <div class="si-cust-metric"><span>Opportunity level</span><b>Medium</b></div>
+                            <div class="si-cust-mini"><i style="width:58%"></i></div>
+                            <div class="si-cust-msg"><b>Message:</b> "A pilot partner that reduces caregiver load and improves outcomes."</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 10. POSITIONING STRATEGY -->
+                <section class="si-section active-idea-card si-reveal" id="siPositionSection" aria-labelledby="siPositionTitle" style="display:block; padding:26px;">
+                    <div class="si-sec-head" style="margin-bottom:6px;">
+                        <h3 id="siPositionTitle">How Should We Position?</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <p class="si-sec-sub">Innovation, Trust and Value compared against an illustrative market average.</p>
+                    <div class="si-pos-wrap">
+                        <div class="si-pos-holder">
+                            <svg id="siPosSvg" viewBox="0 0 320 300" role="img" aria-label="Triangular radar comparing your startup and the market average across innovation, trust and value. Illustrative."></svg>
+                        </div>
+                        <div class="si-pos-legend">
+                            <span class="si-pos-legend-item"><span class="si-pos-swatch" style="background:var(--gold)"></span>Your Startup</span>
+                            <span class="si-pos-legend-item"><span class="si-pos-swatch" style="background:var(--blue); opacity:.7;"></span>Market Average</span>
+                            <p class="si-sec-sub" style="margin:8px 0 0;">Lead with Innovation and Trust; Value parity is enough while the category is still forming.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 11. GROWTH STRATEGY -->
+                <section class="si-section si-reveal" aria-labelledby="siGrowthTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siGrowthTitle">Growth Strategy</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-growth-flow si-stagger">
+                        <div class="si-growth-stage"><div class="si-growth-icon"><i class="fa-solid fa-magnet" aria-hidden="true"></i></div><div class="si-growth-name">Acquire</div><div class="si-growth-obj"><b>Objective</b>Reach caregivers searching for support.</div><div class="si-growth-metric"><b>Key metric</b>Pilot signups per month.</div><div class="si-growth-action"><b>Action</b>Partner with one care organization.</div></div>
+                        <div class="si-growth-stage"><div class="si-growth-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div><div class="si-growth-name">Activate</div><div class="si-growth-obj"><b>Objective</b>Get the first meaningful use moment.</div><div class="si-growth-metric"><b>Key metric</b>First-week engagement rate.</div><div class="si-growth-action"><b>Action</b>Guided onboarding with a caregiver.</div></div>
+                        <div class="si-growth-stage"><div class="si-growth-icon"><i class="fa-solid fa-heart-circle-check" aria-hidden="true"></i></div><div class="si-growth-name">Retain</div><div class="si-growth-obj"><b>Objective</b>Keep daily use habitual and trusted.</div><div class="si-growth-metric"><b>Key metric</b>Weekly active usage.</div><div class="si-growth-action"><b>Action</b>Proactive check-ins &amp; reliability.</div></div>
+                        <div class="si-growth-stage"><div class="si-growth-icon"><i class="fa-solid fa-arrow-up-right-dots" aria-hidden="true"></i></div><div class="si-growth-name">Expand</div><div class="si-growth-obj"><b>Objective</b>Grow within and across households.</div><div class="si-growth-metric"><b>Key metric</b>Referral &amp; multi-user rate.</div><div class="si-growth-action"><b>Action</b>Family-plan &amp; partner referrals.</div></div>
+                    </div>
+                </section>
+
+                <!-- 12. BUSINESS MODEL SIGNALS -->
+                <section class="si-section si-reveal" aria-labelledby="siBmodelTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siBmodelTitle">Business Model Signals</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-bmodel-grid si-stagger">
+                        <div class="si-bmodel-card"><div class="si-bmodel-top"><span class="si-bmodel-name">Revenue Potential</span><span class="si-bmodel-level si-lvl-high">High</span></div><p class="si-bmodel-desc">Recurring subscription fits both household and institutional buyers.</p></div>
+                        <div class="si-bmodel-card"><div class="si-bmodel-top"><span class="si-bmodel-name">Scalability</span><span class="si-bmodel-level si-lvl-medium">Medium</span></div><p class="si-bmodel-desc">Software scales easily; hardware/support adds real-world friction.</p></div>
+                        <div class="si-bmodel-card"><div class="si-bmodel-top"><span class="si-bmodel-name">Customer Acquisition</span><span class="si-bmodel-level si-lvl-medium">Medium</span></div><p class="si-bmodel-desc">Trust-sensitive category; partnerships likely cheaper than paid ads.</p></div>
+                        <div class="si-bmodel-card"><div class="si-bmodel-top"><span class="si-bmodel-name">Retention Potential</span><span class="si-bmodel-level si-lvl-high">High</span></div><p class="si-bmodel-desc">Daily-use, habit-forming category once trust is established.</p></div>
+                        <div class="si-bmodel-card"><div class="si-bmodel-top"><span class="si-bmodel-name">Monetization Clarity</span><span class="si-bmodel-level si-lvl-medium">Medium</span></div><p class="si-bmodel-desc">Pricing tiers (household vs. care-org) still need validation.</p></div>
+                    </div>
+                </section>
+
+                <!-- 13. RISK VS OPPORTUNITY -->
+                <section class="si-section active-idea-card si-reveal" id="siScatterSection" aria-labelledby="siScatterTitle" style="display:block; padding:26px;">
+                    <div class="si-sec-head" style="margin-bottom:6px;">
+                        <h3 id="siScatterTitle">Risk vs Opportunity</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <p class="si-sec-sub">Point size reflects strategic importance.</p>
+                    <div class="si-scatter-wrap">
+                        <div class="si-scatter-holder">
+                            <svg id="siScatterSvg" viewBox="0 0 420 340" role="img" aria-label="Scatter chart of risk versus opportunity for market, product, competition, technology and execution. Point size shows strategic importance. Illustrative."></svg>
+                            <div class="si-mtip" id="siScatterTip"></div>
+                        </div>
+                        <div class="si-scatter-legend">Larger circles carry more strategic weight right now. Areas high on opportunity and low on risk deserve the earliest attention.</div>
+                    </div>
+                </section>
+
+                <!-- 14. STRATEGIC TRADE-OFFS -->
+                <section class="si-section si-reveal" aria-labelledby="siTradeoffTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siTradeoffTitle">Key Strategic Trade-offs</h3>
+                        <span class="si-demo-tag">Illustrative &middot; frontend-only</span>
+                    </div>
+                    <div class="si-tradeoff-list si-stagger">
+                        <div class="si-tradeoff"><div class="si-tradeoff-top"><span>Speed</span><span>Quality</span></div><div class="si-tradeoff-track"><div class="si-tradeoff-fill" data-pct="40"></div><div class="si-tradeoff-knob" data-pct="40"></div></div><div class="si-tradeoff-desc"><b>Leaning toward Quality.</b> Trust is the product in elder care — reliability matters more than shipping fast. Recommended balance: favor quality, but timebox validation cycles.</div></div>
+                        <div class="si-tradeoff"><div class="si-tradeoff-top"><span>Growth</span><span>Efficiency</span></div><div class="si-tradeoff-track"><div class="si-tradeoff-fill" data-pct="35"></div><div class="si-tradeoff-knob" data-pct="35"></div></div><div class="si-tradeoff-desc"><b>Leaning toward Efficiency.</b> Pre-validation, spend should stay lean. Recommended balance: prove retention before paying for growth.</div></div>
+                        <div class="si-tradeoff"><div class="si-tradeoff-top"><span>Breadth</span><span>Focus</span></div><div class="si-tradeoff-track"><div class="si-tradeoff-fill" data-pct="22"></div><div class="si-tradeoff-knob" data-pct="22"></div></div><div class="si-tradeoff-desc"><b>Strongly Focus.</b> One workflow, one segment, proven well, beats a broad feature set. Recommended balance: stay narrow until product-market fit is clear.</div></div>
+                        <div class="si-tradeoff"><div class="si-tradeoff-top"><span>Innovation</span><span>Stability</span></div><div class="si-tradeoff-track"><div class="si-tradeoff-fill" data-pct="55"></div><div class="si-tradeoff-knob" data-pct="55"></div></div><div class="si-tradeoff-desc"><b>Balanced, leaning Innovation.</b> AI differentiation is the wedge, but reliability can't be sacrificed for it. Recommended balance: innovate on assistance, keep the core experience stable.</div></div>
+                    </div>
+                </section>
+
+                <!-- 15. AI STRATEGIC ADVISOR -->
+                <section class="si-section active-idea-card si-advisor si-reveal" aria-labelledby="siAdvisorTitle" style="display:block; padding:28px;">
+                    <div class="si-advisor-glow" aria-hidden="true"></div>
+                    <div class="si-sec-head" style="margin-bottom:18px;">
+                        <h3 id="siAdvisorTitle">VentureIQ AI Strategic Advisor</h3>
+                        <span class="si-demo-tag" id="siAdvisorTag">Illustrative summary</span>
+                    </div>
+                    <div class="si-advisor-grid">
+                        <div class="si-advisor-card"><h4>What We Know</h4><p id="siAdvisorKnow">Loading synthesis…</p></div>
+                        <div class="si-advisor-card"><h4>What It Means</h4><p id="siAdvisorMeans">Loading implications…</p></div>
+                        <div class="si-advisor-card"><h4>What To Do Next</h4><p id="siAdvisorNext">Loading recommendation…</p></div>
+                    </div>
+                    <p class="si-sec-sub" style="margin:14px 0 0;">No live strategy API is connected yet — this panel summarizes the AI synthesis already generated above. It will use a real API automatically once one is available.</p>
+                </section>
+
+                <!-- 16. DECISION CENTER -->
+                <section class="si-section si-reveal" aria-labelledby="siDecisionTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siDecisionTitle">Strategic Decision Center</h3>
+                        <span class="si-demo-tag">Decision support, not a prediction</span>
+                    </div>
+                    <div class="si-decision-grid si-stagger">
+                        <div class="si-decision-card recommended">
+                            <span class="si-decision-pick">Current pick</span>
+                            <div class="si-decision-verb">Build</div>
+                            <div class="si-decision-row"><b>Trigger</b>Core signals (problem relevance, differentiation) are strong.</div>
+                            <div class="si-decision-row"><b>Expected benefit</b>Keeps momentum while trust and validation catch up.</div>
+                            <div class="si-decision-row"><b>Main risk</b>Building ahead of proof if validation stalls.</div>
+                            <div class="si-decision-row"><b>Next step</b>Continue building, but gate scope behind caregiver interviews.</div>
+                        </div>
+                        <div class="si-decision-card">
+                            <div class="si-decision-verb">Pivot</div>
+                            <div class="si-decision-row"><b>Trigger</b>Users show interest in the problem but not this specific solution.</div>
+                            <div class="si-decision-row"><b>Expected benefit</b>Redirects toward the framing that actually resonates.</div>
+                            <div class="si-decision-row"><b>Main risk</b>Losing early momentum and clarity of direction.</div>
+                            <div class="si-decision-row"><b>Next step</b>Only consider if interviews contradict current assumptions.</div>
+                        </div>
+                        <div class="si-decision-card">
+                            <div class="si-decision-verb">Pause</div>
+                            <div class="si-decision-row"><b>Trigger</b>Trust or adoption signals come back weaker than expected.</div>
+                            <div class="si-decision-row"><b>Expected benefit</b>Avoids over-investing before the core assumption is proven.</div>
+                            <div class="si-decision-row"><b>Main risk</b>Losing pace versus competitors while paused.</div>
+                            <div class="si-decision-row"><b>Next step</b>Run a small, cheap validation test before committing further.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 17. RECOMMENDED NEXT ACTION -->
+                <section class="si-section si-reveal" aria-labelledby="siNextMoveTitle">
+                    <div class="si-sec-head">
+                        <h3 id="siNextMoveTitle">Your Next Best Move</h3>
+                        <span class="si-demo-tag">From the AI synthesis above</span>
+                    </div>
+                    <div class="si-nextmove">
+                        <div class="si-nextmove-num">01</div>
+                        <div>
+                            <div class="si-nextmove-title">Validate customer demand with real caregivers</div>
+                            <div class="si-nextmove-grid">
+                                <div><b>Why</b><p>Demand signals need additional confirmation before further build-out.</p></div>
+                                <div><b>How</b><p>Interview target users and caregivers; test the core problem directly.</p></div>
+                                <div><b>Success signal</b><p>Users demonstrate real willingness to adopt or pay.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 18. STRATEGIC CONFIDENCE -->
+                <section class="si-section active-idea-card si-reveal" aria-labelledby="siConfidenceTitle" style="display:block; padding:26px;">
+                    <div class="si-sec-head" style="margin-bottom:16px;">
+                        <h3 id="siConfidenceTitle">Confidence Monitor</h3>
+                        <span class="si-demo-tag">Illustrative</span>
+                    </div>
+                    <div class="si-conf-grid si-stagger">
+                        <div class="si-conf-row"><span class="si-conf-name">Market</span><div class="si-conf-track"><div class="si-conf-fill med" data-pct="72"></div></div><span class="si-conf-badge" style="color:var(--gold)">MEDIUM</span></div>
+                        <div class="si-conf-row"><span class="si-conf-name">Customer</span><div class="si-conf-track"><div class="si-conf-fill lo" data-pct="45"></div></div><span class="si-conf-badge" style="color:var(--red)">LOW</span></div>
+                        <div class="si-conf-row"><span class="si-conf-name">Product</span><div class="si-conf-track"><div class="si-conf-fill hi" data-pct="86"></div></div><span class="si-conf-badge" style="color:var(--green)">HIGH</span></div>
+                        <div class="si-conf-row"><span class="si-conf-name">Competition</span><div class="si-conf-track"><div class="si-conf-fill med" data-pct="65"></div></div><span class="si-conf-badge" style="color:var(--gold)">MEDIUM</span></div>
+                        <div class="si-conf-row"><span class="si-conf-name">Execution</span><div class="si-conf-track"><div class="si-conf-fill med" data-pct="58"></div></div><span class="si-conf-badge" style="color:var(--gold)">MEDIUM</span></div>
+                    </div>
+                    <p class="si-conf-note">Confidence reflects the quality and availability of current inputs — not certainty about future outcomes. Customer confidence is lowest because caregiver interviews haven't happened yet.</p>
+                </section>
+
+                <!-- 19. EXECUTION HANDOFF -->
+                <section class="si-section si-handoff si-reveal" aria-labelledby="siHandoffTitle">
+                    <h3 id="siHandoffTitle">Ready to Turn Strategy Into Action?</h3>
+                    <p>Move from strategy into execution, or go back and strengthen the signals feeding it.</p>
+                    <div class="si-handoff-actions">
+                        <a href="executionroadmap.html" class="si-handoff-btn primary"><i class="fa-solid fa-route" aria-hidden="true"></i> Build Execution Roadmap</a>
+                        <a href="aivalidation.html" class="si-handoff-btn"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Review Validation</a>
+                        <a href="marketintelligence.html" class="si-handoff-btn"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Explore Market</a>
+                        <a href="competitoranalysis.html" class="si-handoff-btn"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i> Analyze Competitors</a>
+                    </div>
+                </section>
+
+            </div>
+
             <!-- FOOTER -->
             <footer class="dashboard-footer">
 
@@ -957,6 +1450,7 @@
 
 
 <!-- JavaScript -->
+<script type="module" src="../js/session-guard.js"></script>
 <script src="../js/strategicintelligence.js"></script>
 
     <script src="../js/quickhand.js" defer></script>

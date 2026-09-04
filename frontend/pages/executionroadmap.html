@@ -73,22 +73,10 @@
             <!-- Brand -->
 
             <div class="sidebar-brand">
-
-                <a
-                    href="dashboard.html"
-                    class="brand-link"
-                >
-
-                    <span class="brand-mark">
-                        V
-                    </span>
-
-                    <span class="brand-name">
-                        Venture<span>IQ</span>
-                    </span>
-
+                <a href="dashboard.html" class="brand-link">
+                    <span class="brand-mark">V</span>
+                    <span class="brand-name">Venture<span>IQ</span></span>
                 </a>
-
             </div>
 
 
@@ -365,6 +353,7 @@
                         type="button"
                         class="user-menu"
                         id="userMenu"
+                        aria-label="Open user menu"
                     >
 
                         <i class="fa-solid fa-ellipsis"></i>
@@ -503,35 +492,34 @@
                  PAGE CONTENT
             ================================================== -->
 
-            <div class="roadmap-content">
+            <div class="roadmap-content roadmap-command-center">
 
 
                 <!-- =================================================
                      INTRO
                 ================================================== -->
 
-                <section class="page-intro">
+                <section class="page-intro roadmap-hero">
 
                     <div>
 
                         <span class="section-tag">
-                            TAKE ACTION
+                            VENTUREIQ EXECUTION ROADMAP
                         </span>
 
                         <h2>
-                            Turn your idea into a plan.
+                            Turn strategy into measurable progress.
                         </h2>
 
                         <p>
-                            Move from analysis to execution with a
-                            structured roadmap designed around your
-                            startup's next most important steps.
+                            Transform your startup strategy into milestones, actions and measurable execution steps.
                         </p>
 
                     </div>
 
 
-                    <button
+                    <div class="hero-path" aria-hidden="true"><svg viewBox="0 0 400 120" role="presentation"><path d="M5 95 C75 95 65 25 135 30 S190 105 255 78 S320 18 395 25" /><circle cx="5" cy="95" r="4" /><circle cx="135" cy="30" r="4" /><circle cx="255" cy="78" r="4" /><circle cx="395" cy="25" r="4" /></svg></div>
+                    <div class="hero-actions"><button
                         type="button"
                         class="primary-action"
                         id="generateRoadmapButton"
@@ -539,11 +527,13 @@
 
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
 
-                        Generate roadmap
+                        Start Next Milestone
 
-                    </button>
+                    </button><a class="secondary-action" href="strategicintelligence.html"><i class="fa-solid fa-arrow-left"></i> Review Strategy</a></div>
 
                 </section>
+
+                <div class="engine-status"><span class="status-dot"></span> EXECUTION ENGINE READY <span class="demo-label">DEMO DATA</span></div>
 
 
 
@@ -594,6 +584,8 @@
                      PROGRESS OVERVIEW
                 ================================================== -->
 
+                <section class="kpi-grid" aria-label="Execution overview"><article class="kpi-card"><span class="panel-label">OVERALL PROGRESS</span><strong id="progressValue">0%</strong><small>Across active roadmap tasks</small></article><article class="kpi-card"><span class="panel-label">CURRENT PHASE</span><strong id="currentStage">Stage 1 - Validate</strong><small>Focus for this cycle</small></article><article class="kpi-card"><span class="panel-label">MILESTONES COMPLETED</span><strong><span id="completedTasks">0</span> / <span id="totalTasks">15</span></strong><small>Task-level completion</small></article><article class="kpi-card"><span class="panel-label">EXECUTION CONFIDENCE</span><strong>MEDIUM</strong><small>Based on current inputs <b class="demo-label">DEMO</b></small></article></section>
+
                 <section class="progress-card">
 
 
@@ -612,7 +604,7 @@
                         </div>
 
                         <strong id="overallProgress">
-                            25%
+                            0%
                         </strong>
 
                     </div>
@@ -621,8 +613,7 @@
                     <div class="progress-track">
 
                         <span
-                            id="overallProgressBar"
-                            style="width:25%;"
+                            id="progressBar"
                         ></span>
 
                     </div>
@@ -631,16 +622,18 @@
                     <div class="progress-meta">
 
                         <span>
-                            1 of 4 stages completed
+                            <span><span id="completedStageCount">0</span> of 4 stages completed</span>
                         </span>
 
                         <span>
-                            Next: Build prototype
+                            Next: Define the MVP feature set
                         </span>
 
                     </div>
 
                 </section>
+
+                <section class="command-grid"><div class="panel milestone-panel"><div class="section-heading"><div><span class="panel-label">EXECUTION BOARD</span><h3>Milestones</h3></div><span class="demo-label">DEMO DATA</span></div><div class="milestone-list"><article class="milestone-item"><span class="milestone-icon"><i class="fa-solid fa-check"></i></span><div><strong>Validate customer problem</strong><small>VALIDATE · 100% · Complete</small><p>Next: Capture five structured interviews</p></div><b>HIGH</b></article><article class="milestone-item active-milestone"><span class="milestone-icon"><i class="fa-solid fa-cubes"></i></span><div><strong>Finalize MVP</strong><small>PROTOTYPE · 25% · Due this cycle</small><p>Next: Lock the smallest feature set</p></div><b>NOW</b></article><article class="milestone-item"><span class="milestone-icon"><i class="fa-solid fa-flask"></i></span><div><strong>Run pilot</strong><small>TEST · UPCOMING · Owner: Founder</small><p>Next: Recruit initial test users</p></div><b>SOON</b></article><article class="milestone-item"><span class="milestone-icon"><i class="fa-solid fa-rocket"></i></span><div><strong>Prepare launch</strong><small>LAUNCH · UPCOMING · Owner: Founder</small><p>Next: Define the first acquisition goal</p></div><b>LATER</b></article></div></div><div class="panel progress-ring-panel"><div class="section-heading"><div><span class="panel-label">VISUAL SIGNAL</span><h3>Execution Progress</h3></div></div><div class="progress-ring"><svg viewBox="0 0 120 120" aria-label="Execution progress is calculated from completed tasks"><circle class="ring-track" cx="60" cy="60" r="49"/><circle class="ring-value" cx="60" cy="60" r="49"/></svg><div><strong id="ringValue">0%</strong><span>0 of 15<br>milestones complete</span></div></div><div class="legend"><span><i class="completed-key"></i>Completed</span><span><i class="current-key"></i>Current</span><span><i class="remaining-key"></i>Remaining</span></div></div></section>
 
 
 
@@ -762,6 +755,7 @@
                                     <label class="task-item completed">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                             checked
                                         >
@@ -778,6 +772,7 @@
                                     <label class="task-item completed">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                             checked
                                         >
@@ -794,6 +789,7 @@
                                     <label class="task-item completed">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                             checked
                                         >
@@ -901,6 +897,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -916,6 +913,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -931,6 +929,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -946,6 +945,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1052,6 +1052,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1067,6 +1068,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1082,6 +1084,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1097,6 +1100,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1203,6 +1207,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1218,6 +1223,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1233,6 +1239,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1248,6 +1255,7 @@
                                     <label class="task-item">
 
                                         <input
+                                            class="task-checkbox"
                                             type="checkbox"
                                         >
 
@@ -1269,13 +1277,23 @@
 
                 </section>
 
+                <section class="command-grid lower-grid"><div class="panel matrix-panel"><div class="section-heading"><div><span class="panel-label">DECISION SUPPORT</span><h3>Priority Matrix</h3></div><span class="demo-label">DEMO DATA</span></div><div class="matrix" aria-label="Illustrative priority matrix"><span class="axis-y">IMPACT</span><span class="axis-x">EFFORT</span><div class="quadrant q1"><b>QUICK WINS</b><button title="Customer interviews">Customer interviews</button><button title="Competitor research">Competitor research</button></div><div class="quadrant q2"><b>MAJOR PROJECTS</b><button title="MVP prototype">MVP prototype</button><button title="Pilot launch">Pilot launch</button></div><div class="quadrant q3"><b>LOW PRIORITY</b><button title="Analytics setup">Analytics setup</button></div><div class="quadrant q4"><b>DEFER</b><button title="Landing page">Landing page</button></div></div></div><div class="panel advisor-panel"><div class="advisor-title"><span class="ai-roadmap-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span><div><span class="panel-label">VENTUREIQ AI EXECUTION ADVISOR</span><h3>Make the next decision smaller.</h3></div></div><div class="advisor-row"><b>WHAT TO DO NOW</b><p>Define the MVP feature set and test it against the validated problem.</p></div><div class="advisor-row"><b>WHAT TO AVOID</b><p>Expanding scope before the core experience is proven.</p></div><div class="advisor-row"><b>WHAT COMES NEXT</b><p>Move into a focused prototype demonstration.</p></div><span class="demo-label">ILLUSTRATIVE ADVISOR CONTEXT</span></div></section>
+
+                <section class="panel next-action-panel"><div class="next-number">01</div><div><span class="panel-label">NEXT BEST ACTION</span><h3>Validate the top customer assumption</h3><p><b>WHY:</b> This unlocks the next product decision.</p><p><b>SUCCESS SIGNAL:</b> Target users confirm the problem and demonstrate meaningful interest.</p></div><button class="primary-action" type="button" id="nextStepButton">Take action <i class="fa-solid fa-arrow-right"></i></button></section>
+
+                <section class="panel planning-panel"><div class="section-heading"><div><span class="panel-label">PLANNING TARGETS</span><h3>Next 30 Days</h3></div><span class="demo-label">DEMO DATA</span></div><div class="weeks"><article><b>WEEK 1</b><strong>Sharpen the problem</strong><p>Run interviews · capture objections · update assumptions</p><small>Signal: repeated problem language</small></article><article><b>WEEK 2</b><strong>Lock the MVP</strong><p>Prioritize features · define success · map the happy path</p><small>Signal: one clear prototype scope</small></article><article><b>WEEK 3</b><strong>Build the prototype</strong><p>Create core flow · prepare demo · invite feedback</p><small>Signal: users complete the core flow</small></article><article><b>WEEK 4</b><strong>Prepare the pilot</strong><p>Recruit testers · schedule sessions · instrument feedback</p><small>Signal: pilot cohort confirmed</small></article></div></section>
+
+                <section class="command-grid insight-grid"><div class="panel health-panel"><div class="section-heading"><div><span class="panel-label">OPERATING SIGNALS</span><h3>Execution Health</h3></div><span class="demo-label">DEMO DATA</span></div><div class="health-list"><div><b>Planning</b><span>HIGH</span><i style="--bar:85%"></i><small>Sequence is clear.</small></div><div><b>Product</b><span>MEDIUM</span><i style="--bar:55%"></i><small>MVP scope needs focus.</small></div><div><b>Market</b><span>MEDIUM</span><i style="--bar:65%"></i><small>Validation is underway.</small></div><div><b>Resources</b><span>LOW</span><i style="--bar:35%"></i><small>Protect founder capacity.</small></div><div><b>Timing</b><span>MEDIUM</span><i style="--bar:60%"></i><small>Keep the cycle tight.</small></div></div></div><div class="panel confidence-panel"><span class="panel-label">READINESS VIEW</span><h3>Execution Confidence</h3><p>Confidence reflects the quality and completeness of current inputs, not certainty about future outcomes.</p><div class="confidence-bars"><span>Clarity <b>HIGH</b><i style="--bar:82%"></i></span><span>Resources <b>LOW</b><i style="--bar:38%"></i></span><span>Product Readiness <b>MEDIUM</b><i style="--bar:56%"></i></span><span>Market Readiness <b>MEDIUM</b><i style="--bar:61%"></i></span><span>Team Readiness <b>HIGH</b><i style="--bar:78%"></i></span></div><span class="demo-label">ILLUSTRATIVE</span></div></section>
+
+                <section class="panel execution-strip"><div><span class="panel-label">TASK PIPELINE</span><h3>Move work forward</h3><div class="pipeline"><b>BACKLOG <em>3</em></b><i></i><b>IN PROGRESS <em>2</em></b><i></i><b>BLOCKED <em>1</em></b><i></i><b>COMPLETED <em>8</em></b></div></div><div class="dependency-flow"><span class="panel-label">WHAT NEEDS TO HAPPEN FIRST?</span><div><b>Customer validation</b><i>↓</i><b>MVP definition</b><i>↓</i><b>Prototype</b><i>↓</i><b>Pilot</b><i>↓</i><b>Launch</b></div></div><div class="risk-list"><span class="panel-label">EXECUTION RISKS <small class="demo-label">DEMO DATA</small></span><p><b>Market</b> MEDIUM · Validate willingness to adopt</p><p><b>Product</b> MEDIUM · Keep scope bounded</p><p><b>Timing</b> LOW · Protect the current cycle</p></div><div class="allocation"><span class="panel-label">EFFORT ALLOCATION <small class="demo-label">ILLUSTRATIVE</small></span><div class="allocation-bar"><i></i><i></i><i></i><i></i><i></i></div><small>Product 35% · Research 25% · Technology 20% · Marketing 12% · Operations 8%</small></div><div class="checkpoint"><span class="panel-label">DECISION CHECKPOINTS</span><div><b>VALIDATE <em>READY</em></b><b>BUILD <em>REVIEW</em></b><b>LAUNCH <em>BLOCKED</em></b><b>SCALE <em>REVIEW</em></b></div></div><div class="highlights"><span class="panel-label">PROGRESS HIGHLIGHTS <small class="demo-label">DEMO DATA</small></span><p>✓ Idea validated &nbsp; ✓ Market analyzed &nbsp; → MVP next</p></div></section>
+
 
 
                 <!-- =================================================
                      AI RECOMMENDATION
                 ================================================== -->
 
-                <section class="ai-roadmap-card">
+                <section class="ai-roadmap-card" id="aiRecommendation">
 
 
                     <div class="ai-roadmap-icon">
@@ -1291,7 +1309,7 @@
                             VENTUREIQ AI RECOMMENDATION
                         </span>
 
-                        <h3>
+                        <h3 id="aiRecommendationText">
                             Your next priority is the prototype.
                         </h3>
 
@@ -1365,6 +1383,7 @@
          JAVASCRIPT
     ====================================================== -->
 
+    <script type="module" src="../js/session-guard.js"></script>
     <script src="../js/executionroadmap.js"></script>
 
 

@@ -1382,6 +1382,277 @@
       }
     }
   </style>
+
+  <!-- ==========================================================================
+       COMPETITIVE INTELLIGENCE — PREMIUM WORKSPACE UPGRADE (additive, illustrative)
+       ========================================================================== -->
+  <style id="ci-premium-styles">
+    .ci-workspace { margin-top: 3rem; display: flex; flex-direction: column; gap: 3rem; }
+    .ci-section { scroll-margin-top: 90px; }
+    .ci-demo-tag {
+      font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      padding: .3rem .65rem; border-radius: 20px; color: var(--gold-primary);
+      background: var(--gold-glow-subtle); border: 1px dashed var(--card-border-hover); white-space: nowrap;
+    }
+    .ci-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .ci-sec-head .section-title { margin: 0; }
+    .ci-sec-sub { font-size: .85rem; color: var(--text-secondary); margin: -.25rem 0 1.25rem; max-width: 76ch; }
+
+    /* Scroll reveal */
+    .ci-reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .ci-reveal.ci-in { opacity: 1; transform: none; }
+    .ci-stagger > * { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .ci-stagger.ci-in > * { opacity: 1; transform: none; }
+    .ci-stagger.ci-in > *:nth-child(1) { transition-delay: .04s; }
+    .ci-stagger.ci-in > *:nth-child(2) { transition-delay: .09s; }
+    .ci-stagger.ci-in > *:nth-child(3) { transition-delay: .14s; }
+    .ci-stagger.ci-in > *:nth-child(4) { transition-delay: .19s; }
+    .ci-stagger.ci-in > *:nth-child(5) { transition-delay: .24s; }
+    .ci-stagger.ci-in > *:nth-child(6) { transition-delay: .29s; }
+    .ci-stagger.ci-in > *:nth-child(7) { transition-delay: .34s; }
+    .ci-stagger.ci-in > *:nth-child(8) { transition-delay: .39s; }
+    .ci-stagger.ci-in > *:nth-child(9) { transition-delay: .44s; }
+    .ci-stagger.ci-in > *:nth-child(10) { transition-delay: .49s; }
+
+    /* Hero additions */
+    .ci-engine-badge { display: inline-flex; align-items: center; gap: .6rem; margin: 1.25rem auto 0; padding: .5rem 1.05rem;
+      border-radius: 30px; background: var(--card-bg); border: 1px solid var(--card-border);
+      font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--text-secondary); }
+    .ci-live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent-green); animation: ciPulse 2.4s infinite; }
+    .ci-engine-state { color: var(--accent-green); font-weight: 800; }
+    @keyframes ciPulse { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,.45); } 70% { box-shadow: 0 0 0 10px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+    .ci-hero-viz { margin: 2.25rem auto 0; max-width: 560px; }
+    .ci-hero-viz svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .ci-hero-link { stroke: var(--card-border-hover); stroke-width: 1.2; opacity: 0; animation: ciFadeIn .6s ease forwards; }
+    .ci-hero-node { fill: var(--gold-light); opacity: 0; animation: ciNodeIn .6s cubic-bezier(.16,1,.3,1) forwards; }
+    .ci-hero-node.you { fill: var(--gold-primary); }
+    .ci-hero-pulse { fill: none; stroke: var(--gold-primary); stroke-width: 1.5; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ciRingPulse 2.6s ease-out infinite 1.6s; }
+    @keyframes ciFadeIn { to { opacity: .7; } }
+    @keyframes ciNodeIn { to { opacity: 1; } }
+    @keyframes ciRingPulse { 0% { opacity: .55; transform: scale(.6); } 100% { opacity: 0; transform: scale(2.1); } }
+
+    /* Controls / filters */
+    .ci-controls { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 1.15rem 1.4rem; }
+    .ci-control { display: flex; flex-direction: column; gap: .35rem; min-width: 170px; flex: 1; }
+    .ci-control label { font-size: .68rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--text-secondary); }
+    .ci-control select { background: var(--input-bg); border: 1px solid var(--input-border);
+      border-radius: var(--radius-sm); padding: .6rem .8rem; color: var(--text-primary); outline: none; }
+    .ci-control select:focus { border-color: var(--input-border-focus); box-shadow: 0 0 0 3px var(--gold-glow); }
+    .ci-filter-count { font-size: .74rem; color: var(--text-muted); }
+
+    /* KPI overview */
+    .ci-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+    .ci-kpi { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+      padding: 1.4rem; transition: var(--transition); position: relative; overflow: hidden; }
+    .ci-kpi:hover { border-color: var(--gold-primary); transform: translateY(-3px); box-shadow: 0 12px 30px var(--gold-glow-subtle); }
+    .ci-kpi-label { font-size: .7rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--text-secondary); }
+    .ci-kpi-value { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin: .45rem 0 .2rem; color: var(--text-primary); }
+    .ci-kpi-note { font-size: .78rem; color: var(--text-muted); }
+    .ci-kpi-trend { display: inline-flex; align-items: center; gap: .3rem; font-size: .72rem; font-weight: 800; margin-top: .65rem; padding: .2rem .55rem; border-radius: 20px; }
+    .ci-trend-up { color: var(--accent-green); background: var(--accent-green-bg); }
+    .ci-trend-flat { color: var(--text-secondary); background: var(--input-bg); }
+    .ci-trend-down { color: var(--accent-coral); background: var(--accent-coral-bg); }
+    .ci-kpi-mini { position: absolute; right: 1rem; bottom: 1rem; width: 46px; height: 46px; }
+    .ci-kpi-mini svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ci-kpi-mini circle { fill: none; stroke-width: 5; }
+    .ci-kpi-mini .bg { stroke: var(--input-border); }
+    .ci-kpi-mini .fg { stroke: var(--gold-primary); stroke-linecap: round; transition: stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1); }
+
+    /* Positioning map enhancements (existing #positionMapPlane) */
+    .ci-map-tag { margin-left: auto; }
+    .map-plane { position: relative; }
+    .map-node { cursor: pointer; }
+    .map-node:focus-visible { outline: 2px solid var(--gold-primary); outline-offset: 3px; }
+    .map-node.user-startup { box-shadow: 0 0 0 4px var(--gold-glow-subtle); }
+    .ci-map-tip { position: absolute; pointer-events: none; z-index: 6; background: var(--card-bg); border: 1px solid var(--gold-primary);
+      border-radius: 10px; padding: .65rem .85rem; font-size: .76rem; line-height: 1.55; color: var(--text-primary);
+      box-shadow: var(--glass-shadow); opacity: 0; max-width: 220px; transform: translate(-50%, -100%); transition: opacity .15s ease; }
+    .ci-map-tip.show { opacity: 1; }
+    .ci-map-tip b { color: var(--gold-primary); display: block; margin-bottom: .15rem; }
+    .ci-map-tip .cat { color: var(--text-muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: .3rem; }
+
+    /* Matrix table */
+    .ci-table-wrap { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--card-border); }
+    .ci-table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: .84rem; }
+    .ci-table th, .ci-table td { padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--input-border); white-space: nowrap; }
+    .ci-table thead th { background: var(--input-bg); color: var(--text-secondary); font-size: .7rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 800; }
+    .ci-table tbody tr:last-child td { border-bottom: none; }
+    .ci-table tbody tr:hover { background: var(--gold-glow-subtle); }
+    .ci-table tr.ci-you-row { background: var(--gold-glow-subtle); }
+    .ci-table tr.ci-you-row td:first-child { color: var(--gold-primary); font-weight: 800; }
+    .ci-table tr.ci-filtered-out { display: none; }
+    .ci-dot-cell { display: inline-flex; align-items: center; gap: .45rem; }
+    .ci-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .ci-dot-strong { background: var(--accent-green); }
+    .ci-dot-moderate { background: var(--gold-primary); }
+    .ci-dot-weak { background: var(--accent-coral); }
+    .ci-feat-yes { color: var(--accent-green); font-weight: 800; }
+    .ci-feat-partial { color: var(--gold-primary); font-weight: 700; }
+    .ci-feat-no { color: var(--text-muted); }
+
+    /* Strength / weakness cards */
+    .ci-cardgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+    .ci-cardgrid.ci-cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .ci-lvl-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 1.25rem; transition: var(--transition); }
+    .ci-lvl-card:hover { border-color: var(--gold-primary); transform: translateY(-3px); box-shadow: 0 12px 30px var(--gold-glow-subtle); }
+    .ci-lvl-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: .55rem; }
+    .ci-lvl-name { font-weight: 700; color: var(--text-primary); font-size: .9rem; }
+    .ci-lvl-badge { font-size: .66rem; font-weight: 800; letter-spacing: .06em; padding: .2rem .55rem; border-radius: 12px; text-transform: uppercase; }
+    .ci-lvl-strong { background: var(--accent-green-bg); color: var(--accent-green); }
+    .ci-lvl-moderate { background: var(--gold-glow-subtle); color: var(--gold-primary); }
+    .ci-lvl-weak { background: var(--accent-coral-bg); color: var(--accent-coral); }
+    .ci-lvl-desc { font-size: .78rem; color: var(--text-secondary); line-height: 1.55; }
+    .ci-lvl-advantage { font-size: .76rem; color: var(--text-primary); border-top: 1px dashed var(--card-border); margin-top: .6rem; padding-top: .55rem; }
+    .ci-lvl-advantage b { color: var(--gold-primary); }
+    .ci-lvl-bar { height: 6px; border-radius: 6px; background: var(--input-bg); border: 1px solid var(--input-border); overflow: hidden; margin: .5rem 0; }
+    .ci-lvl-bar i { display: block; height: 100%; width: 0; border-radius: 6px; background: var(--gold-gradient); transition: width 1.3s cubic-bezier(.16,1,.3,1); }
+
+    /* Differentiation score */
+    .ci-diff-wrap { display: grid; grid-template-columns: 210px 1fr; gap: 2.25rem; align-items: center; }
+    .ci-diff-ring { position: relative; width: 190px; height: 190px; margin: 0 auto; }
+    .ci-diff-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ci-diff-bg { fill: none; stroke: var(--input-border); stroke-width: 12; }
+    .ci-diff-fg { fill: none; stroke: url(#goldGradientSvg); stroke-width: 14; stroke-linecap: round; transition: stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1); }
+    .ci-diff-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .ci-diff-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; line-height: 1;
+      background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .ci-diff-max { font-size: .68rem; color: var(--text-muted); font-weight: 800; letter-spacing: .1em; margin-top: .3rem; }
+    .ci-bars { display: flex; flex-direction: column; gap: 1rem; }
+    .ci-bar-top { display: flex; justify-content: space-between; font-size: .82rem; font-weight: 600; color: var(--text-primary); margin-bottom: .4rem; }
+    .ci-bar-top span:last-child { color: var(--text-secondary); }
+    .ci-bar-track { height: 8px; border-radius: 8px; background: var(--input-bg); border: 1px solid var(--input-border); overflow: hidden; }
+    .ci-bar-fill { height: 100%; width: 0; border-radius: 8px; background: var(--gold-gradient); transition: width 1.4s cubic-bezier(.16,1,.3,1); }
+    .ci-bar-fill.avg { background: linear-gradient(135deg, #9CA3AF, #6B7280); }
+
+    /* Strategic white space quadrant */
+    .ci-quad-wrap { display: grid; grid-template-columns: 1fr 300px; gap: 2.25rem; align-items: center; }
+    .ci-quad { position: relative; width: 100%; aspect-ratio: 1/1; max-width: 420px; margin: 0 auto;
+      background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-lg); overflow: hidden; }
+    .ci-quad-axis-v, .ci-quad-axis-h { position: absolute; background: var(--card-border); }
+    .ci-quad-axis-v { top: 0; bottom: 0; left: 50%; width: 1px; }
+    .ci-quad-axis-h { left: 0; right: 0; top: 50%; height: 1px; }
+    .ci-quad-cell { position: absolute; width: 50%; height: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: .75rem; }
+    .ci-quad-cell span { font-size: .7rem; font-weight: 700; color: var(--text-muted); }
+    .ci-quad-cell.opp { top: 50%; left: 50%; background: var(--gold-glow-subtle); }
+    .ci-quad-cell.opp span { color: var(--gold-primary); font-weight: 800; letter-spacing: .04em; }
+    .ci-quad-label-x, .ci-quad-label-y { position: absolute; font-size: .64rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+    .ci-quad-label-x { bottom: -22px; left: 0; right: 0; text-align: center; }
+    .ci-quad-label-y { top: 0; bottom: 0; left: -30px; display: flex; align-items: center; writing-mode: vertical-rl; transform: rotate(180deg); }
+    .ci-quad-point { position: absolute; width: 16px; height: 16px; border-radius: 50%; background: var(--gold-gradient); border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 0 4px var(--gold-glow-subtle); transform: translate(-50%, -50%); }
+    .ci-quad-point-label { position: absolute; font-size: .68rem; font-weight: 800; color: var(--gold-primary); white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); }
+
+    /* Competitor profile accordion */
+    .ci-profile-list { display: flex; flex-direction: column; gap: .85rem; }
+    .ci-profile-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+    .ci-profile-card:hover { border-color: var(--gold-primary); }
+    .ci-profile-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      background: transparent; border: none; padding: 1.1rem 1.35rem; cursor: pointer; text-align: left; color: var(--text-primary); }
+    .ci-profile-head:focus-visible { outline: 2px solid var(--gold-primary); outline-offset: -2px; }
+    .ci-profile-id { display: flex; align-items: center; gap: .85rem; }
+    .ci-profile-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gold-glow-subtle); border: 1px solid var(--card-border);
+      display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--gold-primary); font-size: .9rem; flex-shrink: 0; }
+    .ci-profile-name { font-weight: 700; font-size: .95rem; }
+    .ci-profile-cat { font-size: .74rem; color: var(--text-muted); }
+    .ci-profile-threat { font-size: .66rem; font-weight: 800; letter-spacing: .06em; padding: .2rem .55rem; border-radius: 12px; text-transform: uppercase; }
+    .ci-profile-chevron { color: var(--gold-primary); transition: transform .3s ease; flex-shrink: 0; }
+    .ci-profile-card[data-open="true"] .ci-profile-chevron { transform: rotate(180deg); }
+    .ci-profile-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .ci-profile-card[data-open="true"] .ci-profile-body { max-height: 420px; }
+    .ci-profile-body-inner { padding: 0 1.35rem 1.25rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: .9rem; font-size: .8rem; }
+    .ci-profile-block b { display: block; color: var(--gold-primary); font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem; }
+    .ci-profile-block p { color: var(--text-secondary); line-height: 1.55; }
+
+    /* Competitive pressure scale */
+    .ci-scale-track { position: relative; height: 10px; border-radius: 10px; margin: 2.25rem 0 .75rem;
+      background: linear-gradient(90deg, var(--accent-green) 0%, var(--gold-primary) 50%, var(--accent-coral) 100%); }
+    .ci-scale-marker { position: absolute; top: 50%; width: 20px; height: 20px; border-radius: 50%; background: var(--bg-primary);
+      border: 3px solid var(--text-primary); transform: translate(-50%, -50%); transition: left 1.2s cubic-bezier(.16,1,.3,1); box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+    .ci-scale-labels { display: flex; justify-content: space-between; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
+    .ci-factor-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 1.75rem; }
+    .ci-factor { background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-md); padding: 1rem; text-align: center; }
+    .ci-factor-label { font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: .5rem; }
+    .ci-factor-val { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+
+    /* Radar chart */
+    .ci-radar-wrap { display: grid; grid-template-columns: 1fr 260px; gap: 2.25rem; align-items: center; }
+    .ci-radar-holder svg { width: 100%; height: auto; overflow: visible; }
+    .ci-radar-grid { fill: none; stroke: var(--input-border); stroke-width: 1; }
+    .ci-radar-axis-line { stroke: var(--input-border); stroke-width: 1; }
+    .ci-radar-axis-label { fill: var(--text-secondary); font-size: 10.5px; font-weight: 700; }
+    .ci-radar-you { fill: var(--gold-primary); fill-opacity: .18; stroke: var(--gold-primary); stroke-width: 2; }
+    .ci-radar-avg { fill: var(--accent-blue); fill-opacity: .12; stroke: var(--accent-blue); stroke-width: 2; stroke-dasharray: 4 3; }
+    .ci-radar-dot { cursor: pointer; }
+    .ci-radar-legend { display: flex; flex-direction: column; gap: .75rem; }
+    .ci-radar-legend-item { display: flex; align-items: center; gap: .55rem; font-size: .82rem; color: var(--text-secondary); font-weight: 600; }
+    .ci-radar-swatch { width: 16px; height: 3px; border-radius: 3px; }
+
+    /* AI perspective */
+    .ci-persp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .ci-persp-card { background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-md); padding: 1.4rem; }
+    .ci-persp-card h4 { font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-primary); margin-bottom: .65rem; }
+    .ci-persp-card p { font-size: .85rem; color: var(--text-secondary); line-height: 1.65; }
+
+    /* Strategy cards */
+    .ci-strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .ci-strat-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 1.5rem; position: relative; overflow: hidden; }
+    .ci-strat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold-gradient); }
+    .ci-strat-verb { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--gold-primary); margin-bottom: .35rem; }
+    .ci-strat-lead { font-size: .78rem; color: var(--text-muted); margin-bottom: .6rem; }
+    .ci-strat-body { font-size: .84rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: .7rem; }
+    .ci-strat-action { font-size: .76rem; color: var(--text-primary); border-top: 1px dashed var(--card-border); padding-top: .6rem; }
+    .ci-strat-action b { color: var(--gold-primary); }
+
+    /* Scorecard */
+    .ci-scorecard { display: flex; flex-direction: column; gap: 1.25rem; }
+    .ci-score-row-label { display: flex; justify-content: space-between; font-size: .84rem; font-weight: 700; color: var(--text-primary); margin-bottom: .4rem; }
+    .ci-score-legend-inline { display: flex; gap: 1rem; font-size: .72rem; font-weight: 600; color: var(--text-secondary); }
+    .ci-score-legend-inline span { display: inline-flex; align-items: center; gap: .35rem; }
+    .ci-score-legend-inline i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+    .ci-double-bar { position: relative; height: 10px; border-radius: 10px; background: var(--input-bg); border: 1px solid var(--input-border); overflow: hidden; }
+    .ci-double-bar .fill-you { position: absolute; top: 0; left: 0; bottom: 0; width: 0; background: var(--gold-gradient); border-radius: 10px; transition: width 1.3s cubic-bezier(.16,1,.3,1); }
+    .ci-double-bar .mark-avg { position: absolute; top: -3px; bottom: -3px; width: 3px; background: var(--text-primary); border-radius: 2px; left: 0; transition: left 1.3s cubic-bezier(.16,1,.3,1); }
+
+    /* Market position summary */
+    .ci-summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+    .ci-summary-item { text-align: center; padding: 1.1rem; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--radius-md); }
+    .ci-summary-label { font-size: .68rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: .6rem; }
+    .ci-badge { display: inline-block; font-size: .74rem; font-weight: 800; letter-spacing: .05em; padding: .3rem .8rem; border-radius: 20px; text-transform: uppercase; }
+    .ci-badge-strong { background: var(--accent-green-bg); color: var(--accent-green); }
+    .ci-badge-emerging { background: var(--gold-glow-subtle); color: var(--gold-primary); }
+    .ci-badge-watch { background: var(--accent-coral-bg); color: var(--accent-coral); }
+    .ci-badge-opportunity { background: var(--accent-blue-bg); color: var(--accent-blue); }
+
+    /* Error state */
+    .ci-error-state { text-align: center; max-width: 460px; margin: 2rem auto; padding: 2.5rem 2rem;
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-xl); box-shadow: var(--glass-shadow); }
+    .ci-error-state h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--text-primary); margin-bottom: .6rem; }
+    .ci-error-state p { font-size: .9rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .ci-error-actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .ci-hidden { display: none !important; }
+
+    @media (max-width: 1024px) {
+      .ci-kpi-grid, .ci-factor-grid { grid-template-columns: repeat(2, 1fr); }
+      .ci-cardgrid, .ci-cardgrid.ci-cols-5, .ci-strategy-grid, .ci-persp-grid, .ci-summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .ci-diff-wrap, .ci-quad-wrap, .ci-radar-wrap { grid-template-columns: 1fr; }
+      .ci-profile-body-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .ci-kpi-grid, .ci-factor-grid, .ci-cardgrid, .ci-cardgrid.ci-cols-5, .ci-strategy-grid, .ci-persp-grid, .ci-summary-grid { grid-template-columns: 1fr; }
+      .ci-table { min-width: 620px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ci-reveal, .ci-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .ci-live-dot { animation: none; }
+      .ci-hero-link, .ci-hero-node { animation: none; opacity: .7; }
+      .ci-hero-node { opacity: 1; }
+      .ci-hero-pulse { animation: none; opacity: 0; }
+      .ci-diff-fg, .ci-bar-fill, .ci-lvl-bar i, .ci-double-bar .fill-you, .ci-double-bar .mark-avg, .ci-scale-marker, .ci-kpi-mini .fg { transition: none; }
+      .ci-profile-body { transition: none; }
+    }
+  </style>
+  <meta name="qh-context" content="Competitor Analysis">
     <link rel="stylesheet" href="../css/quickhand.css">
 </head>
 <body>
@@ -1414,6 +1685,7 @@
     </a>
 
     <div class="nav-actions">
+      <a href="dashboard.html" class="btn-action">Dashboard</a>
       <button class="btn-demo-preset" id="demoDataBtn" title="Load sample startup data">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
@@ -1445,14 +1717,39 @@
     <header class="hero-header" id="heroHeader">
       <div class="hero-pill">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-        AI-Powered Competitive Benchmarking
+        VentureIQ Competitive Intelligence
       </div>
       <h1 class="hero-title">
-        Decode Your Market <span>Competitors & Gaps</span>
+        Know who <span>you're competing against.</span>
       </h1>
       <p class="hero-subtitle">
-        Enter your startup parameters to evaluate market saturation, map competitor pricing tiers, reveal untracked market gaps, and synthesize a strategic battleplan.
+        Map the competitive landscape, uncover strategic gaps, and identify where your startup can differentiate.
       </p>
+      <div class="ci-engine-badge" role="status" aria-live="polite">
+        <span class="ci-live-dot" aria-hidden="true"></span>
+        Competitive Intelligence Engine
+        <span class="ci-engine-state">Ready</span>
+      </div>
+      <div class="ci-hero-viz" aria-hidden="true">
+        <svg viewBox="0 0 560 220" role="img" aria-label="Abstract network visualization representing a competitive landscape">
+          <g class="ci-hero-link-group">
+            <line class="ci-hero-link" x1="280" y1="110" x2="90" y2="55" style="animation-delay:.2s"></line>
+            <line class="ci-hero-link" x1="280" y1="110" x2="470" y2="55" style="animation-delay:.35s"></line>
+            <line class="ci-hero-link" x1="280" y1="110" x2="90" y2="165" style="animation-delay:.5s"></line>
+            <line class="ci-hero-link" x1="280" y1="110" x2="470" y2="165" style="animation-delay:.65s"></line>
+            <line class="ci-hero-link" x1="280" y1="110" x2="280" y2="30" style="animation-delay:.8s"></line>
+            <line class="ci-hero-link" x1="90" y1="55" x2="90" y2="165" style="animation-delay:.95s"></line>
+            <line class="ci-hero-link" x1="470" y1="55" x2="470" y2="165" style="animation-delay:1.05s"></line>
+          </g>
+          <circle class="ci-hero-pulse" cx="280" cy="110" r="18"></circle>
+          <circle class="ci-hero-node you" cx="280" cy="110" r="11" style="animation-delay:.1s"></circle>
+          <circle class="ci-hero-node" cx="90" cy="55" r="7" style="animation-delay:.4s"></circle>
+          <circle class="ci-hero-node" cx="470" cy="55" r="7" style="animation-delay:.55s"></circle>
+          <circle class="ci-hero-node" cx="90" cy="165" r="7" style="animation-delay:.7s"></circle>
+          <circle class="ci-hero-node" cx="470" cy="165" r="7" style="animation-delay:.85s"></circle>
+          <circle class="ci-hero-node" cx="280" cy="30" r="6" style="animation-delay:1s"></circle>
+        </svg>
+      </div>
     </header>
 
     <!-- FORM SECTION -->
@@ -1543,6 +1840,16 @@
           <div class="progress-bar-fill" id="loadingProgressBar"></div>
         </div>
         <div class="loading-percentage" id="loadingPercentage">0% COMPLETE</div>
+      </div>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="ci-error-state ci-hidden" id="ciErrorState" role="alert">
+      <h3>Competitive intelligence is temporarily unavailable.</h3>
+      <p>Try again or explore the illustrative competitive view.</p>
+      <div class="ci-error-actions">
+        <button type="button" class="btn-gold-submit" style="width:auto; margin-top:0;" onclick="ciRetry()">Retry</button>
+        <button type="button" class="btn-action" onclick="ciLoadIllustrative()">Explore illustrative view</button>
       </div>
     </div>
 
@@ -1747,21 +2054,25 @@
 
         <!-- POSITION MAP -->
         <div class="glass-card">
-          <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--gold-primary);">
-            2D Market Positioning Map
-          </h4>
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem;">
+            <h4 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--gold-primary);">
+              2D Market Positioning Map
+            </h4>
+            <span class="ci-demo-tag ci-map-tag">Illustrative competitor data</span>
+          </div>
           <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
-            Innovation Velocity (Y Axis) vs. Market Reach & Maturity (X Axis)
+            Innovation Velocity (Y Axis) vs. Market Reach & Maturity (X Axis) &mdash; hover or focus a marker for details.
           </p>
 
           <div class="map-container-box">
             <div class="map-plane" id="positionMapPlane">
               <span class="axis-label-y">High Innovation Velocity ↑</span>
               <span class="axis-label-x">Market Reach & Scale →</span>
-              
+
               <!-- Dynamic Nodes Rendered Here -->
             </div>
           </div>
+          <div class="ci-map-tip" id="ciMapTip"></div>
         </div>
 
       </div>
@@ -1861,6 +2172,294 @@
 
       <div class="rec-grid-10" id="recommendations10Container">
         <!-- 10 Dynamic Recommendations -->
+      </div>
+
+      <!-- ==================================================================
+           PREMIUM COMPETITIVE INTELLIGENCE WORKSPACE — illustrative / demo data
+           ================================================================== -->
+      <div class="ci-workspace" id="ciWorkspace">
+
+        <!-- INTERACTIVE FILTERS -->
+        <div class="ci-controls ci-reveal" role="group" aria-label="Competitor view filters">
+          <div class="ci-control">
+            <label for="ciFilterType">Competitor Type</label>
+            <select id="ciFilterType">
+              <option value="all">All types</option>
+              <option value="Incumbent">Incumbent</option>
+              <option value="Challenger">Challenger</option>
+              <option value="Specialist">Specialist</option>
+            </select>
+          </div>
+          <div class="ci-control">
+            <label for="ciFilterIntensity">Competitive Intensity</label>
+            <select id="ciFilterIntensity">
+              <option value="all">All intensities</option>
+              <option value="high">High reach only</option>
+              <option value="moderate">Moderate reach only</option>
+              <option value="low">Lower reach only</option>
+            </select>
+          </div>
+          <span class="ci-filter-count" id="ciFilterCount"></span>
+          <span class="ci-demo-tag">Illustrative &middot; demo data</span>
+        </div>
+
+        <!-- 2. COMPETITIVE OVERVIEW -->
+        <section class="ci-section ci-reveal" aria-labelledby="ciOverviewTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciOverviewTitle">Competitive Overview</h3>
+            <span class="ci-demo-tag">Derived from your inputs</span>
+          </div>
+          <div class="ci-kpi-grid ci-stagger">
+            <div class="ci-kpi">
+              <div class="ci-kpi-label">Competitors Identified</div>
+              <div class="ci-kpi-value" id="ciKpiCount">0</div>
+              <div class="ci-kpi-note">Tracked in this benchmark</div>
+              <div class="ci-kpi-trend ci-trend-flat" id="ciKpiCountTrend">&#9644; Tracked set</div>
+            </div>
+            <div class="ci-kpi">
+              <div class="ci-kpi-label">Competitive Intensity</div>
+              <div class="ci-kpi-value" id="ciKpiIntensity">&mdash;</div>
+              <div class="ci-kpi-note">Blended density &amp; strength signal</div>
+              <div class="ci-kpi-trend ci-trend-up" id="ciKpiIntensityTrend">&#9650; Active market</div>
+              <div class="ci-kpi-mini"><svg viewBox="0 0 46 46"><circle class="bg" cx="23" cy="23" r="18"></circle><circle class="fg" id="ciKpiIntensityRing" cx="23" cy="23" r="18"></circle></svg></div>
+            </div>
+            <div class="ci-kpi">
+              <div class="ci-kpi-label">Avg. Market Reach</div>
+              <div class="ci-kpi-value" id="ciKpiReach">0%</div>
+              <div class="ci-kpi-note">Average competitor presence score</div>
+              <div class="ci-kpi-trend ci-trend-flat" id="ciKpiReachTrend">&#9644; Steady</div>
+              <div class="ci-kpi-mini"><svg viewBox="0 0 46 46"><circle class="bg" cx="23" cy="23" r="18"></circle><circle class="fg" id="ciKpiReachRing" cx="23" cy="23" r="18"></circle></svg></div>
+            </div>
+            <div class="ci-kpi">
+              <div class="ci-kpi-label">Differentiation Opportunity</div>
+              <div class="ci-kpi-value" id="ciKpiDiffOpp">0</div>
+              <div class="ci-kpi-note">Composite whitespace score /100</div>
+              <div class="ci-kpi-trend ci-trend-up" id="ciKpiDiffOppTrend">&#9650; Open</div>
+              <div class="ci-kpi-mini"><svg viewBox="0 0 46 46"><circle class="bg" cx="23" cy="23" r="18"></circle><circle class="fg" id="ciKpiDiffOppRing" cx="23" cy="23" r="18"></circle></svg></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. COMPETITOR MATRIX -->
+        <section class="ci-section glass-card ci-reveal" aria-labelledby="ciMatrixTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciMatrixTitle">Competitor Matrix</h3>
+            <span class="ci-demo-tag">Illustrative competitor data</span>
+          </div>
+          <p class="ci-sec-sub">Strong / Moderate / Weak indicators are shown with both a colour dot and a text label, never colour alone.</p>
+          <div class="ci-table-wrap">
+            <table class="ci-table" id="ciMatrixTable">
+              <caption class="sr-only" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Comparison of your startup and tracked competitors across market reach, product strength, innovation, pricing, customer focus and differentiation.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Competitor</th>
+                  <th scope="col">Market Reach</th>
+                  <th scope="col">Product Strength</th>
+                  <th scope="col">Innovation</th>
+                  <th scope="col">Pricing</th>
+                  <th scope="col">Customer Focus</th>
+                  <th scope="col">Differentiation</th>
+                </tr>
+              </thead>
+              <tbody id="ciMatrixBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 5. FEATURE COMPARISON -->
+        <section class="ci-section glass-card ci-reveal" aria-labelledby="ciFeatureTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciFeatureTitle">Feature Comparison</h3>
+            <span class="ci-demo-tag">Illustrative comparison</span>
+          </div>
+          <p class="ci-sec-sub">VentureIQ's own module coverage is real; competitor coverage is illustrative &mdash; not verified against public documentation.</p>
+          <div class="ci-table-wrap">
+            <table class="ci-table" id="ciFeatureTable">
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  <th scope="col">VentureIQ (Your Startup)</th>
+                  <th scope="col">Competitor A</th>
+                  <th scope="col">Competitor B</th>
+                  <th scope="col">Competitor C</th>
+                </tr>
+              </thead>
+              <tbody id="ciFeatureBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 6. COMPETITOR STRENGTHS -->
+        <section class="ci-section ci-reveal" aria-labelledby="ciStrengthsTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciStrengthsTitle">Where Competitors Are Strong</h3>
+            <span class="ci-demo-tag">Illustrative</span>
+          </div>
+          <div class="ci-cardgrid ci-stagger" id="ciStrengthsGrid"></div>
+        </section>
+
+        <!-- 7. COMPETITOR WEAKNESSES -->
+        <section class="ci-section ci-reveal" aria-labelledby="ciWeaknessTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciWeaknessTitle">Where Competitors Leave Room</h3>
+            <span class="ci-demo-tag">Illustrative &mdash; not verified research</span>
+          </div>
+          <div class="ci-cardgrid ci-cols-5 ci-stagger" id="ciWeaknessGrid"></div>
+        </section>
+
+        <!-- 8. DIFFERENTIATION SCORE -->
+        <section class="ci-section glass-card ci-reveal" id="ciDiffSection" aria-labelledby="ciDiffTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciDiffTitle">Your Differentiation Score</h3>
+            <span class="ci-demo-tag">Illustrative composite</span>
+          </div>
+          <div class="ci-diff-wrap">
+            <div class="ci-diff-ring">
+              <svg viewBox="0 0 200 200" role="img" aria-label="Differentiation score out of 100. Illustrative.">
+                <circle class="ci-diff-bg" cx="100" cy="100" r="80"></circle>
+                <circle class="ci-diff-fg" id="ciDiffArc" cx="100" cy="100" r="80"></circle>
+              </svg>
+              <div class="ci-diff-inner">
+                <span class="ci-diff-num" id="ciDiffScore">0</span>
+                <span class="ci-diff-max">/ 100</span>
+              </div>
+            </div>
+            <div class="ci-bars ci-stagger" id="ciDiffBars"></div>
+          </div>
+        </section>
+
+        <!-- 9. STRATEGIC WHITE SPACE -->
+        <section class="ci-section glass-card ci-reveal" id="ciQuadSection" aria-labelledby="ciQuadTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciQuadTitle">Strategic White Space</h3>
+            <span class="ci-demo-tag">Illustrative analysis</span>
+          </div>
+          <div class="ci-quad-wrap">
+            <div class="ci-quad" id="ciQuad" role="img" aria-label="Two by two matrix of customer need versus competition, with the high-need low-to-moderate-competition quadrant marked as the potential opportunity. Illustrative.">
+              <div class="ci-quad-axis-v"></div>
+              <div class="ci-quad-axis-h"></div>
+              <div class="ci-quad-cell opp"><span>Potential<br>Opportunity</span></div>
+              <span class="ci-quad-label-x">Low Customer Need &rarr; High Customer Need</span>
+              <span class="ci-quad-label-y">Low Competition &rarr; High Competition</span>
+              <div class="ci-quad-point" id="ciQuadPoint"></div>
+              <div class="ci-quad-point-label" id="ciQuadPointLabel">Estimated position</div>
+            </div>
+            <div class="ci-interpret" id="ciQuadInterpret" style="background:var(--input-bg); border:1px solid var(--input-border); border-left:3px solid var(--gold-primary); border-radius:var(--radius-md); padding:1.15rem; font-size:.82rem; color:var(--text-secondary); line-height:1.6;">&mdash;</div>
+          </div>
+        </section>
+
+        <!-- 10. COMPETITOR PROFILE CARDS -->
+        <section class="ci-section ci-reveal" aria-labelledby="ciProfileTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciProfileTitle">Competitor Profiles</h3>
+            <span class="ci-demo-tag">Illustrative</span>
+          </div>
+          <p class="ci-sec-sub">Expand a profile for market position, strengths, weaknesses, potential threat and where VentureIQ can differentiate.</p>
+          <div class="ci-profile-list" id="ciProfileList"></div>
+        </section>
+
+        <!-- 11. COMPETITIVE PRESSURE -->
+        <section class="ci-section glass-card ci-reveal" id="ciPressureSection" aria-labelledby="ciPressureTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciPressureTitle">Competitive Pressure</h3>
+            <span class="ci-demo-tag">Illustrative</span>
+          </div>
+          <div class="ci-scale-labels"><span>Low</span><span>Medium</span><span>High</span></div>
+          <div class="ci-scale-track" role="img" id="ciScaleTrack" aria-label="Competitive pressure position on a low to high scale. Illustrative.">
+            <div class="ci-scale-marker" id="ciScaleMarker" style="left:50%"></div>
+          </div>
+          <p class="ci-sec-sub" id="ciScaleReadout" style="margin-top:.5rem;">&mdash;</p>
+          <div class="ci-factor-grid ci-stagger" id="ciFactorGrid"></div>
+        </section>
+
+        <!-- 12. COMPETITIVE THREAT RADAR -->
+        <section class="ci-section glass-card ci-reveal" id="ciRadarSection" aria-labelledby="ciRadarTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciRadarTitle">Competitive Threat Radar</h3>
+            <span class="ci-demo-tag">Illustrative</span>
+          </div>
+          <div class="ci-radar-wrap">
+            <div class="ci-radar-holder">
+              <svg id="ciRadarSvg" viewBox="0 0 380 340" role="img" aria-label="Radar chart comparing your startup with the competitive average across product, pricing, innovation, brand, distribution and technology. Illustrative.">
+                <g id="ciRadarGrid"></g>
+                <g id="ciRadarAxes"></g>
+                <polygon id="ciRadarAvgPoly" class="ci-radar-avg" points=""></polygon>
+                <polygon id="ciRadarYouPoly" class="ci-radar-you" points=""></polygon>
+                <g id="ciRadarDots"></g>
+              </svg>
+            </div>
+            <div class="ci-radar-legend">
+              <span class="ci-radar-legend-item"><span class="ci-radar-swatch" style="background:var(--gold-primary)"></span>Your Startup</span>
+              <span class="ci-radar-legend-item"><span class="ci-radar-swatch" style="background:var(--accent-blue); opacity:.7;"></span>Competitive Average</span>
+              <p class="ci-sec-sub" style="margin:.5rem 0 0;">Six axes: Product, Pricing, Innovation, Brand, Distribution, Technology &mdash; all illustrative.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 13. AI COMPETITIVE INSIGHT -->
+        <section class="ci-section glass-card ci-reveal" aria-labelledby="ciPerspTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciPerspTitle">VentureIQ AI Competitive Perspective</h3>
+            <span class="ci-demo-tag">Rule-based &middot; illustrative</span>
+          </div>
+          <div class="ci-persp-grid">
+            <div class="ci-persp-card"><h4>What competitors do well</h4><p id="ciPerspWell">&mdash;</p></div>
+            <div class="ci-persp-card"><h4>Where they are vulnerable</h4><p id="ciPerspVuln">&mdash;</p></div>
+            <div class="ci-persp-card"><h4>How you can differentiate</h4><p id="ciPerspDiff">&mdash;</p></div>
+          </div>
+          <p class="ci-sec-sub" style="margin-top:1rem;">Generated by VentureIQ's rule-based engine from your inputs &mdash; illustrative, not external market research.</p>
+        </section>
+
+        <!-- 14. DIFFERENTIATION STRATEGY -->
+        <section class="ci-section ci-reveal" aria-labelledby="ciStrategyTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciStrategyTitle">How VentureIQ Can Win</h3>
+            <span class="ci-demo-tag">Illustrative guidance</span>
+          </div>
+          <div class="ci-strategy-grid ci-stagger">
+            <div class="ci-strat-card">
+              <div class="ci-strat-verb">Differentiate</div>
+              <div class="ci-strat-lead">Build something competitors don't</div>
+              <div class="ci-strat-body" id="ciStratDiffBody">&mdash;</div>
+              <div class="ci-strat-action" id="ciStratDiffAction"></div>
+            </div>
+            <div class="ci-strat-card">
+              <div class="ci-strat-verb">Focus</div>
+              <div class="ci-strat-lead">Own a specific customer segment</div>
+              <div class="ci-strat-body" id="ciStratFocusBody">&mdash;</div>
+              <div class="ci-strat-action" id="ciStratFocusAction"></div>
+            </div>
+            <div class="ci-strat-card">
+              <div class="ci-strat-verb">Execute</div>
+              <div class="ci-strat-lead">Move faster and validate continuously</div>
+              <div class="ci-strat-body" id="ciStratExecBody">&mdash;</div>
+              <div class="ci-strat-action" id="ciStratExecAction"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 15. COMPETITOR SCORECARD -->
+        <section class="ci-section glass-card ci-reveal" id="ciScorecardSection" aria-labelledby="ciScorecardTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciScorecardTitle">Competitor Scorecard</h3>
+            <span class="ci-demo-tag">Illustrative</span>
+          </div>
+          <div class="ci-score-legend-inline" style="margin-bottom:1.25rem;">
+            <span><i style="background:var(--gold-gradient);"></i>Your Startup</span>
+            <span><i style="background:var(--text-primary);"></i>Competitive Average</span>
+          </div>
+          <div class="ci-scorecard ci-stagger" id="ciScorecardRows"></div>
+        </section>
+
+        <!-- 16. MARKET POSITION SUMMARY -->
+        <section class="ci-section glass-card ci-reveal" aria-labelledby="ciSummaryTitle">
+          <div class="ci-sec-head">
+            <h3 class="section-title" id="ciSummaryTitle">Your Current Position</h3>
+            <span class="ci-demo-tag">Illustrative &mdash; not a certainty</span>
+          </div>
+          <div class="ci-summary-grid ci-stagger" id="ciSummaryGrid"></div>
+        </section>
+
       </div>
 
     </section>
@@ -1995,12 +2594,11 @@
       modal.classList.add('active');
 
       const messages = [
-        "Searching Market...",
-        "Identifying Competitors...",
-        "Comparing Products...",
-        "Measuring Market Position...",
-        "Evaluating Strengths...",
-        "Finding Opportunities...",
+        "Identifying competitors...",
+        "Mapping market positions...",
+        "Comparing product capabilities...",
+        "Evaluating competitive pressure...",
+        "Finding strategic gaps...",
         "Preparing Competitor Report..."
       ];
 
@@ -2601,6 +3199,621 @@ Report synthesized client-side by AURA Competitor Intelligence Engine.
       }, 3400);
     }
   </script>
+  <!-- ==========================================================================
+       PREMIUM COMPETITIVE INTELLIGENCE WORKSPACE — additive rendering layer
+       Wraps renderDashboard()/runCompetitorEngine(): does NOT modify the
+       existing rule engine. All new figures are illustrative demo data.
+       ========================================================================== -->
+  <script>
+  (function () {
+    "use strict";
+
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var ciReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var ciState = { report: null };
+
+    /* ---------- helpers ---------- */
+    function ciEl(id) { return document.getElementById(id); }
+    function ciClamp(v, mn, mx) { return Math.max(mn, Math.min(mx, v)); }
+    function ciEsc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
+      });
+    }
+    function ciAvgKey(arr, key) {
+      if (!arr || !arr.length) return 70;
+      return arr.reduce(function (a, c) { return a + (c[key] || 0); }, 0) / arr.length;
+    }
+    function ciPriceRank(level) {
+      var s = String(level || "");
+      if (s.indexOf("Enterprise") > -1) return 4;
+      if (s.indexOf("Premium") > -1) return 3;
+      if (s.indexOf("Mid-Range") > -1) return 2;
+      return 1;
+    }
+    function ciPricingTier(level) { var r = ciPriceRank(level); return r <= 2 ? "strong" : r === 3 ? "moderate" : "weak"; }
+    function ciTier(v) { return v >= 80 ? "strong" : v >= 60 ? "moderate" : "weak"; }
+    function ciTierWord(v) { return v >= 80 ? "Strong" : v >= 60 ? "Moderate" : "Weak"; }
+    function ciCategoryOf(position) {
+      var s = String(position || "");
+      if (s.indexOf("Niche") > -1) return "Specialist";
+      if (s.indexOf("Incumbent") > -1 || s.indexOf("Legacy") > -1 || s.indexOf("Enterprise Standard") > -1) return "Incumbent";
+      return "Challenger";
+    }
+    function ciIntensityBucket(v) { return v >= 85 ? "high" : v >= 72 ? "moderate" : "low"; }
+
+    function ciCountUp(el, target, opts) {
+      if (!el) return;
+      opts = opts || {};
+      var dec = opts.dec || 0, prefix = opts.prefix || "", suffix = opts.suffix || "";
+      var dur = ciReduced ? 0 : (opts.dur || 1200);
+      if (dur === 0) { el.textContent = prefix + target.toFixed(dec) + suffix; return; }
+      var start = performance.now();
+      function tick(now) {
+        var p = Math.min(1, (now - start) / dur);
+        var e = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + (target * e).toFixed(dec) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = prefix + target.toFixed(dec) + suffix;
+      }
+      requestAnimationFrame(tick);
+    }
+    function ciBarRow(label, pct, avgPct) {
+      var html = '<div class="ci-bar-row"><div class="ci-bar-top"><span>' + ciEsc(label) +
+        '</span><span>' + Math.round(pct) + '/100' + (avgPct != null ? " · avg " + Math.round(avgPct) : "") + '</span></div>' +
+        '<div class="ci-bar-track"><div class="ci-bar-fill" data-pct="' + Math.round(pct) + '"></div></div></div>';
+      return html;
+    }
+    function ciAnimateBars(container) {
+      if (!container) return;
+      var fills = container.querySelectorAll(".ci-bar-fill, .ci-lvl-bar i");
+      for (var i = 0; i < fills.length; i++) {
+        (function (f) {
+          var p = (f.getAttribute("data-pct") || "0") + "%";
+          if (ciReduced) f.style.width = p;
+          else requestAnimationFrame(function () { f.style.width = p; });
+        })(fills[i]);
+      }
+    }
+
+    /* ---------- reveal-on-scroll ---------- */
+    function ciTrigger(el) {
+      if (!el || el.classList.contains("ci-in")) return;
+      el.classList.add("ci-in");
+      if (el.querySelectorAll) {
+        var st = el.querySelectorAll(".ci-stagger");
+        for (var i = 0; i < st.length; i++) st[i].classList.add("ci-in");
+      }
+      if (typeof el.__ciAnim === "function") { var fn = el.__ciAnim; el.__ciAnim = null; fn(); }
+    }
+    var ciObserver = ("IntersectionObserver" in window) ? new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { ciTrigger(en.target); ciObserver.unobserve(en.target); } });
+    }, { threshold: 0.16 }) : null;
+    function ciReveal(el, animFn) {
+      if (!el) return;
+      if (animFn) el.__ciAnim = animFn;
+      if (ciReduced || !ciObserver) { ciTrigger(el); return; }
+      ciObserver.observe(el);
+    }
+    function ciRevealSweep() {
+      var nodes = document.querySelectorAll("#ciWorkspace .ci-reveal:not(.ci-in)");
+      var vh = window.innerHeight || 800;
+      for (var i = 0; i < nodes.length; i++) {
+        var r = nodes[i].getBoundingClientRect();
+        if (r.top < vh * 0.92 && r.bottom > 0) ciTrigger(nodes[i]);
+      }
+    }
+    function ciSetRing(circleEl, r, pct) {
+      var C = 2 * Math.PI * r;
+      circleEl.style.strokeDasharray = C;
+      circleEl.style.strokeDashoffset = C;
+      var target = C * (1 - ciClamp(pct, 0, 100) / 100);
+      if (ciReduced) circleEl.style.strokeDashoffset = target;
+      else requestAnimationFrame(function () { circleEl.style.strokeDashoffset = target; });
+    }
+
+    /* ---------- positioning map enhancement (existing #positionMapPlane) ---------- */
+    function ciEnhanceMap(report) {
+      var plane = ciEl("positionMapPlane");
+      if (!plane) return;
+      var nodes = plane.querySelectorAll(".map-node");
+      var comps = report.topCompetitors || [];
+      nodes.forEach(function (node, idx) {
+        var isYou = node.classList.contains("user-startup");
+        var name, cat, desc;
+        if (isYou) {
+          name = report.inputs.startupName + " — Your Startup";
+          cat = "Your position";
+          desc = "New entrant · competitive score " + report.overallScore + "/100.";
+        } else {
+          var c = comps[idx - 1];
+          if (!c) return;
+          name = c.name;
+          cat = c.position;
+          desc = String(c.strength || "").slice(0, 110);
+        }
+        node.setAttribute("tabindex", "0");
+        node.setAttribute("role", "img");
+        node.setAttribute("aria-label", name + ", " + cat + ". " + desc + " Illustrative competitor data.");
+        var show = function (ev) { ciShowMapTip(ev, node, name, cat, desc); };
+        node.addEventListener("mouseenter", show);
+        node.addEventListener("mousemove", show);
+        node.addEventListener("focus", show);
+        node.addEventListener("mouseleave", ciHideMapTip);
+        node.addEventListener("blur", ciHideMapTip);
+      });
+    }
+    function ciShowMapTip(ev, node, name, cat, desc) {
+      var tip = ciEl("ciMapTip");
+      if (!tip) return;
+      var card = node.closest(".glass-card");
+      if (!card) return;
+      var cr = card.getBoundingClientRect(), nr = node.getBoundingClientRect();
+      var x = nr.left - cr.left + nr.width / 2;
+      var y = nr.top - cr.top;
+      tip.innerHTML = '<span class="cat">' + ciEsc(cat) + '</span><b>' + ciEsc(name) + '</b>' + ciEsc(desc);
+      tip.style.left = x + "px";
+      tip.style.top = Math.max(4, y) + "px";
+      tip.classList.add("show");
+    }
+    function ciHideMapTip() { var t = ciEl("ciMapTip"); if (t) t.classList.remove("show"); }
+
+    /* ---------- matrix + feature tables ---------- */
+    function ciNumCell(val) {
+      var tier = ciTier(val);
+      return '<td><span class="ci-dot-cell"><span class="ci-dot ci-dot-' + tier + '" aria-hidden="true"></span>' +
+        ciTierWord(val) + ' (' + Math.round(val) + ')</span></td>';
+    }
+    function ciTierCell(tier, label) {
+      return '<td><span class="ci-dot-cell"><span class="ci-dot ci-dot-' + tier + '" aria-hidden="true"></span>' + ciEsc(label) + '</span></td>';
+    }
+    function ciBuildMatrix(state) {
+      var body = ciEl("ciMatrixBody");
+      if (!body) return;
+      var rows = [{
+        label: "Your Startup", you: true, category: "You", intensity: "low",
+        reach: state.you.reach, product: state.you.product, innovation: state.you.innovation,
+        pricingTier: "strong", pricingLabel: "Flexible / usage-based",
+        customerFocus: state.you.customerFocus, differentiation: state.you.differentiation
+      }];
+      state.comps.forEach(function (c, i) {
+        var reach = c.presenceScore;
+        rows.push({
+          label: "Competitor " + String.fromCharCode(65 + i), you: false,
+          category: ciCategoryOf(c.position), intensity: ciIntensityBucket(reach),
+          reach: reach, product: c.qualityScore, innovation: c.innovationScore,
+          pricingTier: ciPricingTier(c.pricingLevel), pricingLabel: c.pricingLevel,
+          customerFocus: c.trustScore, differentiation: ciClamp(c.innovationScore - 12, 35, 88)
+        });
+      });
+      body.innerHTML = rows.map(function (r) {
+        return '<tr class="' + (r.you ? "ci-you-row" : "") + '" data-category="' + ciEsc(r.category) + '" data-intensity="' + r.intensity + '">' +
+          '<td>' + ciEsc(r.label) + '</td>' +
+          ciNumCell(r.reach) + ciNumCell(r.product) + ciNumCell(r.innovation) +
+          ciTierCell(r.pricingTier, r.pricingLabel) +
+          ciNumCell(r.customerFocus) + ciNumCell(r.differentiation) +
+          '</tr>';
+      }).join("");
+    }
+    function ciHash(s) { var h = 0; s = String(s); for (var i = 0; i < s.length; i++) { h = (h << 5) - h + s.charCodeAt(i); h |= 0; } return Math.abs(h); }
+    function ciFeatureCell(feature, compLabel) {
+      var h = ciHash(feature + "|" + compLabel) % 10;
+      if (h < 4) return { sym: "—", cls: "ci-feat-no", label: "Not offered" };
+      if (h < 7) return { sym: "Partial", cls: "ci-feat-partial", label: "Partially offered" };
+      return { sym: "✓", cls: "ci-feat-yes", label: "Offered" };
+    }
+    function ciBuildFeatures() {
+      var body = ciEl("ciFeatureBody");
+      if (!body) return;
+      var feats = ["AI Validation", "Idea Discovery", "Market Intelligence", "Competitor Analysis", "Strategic Intelligence", "Execution Roadmap"];
+      var srCss = 'position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);';
+      function td(x) { return '<td><span class="' + x.cls + '" aria-hidden="true">' + x.sym + '</span><span style="' + srCss + '"> ' + x.label + '</span></td>'; }
+      body.innerHTML = feats.map(function (f) {
+        var a = ciFeatureCell(f, "Competitor A"), b = ciFeatureCell(f, "Competitor B"), c = ciFeatureCell(f, "Competitor C");
+        return '<tr><td>' + ciEsc(f) + '</td>' +
+          '<td class="ci-feat-yes"><span aria-hidden="true">&check;</span><span style="' + srCss + '"> Offered</span></td>' +
+          td(a) + td(b) + td(c) + '</tr>';
+      }).join("");
+    }
+
+    /* ---------- radar chart ---------- */
+    function ciBuildRadar(you6, avg6, labels) {
+      var cx = 170, cy = 155, R = 115, n = 6;
+      function ptFor(i, val) {
+        var ang = -Math.PI / 2 + i * (2 * Math.PI / n);
+        var r = (val / 100) * R;
+        return [cx + r * Math.cos(ang), cy + r * Math.sin(ang)];
+      }
+      var grid = ciEl("ciRadarGrid"), axes = ciEl("ciRadarAxes"), dots = ciEl("ciRadarDots");
+      grid.innerHTML = ""; axes.innerHTML = ""; dots.innerHTML = "";
+      [0.25, 0.5, 0.75, 1].forEach(function (f) {
+        var pts = [];
+        for (var i = 0; i < n; i++) { var p = ptFor(i, 100 * f); pts.push(p[0].toFixed(1) + "," + p[1].toFixed(1)); }
+        var poly = document.createElementNS(SVGNS, "polygon");
+        poly.setAttribute("points", pts.join(" "));
+        poly.setAttribute("class", "ci-radar-grid");
+        grid.appendChild(poly);
+      });
+      for (var i = 0; i < n; i++) {
+        var p = ptFor(i, 100);
+        var ln = document.createElementNS(SVGNS, "line");
+        ln.setAttribute("x1", cx); ln.setAttribute("y1", cy); ln.setAttribute("x2", p[0]); ln.setAttribute("y2", p[1]);
+        ln.setAttribute("class", "ci-radar-axis-line"); axes.appendChild(ln);
+        var lp = ptFor(i, 118);
+        var t = document.createElementNS(SVGNS, "text");
+        t.setAttribute("x", lp[0]); t.setAttribute("y", lp[1]);
+        t.setAttribute("text-anchor", Math.abs(lp[0] - cx) < 6 ? "middle" : (lp[0] > cx ? "start" : "end"));
+        t.setAttribute("class", "ci-radar-axis-label"); t.textContent = labels[i];
+        axes.appendChild(t);
+      }
+      var youPts = [], avgPts = [];
+      for (var j = 0; j < n; j++) {
+        var py = ptFor(j, you6[j]), pa = ptFor(j, avg6[j]);
+        youPts.push(py[0].toFixed(1) + "," + py[1].toFixed(1));
+        avgPts.push(pa[0].toFixed(1) + "," + pa[1].toFixed(1));
+        var dy = document.createElementNS(SVGNS, "circle");
+        dy.setAttribute("cx", py[0]); dy.setAttribute("cy", py[1]); dy.setAttribute("r", 3.5);
+        dy.setAttribute("class", "ci-radar-dot"); dy.style.fill = "var(--gold-primary)";
+        var titleY = document.createElementNS(SVGNS, "title");
+        titleY.textContent = labels[j] + ": Your Startup " + Math.round(you6[j]) + "/100 (illustrative)";
+        dy.appendChild(titleY); dots.appendChild(dy);
+        var da = document.createElementNS(SVGNS, "circle");
+        da.setAttribute("cx", pa[0]); da.setAttribute("cy", pa[1]); da.setAttribute("r", 3.5);
+        da.setAttribute("class", "ci-radar-dot"); da.style.fill = "var(--accent-blue)";
+        var titleA = document.createElementNS(SVGNS, "title");
+        titleA.textContent = labels[j] + ": Competitive Average " + Math.round(avg6[j]) + "/100 (illustrative)";
+        da.appendChild(titleA); dots.appendChild(da);
+      }
+      ciEl("ciRadarYouPoly").setAttribute("points", youPts.join(" "));
+      ciEl("ciRadarAvgPoly").setAttribute("points", avgPts.join(" "));
+    }
+
+    /* ---------- profile accordion ---------- */
+    function ciBuildProfiles(state) {
+      var list = ciEl("ciProfileList");
+      if (!list) return;
+      list.innerHTML = state.comps.map(function (c, i) {
+        var letter = String.fromCharCode(65 + i);
+        var label = "Competitor " + letter;
+        var cat = ciCategoryOf(c.position);
+        var reach = c.presenceScore;
+        var intensity = ciIntensityBucket(reach);
+        var threatScore = ciClamp(Math.round((c.innovationScore + c.presenceScore + c.trustScore) / 3), 0, 100);
+        var threatWord = threatScore >= 80 ? "HIGH" : threatScore >= 60 ? "MEDIUM" : "LOW";
+        var threatCls = threatScore >= 80 ? "ci-lvl-weak" : threatScore >= 60 ? "ci-lvl-moderate" : "ci-lvl-strong";
+        var diffOpportunity = "Win with a faster, more focused workflow for " + ciEsc(state.report.inputs.targetAudience) +
+          " while " + ciEsc(label) + " stays generic and broad.";
+        return '<div class="ci-profile-card" data-category="' + ciEsc(cat) + '" data-intensity="' + intensity + '" data-open="false">' +
+          '<button type="button" class="ci-profile-head" aria-expanded="false">' +
+          '<span class="ci-profile-id"><span class="ci-profile-avatar" aria-hidden="true">' + letter + '</span>' +
+          '<span><span class="ci-profile-name">' + ciEsc(label) + '</span><br><span class="ci-profile-cat">' +
+          ciEsc(cat) + ' &middot; ' + ciEsc(c.position) + '</span></span></span>' +
+          '<span style="display:flex; align-items:center; gap:.6rem;">' +
+          '<span class="ci-lvl-badge ' + threatCls + '">' + threatWord + ' threat</span>' +
+          '<svg class="ci-profile-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
+          '</span></button>' +
+          '<div class="ci-profile-body"><div class="ci-profile-body-inner">' +
+          '<div class="ci-profile-block"><b>Market position</b><p>' + ciEsc(c.position) + ' &middot; est. market reach ' + Math.round(reach) + '/100.</p></div>' +
+          '<div class="ci-profile-block"><b>Strengths</b><p>' + ciEsc(c.strength) + '</p></div>' +
+          '<div class="ci-profile-block"><b>Weaknesses</b><p>' + ciEsc(c.weakness) + '</p></div>' +
+          '<div class="ci-profile-block"><b>Potential threat</b><p>' + threatWord + ' &mdash; blended from innovation, reach and trust signals (illustrative).</p></div>' +
+          '<div class="ci-profile-block" style="grid-column:1/-1;"><b>Differentiation opportunity</b><p>' + diffOpportunity + '</p></div>' +
+          '</div></div></div>';
+      }).join("");
+      var heads = list.querySelectorAll(".ci-profile-head");
+      for (var i = 0; i < heads.length; i++) {
+        heads[i].addEventListener("click", function () {
+          var card = this.closest(".ci-profile-card");
+          var open = card.getAttribute("data-open") === "true";
+          card.setAttribute("data-open", open ? "false" : "true");
+          this.setAttribute("aria-expanded", open ? "false" : "true");
+        });
+      }
+    }
+
+    /* ---------- filters ---------- */
+    function ciApplyFilters() {
+      var typeEl = ciEl("ciFilterType"), intEl = ciEl("ciFilterIntensity");
+      if (!typeEl || !intEl) return;
+      var type = typeEl.value, intensity = intEl.value;
+      var visible = 0, total = 0;
+      var rows = document.querySelectorAll("#ciMatrixBody tr");
+      rows.forEach(function (tr) {
+        if (tr.classList.contains("ci-you-row")) { tr.classList.remove("ci-filtered-out"); return; }
+        total++;
+        var cat = tr.getAttribute("data-category"), inten = tr.getAttribute("data-intensity");
+        var show = (type === "all" || cat === type) && (intensity === "all" || inten === intensity);
+        tr.classList.toggle("ci-filtered-out", !show);
+        if (show) visible++;
+      });
+      var cards = document.querySelectorAll("#ciProfileList .ci-profile-card");
+      cards.forEach(function (card) {
+        var cat = card.getAttribute("data-category"), inten = card.getAttribute("data-intensity");
+        var show = (type === "all" || cat === type) && (intensity === "all" || inten === intensity);
+        card.classList.toggle("ci-hidden", !show);
+      });
+      var countEl = ciEl("ciFilterCount");
+      if (countEl) countEl.textContent = visible + " of " + total + " competitors shown";
+    }
+
+    /* ---------- main render ---------- */
+    function ciRenderWorkspace(report) {
+      if (!report) return;
+      ciState.report = report;
+      var comps = report.topCompetitors || [];
+      var compAvg = {
+        quality: ciAvgKey(comps, "qualityScore"),
+        innovation: ciAvgKey(comps, "innovationScore"),
+        presence: ciAvgKey(comps, "presenceScore"),
+        trust: ciAvgKey(comps, "trustScore"),
+        priceRank: comps.reduce(function (a, c) { return a + ciPriceRank(c.pricingLevel); }, 0) / (comps.length || 1)
+      };
+      var overallScore = report.overallScore || 80;
+      var innov = report.innovationScore || 85;
+      var pricingPower = (compAvg.priceRank / 4) * 100;
+      var you = {
+        reach: ciClamp(Math.round(30 + (overallScore - 80)), 18, 55),
+        product: ciClamp(overallScore - 5, 55, 96),
+        innovation: innov,
+        pricingScore: 92,
+        customerFocus: ciClamp(overallScore, 55, 97),
+        differentiation: ciClamp(innov + 5, 55, 99),
+        brand: ciClamp(35 + (overallScore - 80) * 2, 20, 65),
+        distribution: ciClamp(22 + (overallScore - 80), 12, 50),
+        technology: ciClamp(innov + 3, 55, 99)
+      };
+      var state = { report: report, comps: comps, compAvg: compAvg, you: you };
+      ciState.data = state;
+
+      var ind = report.inputs.industry || "this industry";
+      var region = report.inputs.region || "your region";
+      var aud = report.inputs.targetAudience || "your target buyer";
+      var startupName = report.inputs.startupName || "Your startup";
+
+      /* enhance existing map */
+      ciEnhanceMap(report);
+
+      /* KPI overview */
+      var intensityScore = ciClamp(Math.round(compAvg.quality * 0.3 + compAvg.innovation * 0.35 + compAvg.trust * 0.35), 0, 100);
+      var intensityWord = intensityScore >= 80 ? "HIGH" : intensityScore >= 60 ? "MEDIUM" : "LOW";
+      ciEl("ciKpiCount").textContent = "0";
+      ciEl("ciKpiIntensity").textContent = intensityWord;
+      ciEl("ciKpiReach").textContent = "0%";
+      var diffBreakdown = [
+        ["Product", you.product],
+        ["Technology", you.technology],
+        ["Experience", you.customerFocus],
+        ["Pricing", you.pricingScore],
+        ["Positioning", ciClamp(Math.round((you.differentiation + (100 - compAvg.innovation)) / 2), 40, 98)]
+      ];
+      var diffOverall = Math.round(diffBreakdown.reduce(function (a, b) { return a + b[1]; }, 0) / diffBreakdown.length);
+      ciEl("ciKpiDiffOpp").textContent = "0";
+
+      var intTrend = ciEl("ciKpiIntensityTrend");
+      if (intensityScore >= 78) { intTrend.textContent = "▲ Crowded"; intTrend.className = "ci-kpi-trend ci-trend-down"; }
+      else if (intensityScore <= 50) { intTrend.textContent = "▼ Open"; intTrend.className = "ci-kpi-trend ci-trend-up"; }
+      else { intTrend.textContent = "▬ Active"; intTrend.className = "ci-kpi-trend ci-trend-flat"; }
+
+      /* matrix + features */
+      ciBuildMatrix(state);
+      ciBuildFeatures();
+      ciApplyFilters();
+
+      /* strengths */
+      var strengthCats = [
+        ["Product", compAvg.quality, "Feature depth and polish across the tracked competitor set."],
+        ["Brand", compAvg.trust, "Recognition and trust built up over time."],
+        ["Distribution", compAvg.presence, "Existing reach, channels and market presence."],
+        ["Technology", compAvg.innovation, "Underlying technical sophistication and release velocity."],
+        ["Pricing", pricingPower, "Ability to sustain premium pricing on brand strength alone."],
+        ["Customer Base", ciClamp(compAvg.trust - 4, 30, 96), "Installed base size and switching inertia."]
+      ];
+      ciEl("ciStrengthsGrid").innerHTML = strengthCats.map(function (s) {
+        var tier = ciTier(s[1]);
+        return '<div class="ci-lvl-card"><div class="ci-lvl-top"><span class="ci-lvl-name">' + ciEsc(s[0]) + '</span>' +
+          '<span class="ci-lvl-badge ci-lvl-' + tier + '">' + ciTierWord(s[1]) + '</span></div>' +
+          '<div class="ci-lvl-bar"><i data-pct="' + Math.round(s[1]) + '"></i></div>' +
+          '<div class="ci-lvl-desc">' + ciEsc(s[2]) + '</div></div>';
+      }).join("");
+
+      /* weaknesses / gaps */
+      var gaps = [
+        ["Experience Gap", ciClamp(Math.round(100 - compAvg.quality + 10), 25, 90), "Interfaces and onboarding across the tracked set still carry legacy friction.", "Ship a noticeably faster, cleaner first-run experience."],
+        ["Feature Gap", ciClamp(Math.round(100 - compAvg.innovation + 8), 20, 88), "Automation and AI-native workflows are inconsistently deep.", "Lead with automation instead of manual configuration."],
+        ["Accessibility Gap", ciClamp(Math.round(100 - pricingPower + 15), 20, 90), "Entry pricing and minimum seats can price out smaller teams.", "Offer transparent, usage-based entry pricing."],
+        ["Technology Gap", ciClamp(Math.round(100 - compAvg.innovation + 4), 15, 85), "Real-time, agentic capability is still emerging across incumbents.", "Build automation as a first-class primitive, not a bolt-on."],
+        ["Customer-Service Gap", ciClamp(Math.round(100 - compAvg.trust + 6), 15, 85), "Support sentiment tends to trail product investment at scale.", "Offer white-glove onboarding for early design partners."]
+      ];
+      ciEl("ciWeaknessGrid").innerHTML = gaps.map(function (g) {
+        return '<div class="ci-lvl-card"><div class="ci-lvl-top"><span class="ci-lvl-name">' + ciEsc(g[0]) + '</span>' +
+          '<span class="ci-lvl-badge ci-lvl-' + ciTier(g[1]) + '">' + g[1] + '/100</span></div>' +
+          '<div class="ci-lvl-bar"><i data-pct="' + g[1] + '"></i></div>' +
+          '<div class="ci-lvl-desc">' + ciEsc(g[2]) + '</div>' +
+          '<div class="ci-lvl-advantage"><b>' + ciEsc(startupName) + ' advantage:</b> ' + ciEsc(g[3]) + '</div></div>';
+      }).join("");
+
+      /* differentiation score */
+      ciEl("ciDiffBars").innerHTML = diffBreakdown.map(function (d) { return ciBarRow(d[0], d[1]); }).join("");
+
+      /* strategic white space */
+      var needScore = ciClamp(Math.round(55 + (innov - 80)), 25, 96);
+      var compScore = ciClamp(Math.round(compAvg.quality * 0.4 + compAvg.innovation * 0.3 + compAvg.trust * 0.3), 20, 96);
+      var quadPoint = ciEl("ciQuadPoint"), quadLabel = ciEl("ciQuadPointLabel");
+      if (quadPoint) { quadPoint.style.left = needScore + "%"; quadPoint.style.top = (100 - compScore) + "%"; }
+      if (quadLabel) { quadLabel.style.left = needScore + "%"; quadLabel.style.top = (100 - compScore) + "%"; quadLabel.textContent = "Estimated position"; }
+      var quadVerdict = (needScore >= 55 && compScore <= 65)
+        ? "Customer need looks high and competitive pressure looks manageable — this leans toward the opportunity zone."
+        : "The estimated position sits outside the clearest opportunity zone — narrowing the segment or the wedge feature may move it there.";
+      ciEl("ciQuadInterpret").innerHTML = "<strong>How to read this:</strong> " + quadVerdict +
+        " Estimated need " + needScore + "/100, estimated competition " + compScore + "/100. Illustrative, not market research.";
+
+      /* profiles */
+      ciBuildProfiles(state);
+      ciApplyFilters();
+
+      /* competitive pressure */
+      ciEl("ciScaleReadout").textContent = "Pressure is currently " + intensityWord + " (" + intensityScore + "/100), driven mainly by " +
+        (compAvg.innovation >= compAvg.presence ? "innovation pace" : "market reach") + " across the tracked set.";
+      function factorWord(v) { return v >= 78 ? "High" : v >= 55 ? "Moderate" : "Low"; }
+      var factors = [
+        ["Number of Competitors", comps.length + " tracked"],
+        ["Entry Barriers", factorWord(compAvg.presence)],
+        ["Switching Costs", factorWord(compAvg.trust)],
+        ["Pricing Pressure", factorWord(pricingPower)],
+        ["Innovation Speed", factorWord(compAvg.innovation)]
+      ];
+      ciEl("ciFactorGrid").innerHTML = factors.map(function (f) {
+        return '<div class="ci-factor"><div class="ci-factor-label">' + ciEsc(f[0]) + '</div><div class="ci-factor-val">' + ciEsc(f[1]) + '</div></div>';
+      }).join("");
+
+      /* radar */
+      var youAxes = [you.product, you.pricingScore, you.innovation, you.brand, you.distribution, you.technology];
+      var avgAxes = [compAvg.quality, pricingPower, compAvg.innovation, compAvg.trust, compAvg.presence, ciClamp(compAvg.innovation - 4, 15, 95)];
+      ciBuildRadar(youAxes, avgAxes, ["Product", "Pricing", "Innovation", "Brand", "Distribution", "Technology"]);
+
+      /* AI competitive perspective */
+      var wellText = "Tracked competitors average " + Math.round(compAvg.quality) + "/100 on product quality and " +
+        Math.round(compAvg.presence) + "/100 on market presence — distribution and breadth are where they currently lead.";
+      var vulnEl = document.getElementById("rptVulnerabilities");
+      var oppEl = document.getElementById("rptOpportunities");
+      ciEl("ciPerspWell").textContent = wellText;
+      ciEl("ciPerspVuln").textContent = (vulnEl && vulnEl.innerText) || "Primary competitor vulnerabilities include pricing rigidity and slower automation adoption.";
+      ciEl("ciPerspDiff").textContent = (oppEl && oppEl.innerText) || ("High untapped potential exists in building specialized workflows for " + aud + ".");
+
+      /* differentiation strategy */
+      ciEl("ciStratDiffBody").textContent = "Lead with AI-native automation and a modern workflow tailored to " + aud +
+        " instead of matching incumbents feature-for-feature.";
+      ciEl("ciStratDiffAction").innerHTML = "<b>Action:</b> Ship one automation incumbents don't have, and make it the headline.";
+      ciEl("ciStratFocusBody").textContent = "Go deep on " + aud + " in " + region + " rather than broad horizontal positioning — win one segment completely first.";
+      ciEl("ciStratFocusAction").innerHTML = "<b>Action:</b> Turn away adjacent buyers until this segment retains and refers on its own.";
+      ciEl("ciStratExecBody").textContent = "Ship weekly, publish release notes, and close the loop with design partners faster than " + ind + " incumbents typically do.";
+      ciEl("ciStratExecAction").innerHTML = "<b>Action:</b> Recruit 10–20 design partners for white-glove onboarding and fast iteration.";
+
+      /* scorecard */
+      var scorecard = [
+        ["Innovation", you.innovation, compAvg.innovation],
+        ["Product", you.product, compAvg.quality],
+        ["Market Fit", ciClamp(overallScore - 2, 40, 97), compAvg.trust],
+        ["Customer Experience", ciClamp(overallScore + 3, 40, 99), ciClamp(compAvg.trust - 3, 30, 95)],
+        ["Execution", overallScore, ciClamp(compAvg.presence - 5, 25, 95)],
+        ["Scalability", ciClamp(you.innovation - 2, 30, 97), compAvg.presence]
+      ];
+      ciEl("ciScorecardRows").innerHTML = scorecard.map(function (s) {
+        return '<div><div class="ci-score-row-label"><span>' + ciEsc(s[0]) + '</span><span>' + Math.round(s[1]) + ' vs ' + Math.round(s[2]) + '</span></div>' +
+          '<div class="ci-double-bar"><div class="fill-you" data-pct="' + Math.round(s[1]) + '"></div><div class="mark-avg" data-left="' + Math.round(s[2]) + '"></div></div></div>';
+      }).join("");
+
+      /* market position summary */
+      var positionBadge = overallScore >= 88 ? "STRONG" : overallScore >= 76 ? "EMERGING" : "WATCH";
+      var diffBadge = diffOverall >= 80 ? "STRONG" : diffOverall >= 60 ? "EMERGING" : "WATCH";
+      var pressureBadge = intensityWord === "LOW" ? "STRONG" : intensityWord === "MEDIUM" ? "EMERGING" : "WATCH";
+      var oppBadge = (diffOverall >= 75 || overallScore >= 85) ? "OPPORTUNITY" : "EMERGING";
+      var badgeCls = { STRONG: "ci-badge-strong", EMERGING: "ci-badge-emerging", WATCH: "ci-badge-watch", OPPORTUNITY: "ci-badge-opportunity" };
+      var summary = [
+        ["Competitive Position", positionBadge],
+        ["Differentiation", diffBadge],
+        ["Market Pressure", pressureBadge],
+        ["Strategic Opportunity", oppBadge]
+      ];
+      ciEl("ciSummaryGrid").innerHTML = summary.map(function (s) {
+        return '<div class="ci-summary-item"><div class="ci-summary-label">' + ciEsc(s[0]) + '</div><span class="ci-badge ' + badgeCls[s[1]] + '">' + s[1] + '</span></div>';
+      }).join("") + '<p class="ci-sec-sub" style="grid-column:1/-1; margin:.75rem 0 0;">Illustrative signals derived from your inputs — not a certainty, and not a substitute for real market validation.</p>';
+
+      /* reveals + count-ups (register once per render) */
+      var overviewSection = ciEl("ciOverviewTitle").closest("section");
+      ciReveal(ciWorkspaceControls());
+      ciReveal(overviewSection, function () {
+        ciCountUp(ciEl("ciKpiCount"), comps.length, { dur: 900 });
+        ciCountUp(ciEl("ciKpiReach"), compAvg.presence, { suffix: "%", dur: 1200 });
+        ciCountUp(ciEl("ciKpiDiffOpp"), diffOverall, { dur: 1300 });
+        var el = ciEl("ciKpiIntensity"); if (!ciReduced) { el.textContent = ""; setTimeout(function () { el.textContent = intensityWord; }, 700); }
+        ciSetRing(ciEl("ciKpiIntensityRing"), 18, intensityScore);
+        ciSetRing(ciEl("ciKpiReachRing"), 18, compAvg.presence);
+        ciSetRing(ciEl("ciKpiDiffOppRing"), 18, diffOverall);
+      });
+      ciReveal(ciEl("ciDiffSection"), function () {
+        ciSetRing(ciEl("ciDiffArc"), 80, diffOverall);
+        ciCountUp(ciEl("ciDiffScore"), diffOverall, { dur: 1500 });
+        ciAnimateBars(ciEl("ciDiffBars"));
+      });
+      ciReveal(ciEl("ciQuadSection"));
+      ciReveal(ciEl("ciPressureSection"), function () {
+        var marker = ciEl("ciScaleMarker");
+        if (marker) {
+          if (ciReduced) marker.style.left = intensityScore + "%";
+          else requestAnimationFrame(function () { marker.style.left = intensityScore + "%"; });
+        }
+      });
+      ciReveal(ciEl("ciRadarSection"));
+      ciReveal(ciEl("ciScorecardSection"), function () {
+        var rows = document.querySelectorAll("#ciScorecardRows .fill-you, #ciScorecardRows .mark-avg");
+        rows.forEach(function (el) {
+          if (el.classList.contains("fill-you")) {
+            var p = (el.getAttribute("data-pct") || "0") + "%";
+            if (ciReduced) el.style.width = p; else requestAnimationFrame(function () { el.style.width = p; });
+          } else {
+            var l = (el.getAttribute("data-left") || "0") + "%";
+            if (ciReduced) el.style.left = l; else requestAnimationFrame(function () { el.style.left = l; });
+          }
+        });
+      });
+      var allSections = document.querySelectorAll("#ciWorkspace .ci-section.ci-reveal, #ciWorkspace .ci-controls.ci-reveal");
+      for (var i = 0; i < allSections.length; i++) {
+        if (!allSections[i].__ciAnim && !allSections[i].classList.contains("ci-in")) ciReveal(allSections[i]);
+      }
+      // strengths/weaknesses bars animate with their own section reveal
+      ciReveal(ciEl("ciStrengthsTitle").closest("section"), function () { ciAnimateBars(ciEl("ciStrengthsGrid")); });
+      ciReveal(ciEl("ciWeaknessTitle").closest("section"), function () { ciAnimateBars(ciEl("ciWeaknessGrid")); });
+
+      requestAnimationFrame(function () { setTimeout(ciRevealSweep, 60); });
+      setTimeout(ciRevealSweep, 450);
+    }
+    function ciWorkspaceControls() { var ws = ciEl("ciWorkspace"); return ws ? ws.querySelector(".ci-controls") : null; }
+
+    /* ---------- error state ---------- */
+    window.ciShowError = function () {
+      var e = ciEl("ciErrorState");
+      if (e) { e.classList.remove("ci-hidden"); e.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    };
+    function ciHideError() { var e = ciEl("ciErrorState"); if (e) e.classList.add("ci-hidden"); }
+    window.ciRetry = function () {
+      ciHideError();
+      var f = ciEl("competitorForm");
+      if (f && f.requestSubmit) f.requestSubmit(); else if (f) f.dispatchEvent(new Event("submit", { cancelable: true }));
+    };
+    window.ciLoadIllustrative = function () {
+      ciHideError();
+      var btn = ciEl("demoDataBtn");
+      if (btn) btn.click();
+      var f = ciEl("competitorForm");
+      if (f && f.requestSubmit) f.requestSubmit(); else if (f) f.dispatchEvent(new Event("submit", { cancelable: true }));
+    };
+
+    /* ---------- wire into existing pipeline (no engine edits) ---------- */
+    document.addEventListener("DOMContentLoaded", function () {
+      var typeEl = ciEl("ciFilterType"), intEl = ciEl("ciFilterIntensity");
+      if (typeEl) typeEl.addEventListener("change", ciApplyFilters);
+      if (intEl) intEl.addEventListener("change", ciApplyFilters);
+
+      if (typeof window.renderDashboard === "function") {
+        var _origRender = window.renderDashboard;
+        window.renderDashboard = function (report) {
+          _origRender(report);
+          try { ciRenderWorkspace(report); } catch (e) { console.error("Competitive workspace render failed:", e); }
+        };
+      }
+      if (typeof window.runCompetitorEngine === "function") {
+        var _origEngine = window.runCompetitorEngine;
+        window.runCompetitorEngine = function (inputs) {
+          try { return _origEngine(inputs); }
+          catch (e) { window.ciShowError(); throw e; }
+        };
+      }
+    });
+  })();
+  </script>
+
+    <script type="module" src="../js/session-guard.js"></script>
     <script src="../js/quickhand.js" defer></script>
 </body>
 </html>

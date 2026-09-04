@@ -2887,3 +2887,994 @@ body.light-theme .factor-bar {
         width: 280px;
     }
 }
+
+
+/* =========================================================
+   =========================================================
+   VENTUREIQ — PREMIUM DASHBOARD UPGRADE LAYER
+   Appended enhancement layer. Overrides earlier rules by
+   source order. Every original selector is preserved.
+   =========================================================
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   REFINED DESIGN TOKENS
+--------------------------------------------------------- */
+
+:root {
+    --pri-high: #c2603f;
+    --pri-med: #c9a227;
+    --pri-low: #5f8f6f;
+
+    --chart-grid: rgba(28, 25, 20, 0.08);
+    --chart-area-top: rgba(201, 162, 39, 0.22);
+    --chart-area-bottom: rgba(201, 162, 39, 0);
+
+    --ease-spring: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Light is now the default experience (set via body.light-theme
+   guard in dashboard.html + dashboard.js). Refined warm-white palette. */
+body.light-theme {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --surface-2: #faf8f3;
+
+    --border: rgba(28, 25, 20, 0.09);
+
+    --text: #1c1a17;
+    --muted: rgba(28, 25, 20, 0.55);
+
+    --shadow: 0 16px 44px rgba(72, 60, 26, 0.08);
+}
+
+/* Refined premium dark palette (unchanged default = dark) */
+body:not(.light-theme) {
+    --bg: #0a0a0b;
+    --surface: #121214;
+    --surface-2: #17171a;
+
+    --border: rgba(201, 162, 39, 0.14);
+
+    --text: #f4f3f0;
+    --muted: rgba(244, 243, 240, 0.56);
+
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.36);
+
+    --chart-grid: rgba(255, 255, 255, 0.07);
+}
+
+body.light-theme .dashboard-header {
+    background: rgba(246, 244, 239, 0.82);
+}
+
+body:not(.light-theme) .dashboard-header {
+    background: rgba(10, 10, 11, 0.82);
+}
+
+
+/* ---------------------------------------------------------
+   LAYOUT / WHITESPACE POLISH
+--------------------------------------------------------- */
+
+.dashboard-content {
+    max-width: 1500px;
+    padding: 34px 40px 64px;
+}
+
+.dashboard-header {
+    padding: 0 40px;
+}
+
+@media (max-width: 1250px) {
+    .dashboard-content { padding: 30px 26px 56px; }
+    .dashboard-header { padding: 0 26px; }
+}
+
+@media (max-width: 850px) {
+    .dashboard-content { padding: 24px 18px 48px; }
+    .dashboard-header { padding: 0 18px; }
+}
+
+@media (max-width: 480px) {
+    .dashboard-content { padding: 20px 13px 40px; }
+    .dashboard-header { padding: 0 14px; }
+}
+
+
+/* ---------------------------------------------------------
+   ENTRANCE ANIMATIONS (progressive-enhancement only —
+   nothing is hidden unless JS adds body.viq-anim-ready)
+--------------------------------------------------------- */
+
+@keyframes viq-fade-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+body.viq-anim-ready .viq-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    will-change: opacity, transform;
+}
+
+body.viq-anim-ready .viq-reveal.viq-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.55s ease,
+        transform 0.55s var(--ease-spring);
+}
+
+
+/* ---------------------------------------------------------
+   SHARED SECTION HEADINGS
+--------------------------------------------------------- */
+
+.block-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+
+    margin: 30px 0 15px;
+}
+
+.block-head:first-child { margin-top: 0; }
+
+.block-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+
+    color: var(--gold);
+
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+}
+
+.block-head h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.demo-note {
+    flex-shrink: 0;
+
+    padding: 4px 9px;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    color: var(--muted);
+
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   WELCOME / HERO
+--------------------------------------------------------- */
+
+.welcome-section {
+    align-items: center;
+    padding: 30px 32px;
+    border-radius: 22px;
+}
+
+.welcome-copy h2 {
+    font-size: clamp(26px, 2.7vw, 37px);
+}
+
+.welcome-copy p {
+    font-size: 12.5px;
+    max-width: 640px;
+}
+
+.welcome-copy p #welcomeName {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.welcome-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 16px;
+}
+
+.live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 5px 11px;
+
+    border: 1px solid var(--border);
+    border-radius: 999px;
+
+    background: var(--surface-2);
+
+    color: var(--text);
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+.live-pill > span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--pri-low);
+    box-shadow: 0 0 0 3px rgba(95, 143, 111, 0.16);
+
+    animation: viq-pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes viq-pulse-dot {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+.welcome-actions {
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 43px;
+    padding: 0 18px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+.secondary-action:hover {
+    border-color: rgba(201, 162, 39, 0.4);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+a.primary-action {
+    text-decoration: none;
+}
+
+@media (max-width: 850px) {
+    .welcome-section { align-items: flex-start; }
+    .welcome-actions {
+        flex-direction: row;
+        width: 100%;
+    }
+    .welcome-actions .primary-action,
+    .welcome-actions .secondary-action {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-actions { flex-direction: column; }
+}
+
+
+/* ---------------------------------------------------------
+   OVERVIEW KPI CARDS — polish
+--------------------------------------------------------- */
+
+.overview-grid { gap: 16px; }
+
+.overview-card {
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.overview-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 162, 39, 0.3);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme .overview-card:hover {
+    box-shadow: 0 20px 44px rgba(72, 60, 26, 0.12);
+}
+
+.overview-value {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+}
+
+.overview-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.overview-card small { font-size: 8.5px; }
+
+
+/* ---------------------------------------------------------
+   DASHBOARD PANELS — polish
+--------------------------------------------------------- */
+
+.dashboard-panel {
+    border-radius: 20px;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.dashboard-panel:hover {
+    border-color: rgba(201, 162, 39, 0.24);
+}
+
+.panel-header h3 { font-size: 16px; }
+
+.panel-label {
+    font-size: 8.5px;
+    letter-spacing: 1.6px;
+}
+
+
+/* ---------------------------------------------------------
+   QUICK ACTIONS — supports <button> and <a>
+--------------------------------------------------------- */
+
+a.quick-action {
+    text-decoration: none;
+}
+
+.quick-action {
+    border-radius: 14px;
+    transition:
+        transform 0.28s var(--ease-spring),
+        border-color 0.28s ease,
+        background 0.28s ease;
+}
+
+.quick-action:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201, 162, 39, 0.36);
+    background: rgba(201, 162, 39, 0.06);
+}
+
+.quick-action:hover .quick-action-icon {
+    background: var(--gold);
+    color: #111;
+}
+
+.quick-action-icon { transition: 0.28s ease; }
+
+
+/* ---------------------------------------------------------
+   STARTUP HEALTH — radar visualization
+--------------------------------------------------------- */
+
+.intelligence-panel .health-content {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    grid-template-areas:
+        "score radar"
+        "factors factors";
+    gap: 26px 30px;
+    align-items: center;
+}
+
+.intelligence-panel .health-score { grid-area: score; }
+.health-radar { grid-area: radar; }
+.intelligence-panel .health-factors {
+    grid-area: factors;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px 20px;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+}
+
+.score-progress {
+    transition: stroke-dashoffset 1.1s var(--ease-spring);
+}
+
+.health-radar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radar-svg {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    overflow: visible;
+}
+
+.radar-grid {
+    fill: none;
+    stroke: var(--chart-grid);
+    stroke-width: 1;
+}
+
+.radar-spoke {
+    stroke: var(--chart-grid);
+    stroke-width: 1;
+}
+
+.radar-shape {
+    fill: rgba(201, 162, 39, 0.16);
+    stroke: var(--gold);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    transform-origin: center;
+    transition: opacity 0.7s ease, transform 0.7s var(--ease-spring);
+}
+
+body.viq-anim-ready .radar-shape {
+    opacity: 0;
+    transform: scale(0.6);
+}
+
+body.viq-anim-ready .radar-shape.viq-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.radar-dot { fill: var(--gold); }
+
+.radar-label {
+    fill: var(--muted);
+    font-size: 8px;
+    font-weight: 600;
+    font-family: "DM Sans", sans-serif;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 1000px) {
+    .intelligence-panel .health-content {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "score"
+            "radar"
+            "factors";
+    }
+}
+
+@media (max-width: 620px) {
+    .intelligence-panel .health-factors {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* ---------------------------------------------------------
+   INTEL DUO — market trend + competitive landscape
+--------------------------------------------------------- */
+
+.intel-duo {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1000px) {
+    .intel-duo { grid-template-columns: 1fr; }
+}
+
+.market-panel .panel-body,
+.landscape-panel .panel-body {
+    padding: 22px;
+}
+
+
+/* ---- Market opportunity chart ---- */
+
+.market-chart-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.market-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.market-grid-line {
+    stroke: var(--chart-grid);
+    stroke-width: 1;
+}
+
+.market-area {
+    fill: url(#viqMarketFill);
+    opacity: 0;
+    transition: opacity 0.9s ease 0.2s;
+}
+
+.market-area.viq-in { opacity: 1; }
+
+.market-line {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 4px 8px rgba(201, 162, 39, 0.25));
+}
+
+.market-point {
+    fill: var(--surface);
+    stroke: var(--gold);
+    stroke-width: 2.5;
+    cursor: pointer;
+    transition: r 0.2s ease;
+}
+
+.market-point:hover { r: 6; }
+
+.market-x-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 2px;
+}
+
+.market-x-labels span {
+    color: var(--muted);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+.market-tip {
+    position: absolute;
+    z-index: 5;
+
+    padding: 7px 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--surface);
+    box-shadow: var(--shadow);
+
+    color: var(--text);
+
+    font-size: 9px;
+    font-weight: 600;
+
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -6px);
+    transition: opacity 0.18s ease;
+    white-space: nowrap;
+}
+
+.market-tip.is-visible { opacity: 1; }
+
+.market-tip strong {
+    display: block;
+    color: var(--gold);
+    font-size: 11px;
+}
+
+
+/* ---- Competitive landscape map ---- */
+
+.landscape-map {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    margin-top: 6px;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    background:
+        linear-gradient(rgba(201, 162, 39, 0.04), rgba(201, 162, 39, 0.01));
+
+    overflow: hidden;
+}
+
+.landscape-map::before,
+.landscape-map::after {
+    content: "";
+    position: absolute;
+    background: var(--chart-grid);
+}
+
+.landscape-map::before {
+    left: 50%;
+    top: 8%;
+    bottom: 8%;
+    width: 1px;
+}
+
+.landscape-map::after {
+    top: 50%;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+}
+
+.lm-axis {
+    position: absolute;
+    color: var(--muted);
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.lm-axis.x-left   { left: 10px;  top: 50%; transform: translateY(-50%); }
+.lm-axis.x-right  { right: 10px; top: 50%; transform: translateY(-50%); }
+.lm-axis.y-top    { top: 8px;    left: 50%; transform: translateX(-50%); }
+.lm-axis.y-bottom { bottom: 8px; left: 50%; transform: translateX(-50%); }
+
+.lm-dot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    place-items: center;
+
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background: var(--muted);
+
+    cursor: default;
+}
+
+.lm-dot .lm-pop {
+    position: absolute;
+    bottom: calc(100% + 7px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 4px 8px;
+
+    border: 1px solid var(--border);
+    border-radius: 7px;
+
+    background: var(--surface);
+    box-shadow: var(--shadow);
+
+    color: var(--text);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+}
+
+.lm-dot:hover .lm-pop { opacity: 1; }
+
+.lm-dot.you {
+    width: 18px;
+    height: 18px;
+
+    background: var(--gold);
+    box-shadow:
+        0 0 0 5px rgba(201, 162, 39, 0.16),
+        0 4px 14px rgba(201, 162, 39, 0.4);
+
+    z-index: 2;
+}
+
+.landscape-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 13px;
+}
+
+.landscape-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--muted);
+
+    font-size: 8.5px;
+    font-weight: 600;
+}
+
+.landscape-legend span::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.landscape-legend span.is-you::before { background: var(--gold); }
+
+
+/* ---------------------------------------------------------
+   VENTUREIQ AI INSIGHTS
+--------------------------------------------------------- */
+
+.ai-insights { margin-bottom: 20px; }
+
+.ai-insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+@media (max-width: 1000px) {
+    .ai-insight-grid { grid-template-columns: 1fr; }
+}
+
+.ai-insight-card {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    background: var(--surface);
+
+    transition:
+        transform 0.28s var(--ease-spring),
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.ai-insight-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201, 162, 39, 0.28);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .ai-insight-card:hover {
+    box-shadow: 0 18px 40px rgba(72, 60, 26, 0.1);
+}
+
+.aii-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.aii-icon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    background: rgba(201, 162, 39, 0.1);
+    color: var(--gold);
+
+    font-size: 13px;
+}
+
+.ai-insight-card h4 {
+    font-family: "Playfair Display", serif;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.ai-insight-card p {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.priority {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.priority::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.priority.high {
+    background: rgba(194, 96, 63, 0.12);
+    color: var(--pri-high);
+}
+
+.priority.med {
+    background: rgba(201, 162, 39, 0.14);
+    color: var(--gold-dark);
+}
+
+.priority.low {
+    background: rgba(95, 143, 111, 0.14);
+    color: var(--pri-low);
+}
+
+
+/* ---------------------------------------------------------
+   EXECUTION PROGRESS TIMELINE
+--------------------------------------------------------- */
+
+.exec-progress { margin-bottom: 10px; }
+
+.exec-progress .panel-body { padding: 26px 24px 22px; }
+
+.exec-track {
+    display: flex;
+    align-items: flex-start;
+}
+
+.exec-step {
+    position: relative;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+
+    text-align: center;
+}
+
+.exec-step::before {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+
+    background: var(--border);
+}
+
+.exec-step:first-child::before { display: none; }
+
+.exec-step.done::before,
+.exec-step.current::before {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+}
+
+.exec-dot {
+    position: relative;
+    z-index: 1;
+
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--border);
+    background: var(--surface);
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.exec-step.done .exec-dot {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+    color: #111;
+}
+
+.exec-step.current .exec-dot {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 0 5px rgba(201, 162, 39, 0.16);
+    animation: viq-pulse-ring 2.4s ease-in-out infinite;
+}
+
+@keyframes viq-pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 5px rgba(201, 162, 39, 0.16); }
+    50%      { box-shadow: 0 0 0 9px rgba(201, 162, 39, 0.05); }
+}
+
+.exec-step strong {
+    font-size: 9.5px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.exec-step small {
+    color: var(--muted);
+    font-size: 8px;
+}
+
+.exec-step.current strong { color: var(--gold); }
+
+@media (max-width: 720px) {
+    .exec-track {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+    }
+
+    .exec-step {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
+
+        padding: 6px 0;
+    }
+
+    .exec-step::before {
+        top: -50%;
+        left: 13px;
+        width: 2px;
+        height: 100%;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION — keep the appended layer honest
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body.viq-anim-ready .viq-reveal,
+    body.viq-anim-ready .radar-shape {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .market-area { opacity: 1 !important; }
+
+    .live-pill > span,
+    .exec-step.current .exec-dot {
+        animation: none !important;
+    }
+}

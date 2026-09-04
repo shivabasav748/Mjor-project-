@@ -64,6 +64,20 @@
 
 <body>
 
+    <!-- =====================================================
+         THEME GUARD — light is the default experience.
+         Runs before paint to avoid a flash. Does NOT change
+         the toggle mechanism or the stored key/values.
+    ====================================================== -->
+
+    <script>
+        try {
+            if (localStorage.getItem("ventureiq-theme") !== "dark") {
+                document.body.classList.add("light-theme");
+            }
+        } catch (e) { /* ignore storage errors */ }
+    </script>
+
 
     <!-- =====================================================
          DASHBOARD APP
@@ -377,7 +391,7 @@
                     <div class="user-details">
 
                         <strong id="profileName">
-                            User
+                            Loading...
                         </strong>
 
                         <span>
@@ -509,7 +523,7 @@
                         <div class="header-profile-info">
 
                             <strong id="headerProfileName">
-                                User
+                                Loading...
                             </strong>
 
                             <span>
@@ -548,15 +562,15 @@
 
                             <span></span>
 
-                            YOUR INTELLIGENCE WORKSPACE
+                            GOOD TO SEE YOU AGAIN
 
                         </span>
 
 
                         <h2>
 
-                            Turn your ideas into
-                            <em>intelligent decisions.</em>
+                            Your startup intelligence
+                            <em>workspace is ready.</em>
 
                         </h2>
 
@@ -570,26 +584,56 @@
                             Welcome back,
                             <span id="welcomeName">User</span>.
 
-                            Let's understand your ideas,
-                            discover opportunities and build
-                            your next move with confidence.
+                            Here's where your venture stands today —
+                            viability, market opportunity, competition
+                            and the next move to make.
 
                         </p>
+
+
+                        <div class="welcome-meta">
+
+                            <span class="live-pill">
+                                <span></span>
+                                Workspace active
+                            </span>
+
+                            <span class="demo-note">
+                                Illustrative data where analysis is pending
+                            </span>
+
+                        </div>
 
                     </div>
 
 
-                    <button
-                        class="primary-action"
-                        id="newIdeaButton"
-                        type="button"
-                    >
+                    <div class="welcome-actions">
 
-                        <i class="fa-solid fa-plus"></i>
+                        <a
+                            class="primary-action"
+                            href="viabilityscore.html"
+                        >
 
-                        New Idea
+                            <i class="fa-solid fa-arrow-trend-up"></i>
 
-                    </button>
+                            Continue Analysis
+
+                        </a>
+
+
+                        <button
+                            class="secondary-action"
+                            id="newIdeaButton"
+                            type="button"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            New Idea
+
+                        </button>
+
+                    </div>
 
                 </section>
 
@@ -598,6 +642,17 @@
                 <!-- =================================================
                      OVERVIEW CARDS
                 ================================================== -->
+
+                <div class="block-head">
+
+                    <div>
+                        <span class="block-eyebrow">STARTUP HEALTH OVERVIEW</span>
+                        <h3>Key signals at a glance</h3>
+                    </div>
+
+                    <span class="demo-note">Illustrative values</span>
+
+                </div>
 
                 <section class="overview-grid">
 
@@ -666,7 +721,7 @@
                         </div>
 
                         <div class="overview-label">
-                            Average viability
+                            Viability score
                         </div>
 
 
@@ -707,7 +762,7 @@
                         </div>
 
                         <div class="overview-label">
-                            Market signals
+                            Market opportunity
                         </div>
 
 
@@ -751,7 +806,7 @@
                         </div>
 
                         <div class="overview-label">
-                            Roadmap progress
+                            Execution readiness
                         </div>
 
 
@@ -1048,6 +1103,58 @@
 
                             </button>
 
+
+                            <a
+                                class="quick-action"
+                                href="ideadiscovery.html"
+                            >
+
+                                <span class="quick-action-icon">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Discover ideas
+                                    </strong>
+
+                                    <small>
+                                        Find new opportunities
+                                    </small>
+
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+
+                            <a
+                                class="quick-action"
+                                href="strategicintelligence.html"
+                            >
+
+                                <span class="quick-action-icon">
+                                    <i class="fa-solid fa-chess"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Strategic intelligence
+                                    </strong>
+
+                                    <small>
+                                        See the bigger picture
+                                    </small>
+
+                                </span>
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
                         </div>
 
                     </div>
@@ -1117,7 +1224,7 @@
 
                                     <div class="score-center">
 
-                                        <strong>
+                                        <strong data-count-to="78">
                                             78
                                         </strong>
 
@@ -1138,7 +1245,8 @@
 
                                     <p>
                                         Your startup signals are
-                                        trending positively.
+                                        trending positively across
+                                        market and execution.
                                     </p>
 
                                 </div>
@@ -1146,10 +1254,51 @@
                             </div>
 
 
+                            <!-- =========================================
+                                 RADIAL / RADAR VISUALIZATION
+                            ========================================== -->
+
+                            <div class="health-radar">
+
+                                <svg
+                                    class="radar-svg"
+                                    viewBox="0 0 240 210"
+                                    role="img"
+                                    aria-label="Startup health radar: overall, market fit, product strength, competition and execution readiness"
+                                >
+
+                                    <polygon class="radar-grid" points="120,20 210,85 176,190 64,190 30,85"></polygon>
+                                    <polygon class="radar-grid" points="120,60 165,92 148,145 92,145 75,92"></polygon>
+
+                                    <line class="radar-spoke" x1="120" y1="105" x2="120" y2="20"></line>
+                                    <line class="radar-spoke" x1="120" y1="105" x2="210" y2="85"></line>
+                                    <line class="radar-spoke" x1="120" y1="105" x2="176" y2="190"></line>
+                                    <line class="radar-spoke" x1="120" y1="105" x2="64" y2="190"></line>
+                                    <line class="radar-spoke" x1="120" y1="105" x2="30" y2="85"></line>
+
+                                    <polygon
+                                        class="radar-shape"
+                                        data-center="120,105"
+                                        data-outer="120,20 210,85 176,190 64,190 30,85"
+                                        data-axes="78,84,69,76,81"
+                                        points="120,39 190,88 158,175 79,170 51,88"
+                                    ></polygon>
+
+                                    <text class="radar-label" x="120" y="12" text-anchor="middle">Overall</text>
+                                    <text class="radar-label" x="224" y="84" text-anchor="start">Market fit</text>
+                                    <text class="radar-label" x="182" y="205" text-anchor="middle">Execution</text>
+                                    <text class="radar-label" x="58" y="205" text-anchor="middle">Competition</text>
+                                    <text class="radar-label" x="16" y="84" text-anchor="end">Product</text>
+
+                                </svg>
+
+                            </div>
+
+
                             <div class="health-factors">
 
 
-                                <div class="health-factor">
+                                <div class="health-factor" data-value="84">
 
                                     <div class="factor-top">
 
@@ -1170,7 +1319,7 @@
                                 </div>
 
 
-                                <div class="health-factor">
+                                <div class="health-factor" data-value="72">
 
                                     <div class="factor-top">
 
@@ -1191,7 +1340,7 @@
                                 </div>
 
 
-                                <div class="health-factor">
+                                <div class="health-factor" data-value="76">
 
                                     <div class="factor-top">
 
@@ -1207,6 +1356,48 @@
 
                                     <div class="factor-bar">
                                         <span style="width:76%;"></span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="health-factor" data-value="81">
+
+                                    <div class="factor-top">
+
+                                        <span>
+                                            Product strength
+                                        </span>
+
+                                        <strong>
+                                            81
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="factor-bar">
+                                        <span style="width:81%;"></span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="health-factor" data-value="69">
+
+                                    <div class="factor-top">
+
+                                        <span>
+                                            Execution readiness
+                                        </span>
+
+                                        <strong>
+                                            69
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="factor-bar">
+                                        <span style="width:69%;"></span>
                                     </div>
 
                                 </div>
@@ -1362,6 +1553,298 @@
 
 
                 <!-- =================================================
+                     MARKET OPPORTUNITY + COMPETITIVE LANDSCAPE
+                ================================================== -->
+
+                <section class="intel-duo">
+
+
+                    <!-- Market opportunity trend -->
+
+                    <div class="dashboard-panel market-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-label">MARKET INTELLIGENCE</span>
+                                <h3>Market opportunity trend</h3>
+                            </div>
+
+                            <span class="demo-note">Illustrative</span>
+
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="market-chart-wrap">
+
+                                <svg
+                                    class="market-chart"
+                                    viewBox="0 0 520 220"
+                                    preserveAspectRatio="none"
+                                    role="img"
+                                    aria-label="Illustrative market opportunity growth from year one to year five"
+                                >
+
+                                    <defs>
+                                        <linearGradient id="viqMarketFill" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="rgba(201, 162, 39, 0.24)"></stop>
+                                            <stop offset="100%" stop-color="rgba(201, 162, 39, 0)"></stop>
+                                        </linearGradient>
+                                    </defs>
+
+                                    <line class="market-grid-line" x1="0" y1="20"  x2="520" y2="20"></line>
+                                    <line class="market-grid-line" x1="0" y1="70"  x2="520" y2="70"></line>
+                                    <line class="market-grid-line" x1="0" y1="120" x2="520" y2="120"></line>
+                                    <line class="market-grid-line" x1="0" y1="170" x2="520" y2="170"></line>
+
+                                    <path
+                                        class="market-area"
+                                        d="M20,170 L140,138 L260,150 L380,92 L500,44 L500,200 L20,200 Z"
+                                    ></path>
+
+                                    <polyline
+                                        class="market-line"
+                                        points="20,170 140,138 260,150 380,92 500,44"
+                                    ></polyline>
+
+                                    <circle class="market-point" cx="20"  cy="170" r="4.5" data-label="Year 1" data-value="$18M SAM"></circle>
+                                    <circle class="market-point" cx="140" cy="138" r="4.5" data-label="Year 2" data-value="$31M SAM"></circle>
+                                    <circle class="market-point" cx="260" cy="150" r="4.5" data-label="Year 3" data-value="$27M SAM"></circle>
+                                    <circle class="market-point" cx="380" cy="92"  r="4.5" data-label="Year 4" data-value="$46M SAM"></circle>
+                                    <circle class="market-point" cx="500" cy="44"  r="4.5" data-label="Year 5" data-value="$63M SAM"></circle>
+
+                                </svg>
+
+                                <div class="market-tip" id="marketTip"></div>
+
+                            </div>
+
+                            <div class="market-x-labels">
+                                <span>Year 1</span>
+                                <span>Year 2</span>
+                                <span>Year 3</span>
+                                <span>Year 4</span>
+                                <span>Year 5</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Competitive landscape -->
+
+                    <div class="dashboard-panel landscape-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-label">COMPETITIVE LANDSCAPE</span>
+                                <h3>Where you stand</h3>
+                            </div>
+
+                            <span class="demo-note">Illustrative</span>
+
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="landscape-map">
+
+                                <span class="lm-axis x-left">Traditional</span>
+                                <span class="lm-axis x-right">Innovative</span>
+                                <span class="lm-axis y-top">High reach</span>
+                                <span class="lm-axis y-bottom">Low reach</span>
+
+                                <div class="lm-dot you" style="left:70%; top:30%;">
+                                    <span class="lm-pop">Your startup</span>
+                                </div>
+
+                                <div class="lm-dot" style="left:34%; top:44%;">
+                                    <span class="lm-pop">Competitor A</span>
+                                </div>
+
+                                <div class="lm-dot" style="left:56%; top:70%;">
+                                    <span class="lm-pop">Competitor B</span>
+                                </div>
+
+                                <div class="lm-dot" style="left:24%; top:24%;">
+                                    <span class="lm-pop">Competitor C</span>
+                                </div>
+
+                            </div>
+
+                            <div class="landscape-legend">
+                                <span class="is-you">Your startup</span>
+                                <span>Competitor A</span>
+                                <span>Competitor B</span>
+                                <span>Competitor C</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     VENTUREIQ AI INSIGHTS
+                ================================================== -->
+
+                <section class="ai-insights">
+
+                    <div class="block-head">
+
+                        <div>
+                            <span class="block-eyebrow">VENTUREIQ AI INSIGHTS</span>
+                            <h3>What matters right now</h3>
+                        </div>
+
+                        <span class="demo-note">Illustrative insights</span>
+
+                    </div>
+
+                    <div class="ai-insight-grid">
+
+
+                        <div class="ai-insight-card">
+
+                            <div class="aii-top">
+                                <span class="aii-icon">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                </span>
+                                <span class="priority low">Opportunity</span>
+                            </div>
+
+                            <h4>Underserved segment in elderly care tech</h4>
+
+                            <p>
+                                Demand signals for assistive home robotics are rising
+                                faster than supply. Early positioning here could capture
+                                a defensible niche before larger players move in.
+                            </p>
+
+                        </div>
+
+
+                        <div class="ai-insight-card">
+
+                            <div class="aii-top">
+                                <span class="aii-icon">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                </span>
+                                <span class="priority high">Risk</span>
+                            </div>
+
+                            <h4>Regulatory and trust barriers are steep</h4>
+
+                            <p>
+                                Healthcare-adjacent products face compliance and safety
+                                certification hurdles. Budget time and capital for
+                                validation before committing to hardware production.
+                            </p>
+
+                        </div>
+
+
+                        <div class="ai-insight-card">
+
+                            <div class="aii-top">
+                                <span class="aii-icon">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </span>
+                                <span class="priority med">Recommendation</span>
+                            </div>
+
+                            <h4>Run 5 structured user interviews next</h4>
+
+                            <p>
+                                Your viability score is strong but execution readiness
+                                lags. Validate the core problem with real caregivers
+                                before investing further in the prototype.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     EXECUTION PROGRESS
+                ================================================== -->
+
+                <section class="exec-progress">
+
+                    <div class="dashboard-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-label">EXECUTION PROGRESS</span>
+                                <h3>Your journey so far</h3>
+                            </div>
+
+                            <span class="demo-note">Illustrative</span>
+
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="exec-track">
+
+                                <div class="exec-step done">
+                                    <span class="exec-dot"><i class="fa-solid fa-check"></i></span>
+                                    <strong>Idea</strong>
+                                    <small>Captured</small>
+                                </div>
+
+                                <div class="exec-step done">
+                                    <span class="exec-dot"><i class="fa-solid fa-check"></i></span>
+                                    <strong>Validation</strong>
+                                    <small>Scored 82%</small>
+                                </div>
+
+                                <div class="exec-step current">
+                                    <span class="exec-dot"><i class="fa-solid fa-chart-line"></i></span>
+                                    <strong>Market analysis</strong>
+                                    <small>In progress</small>
+                                </div>
+
+                                <div class="exec-step">
+                                    <span class="exec-dot">4</span>
+                                    <strong>Competition</strong>
+                                    <small>Pending</small>
+                                </div>
+
+                                <div class="exec-step">
+                                    <span class="exec-dot">5</span>
+                                    <strong>Strategy</strong>
+                                    <small>Pending</small>
+                                </div>
+
+                                <div class="exec-step">
+                                    <span class="exec-dot">6</span>
+                                    <strong>Execution</strong>
+                                    <small>Pending</small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
                      FOOTER
                 ================================================== -->
 
@@ -1401,239 +1884,11 @@
 
 
 
-    <!-- =====================================================
-         SUPABASE CLIENT
-    ====================================================== -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-    <script type="module">
-
-        import {
-            supabaseUrl,
-            supabaseKey
-        } from "../config/supabase.js";
-
-
-        const supabaseClient =
-            window.supabase.createClient(
-                supabaseUrl,
-                supabaseKey
-            );
-
-
-        /*
-         * Make the client available to
-         * dashboard.js as well.
-         */
-
-        window.supabaseClient =
-            supabaseClient;
-
-
-        /* =================================================
-           LOAD CURRENT LOGGED-IN USER
-        ================================================= */
-
-        async function loadLoggedInUser() {
-
-            try {
-
-                const {
-                    data,
-                    error
-                } =
-                    await supabaseClient.auth.getUser();
-
-
-                if (error) {
-
-                    console.error(
-                        "Unable to get logged-in user:",
-                        error
-                    );
-
-                    return;
-
-                }
-
-
-                const user =
-                    data.user;
-
-
-                if (!user) {
-
-                    console.warn(
-                        "No logged-in user found."
-                    );
-
-                    return;
-
-                }
-
-
-                console.log(
-                    "Logged-in user:",
-                    user
-                );
-
-
-                /* =================================================
-                   GET NAME FROM SIGNUP USER METADATA
-                ================================================= */
-
-                const fullName =
-                    user.user_metadata?.full_name ||
-                    user.user_metadata?.name ||
-                    "User";
-
-
-                const cleanName =
-                    fullName.trim();
-
-
-                const firstName =
-                    cleanName
-                        .split(/\s+/)[0] ||
-                    "User";
-
-
-                const initial =
-                    firstName
-                        .charAt(0)
-                        .toUpperCase();
-
-
-                /* =================================================
-                   SIDEBAR NAME
-                ================================================= */
-
-                const profileName =
-                    document.getElementById(
-                        "profileName"
-                    );
-
-
-                if (profileName) {
-
-                    profileName.textContent =
-                        cleanName;
-
-                }
-
-
-                /* =================================================
-                   SIDEBAR INITIAL
-                ================================================= */
-
-                const profileInitial =
-                    document.getElementById(
-                        "profileInitial"
-                    );
-
-
-                if (profileInitial) {
-
-                    profileInitial.textContent =
-                        initial;
-
-                }
-
-
-                /* =================================================
-                   HEADER NAME
-                ================================================= */
-
-                const headerProfileName =
-                    document.getElementById(
-                        "headerProfileName"
-                    );
-
-
-                if (headerProfileName) {
-
-                    headerProfileName.textContent =
-                        cleanName;
-
-                }
-
-
-                /* =================================================
-                   HEADER INITIAL
-                ================================================= */
-
-                const headerProfileInitial =
-                    document.getElementById(
-                        "headerProfileInitial"
-                    );
-
-
-                if (headerProfileInitial) {
-
-                    headerProfileInitial.textContent =
-                        initial;
-
-                }
-
-
-                /* =================================================
-                   WELCOME MESSAGE
-                ================================================= */
-
-                const welcomeName =
-                    document.getElementById(
-                        "welcomeName"
-                    );
-
-
-                if (welcomeName) {
-
-                    welcomeName.textContent =
-                        firstName;
-
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "Error loading logged-in user:",
-                    error
-                );
-
-            }
-
-        }
-
-
-        /*
-         * Load user after page is ready.
-         */
-
-        if (
-            document.readyState ===
-            "loading"
-        ) {
-
-            document.addEventListener(
-                "DOMContentLoaded",
-                loadLoggedInUser
-            );
-
-        } else {
-
-            loadLoggedInUser();
-
-        }
-
-    </script>
-
-
-
-    <!-- =====================================================
-         DASHBOARD JAVASCRIPT
-    ====================================================== -->
+    <script type="module" src="../js/session-guard.js"></script>
+
+        <!-- =====================================================
+            DASHBOARD JAVASCRIPT
+        ====================================================== -->
 
     <script type="module" src="../js/dashboard.js"></script>
 

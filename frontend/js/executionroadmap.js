@@ -487,6 +487,32 @@ function updateRoadmapProgress() {
 
     }
 
+    const overallProgress =
+        document.getElementById("overallProgress");
+
+    if (overallProgress) {
+        overallProgress.textContent = `${percentage}%`;
+    }
+
+    const ringValue = document.getElementById("ringValue");
+    const progressRing = document.querySelector(".progress-ring");
+
+    if (ringValue) ringValue.textContent = `${percentage}%`;
+    if (progressRing) {
+        progressRing.style.setProperty(
+            "--progress",
+            `${percentage * 3.6}deg`
+        );
+    }
+
+    const ringSummary =
+        document.querySelector(".progress-ring-panel .progress-ring + .legend");
+
+    if (ringSummary) {
+        const summary = ringSummary.previousElementSibling?.querySelector("span");
+        if (summary) summary.innerHTML = `${completed} of ${total}<br>milestones complete`;
+    }
+
 
     /* Progress bar */
 

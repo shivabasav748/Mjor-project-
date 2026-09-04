@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -859,6 +859,617 @@
     .live-dot {
       color: #2ecc71;
     }
+
+
+    /* =========================================================
+       =========================================================
+       VENTUREIQ — AI VALIDATION PREMIUM UPGRADE LAYER
+       Appended. Works within this page's dark executive
+       design system. Reuses the :root gold variables above.
+       =========================================================
+    ========================================================= */
+
+    :root {
+      --vx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --vx-grid: rgba(255, 255, 255, 0.07);
+      --vx-panel: rgba(12, 12, 18, 0.6);
+      --vx-panel-2: rgba(10, 10, 15, 0.8);
+      --vx-ok: #2ecc71;
+      --vx-warn: #E8A13B;
+      --vx-risk: #E5623C;
+    }
+
+    /* ---- reveal ---- */
+    body.vx-anim .vx-reveal { opacity: 0; transform: translateY(18px); }
+    body.vx-anim .vx-reveal.vx-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s var(--vx-ease);
+    }
+
+    /* ---- hero upgrade ---- */
+    .vx-hero-visual {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 22px auto;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .vx-hero-ring {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 50%;
+      animation: vx-spin 14s linear infinite;
+    }
+    .vx-hero-ring.two { inset: 16px; border-style: dashed; animation-duration: 9s; animation-direction: reverse; }
+    .vx-hero-ring.three { inset: 32px; border-color: rgba(212, 175, 55, 0.55); animation-duration: 6s; }
+    .vx-hero-core {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      box-shadow: 0 0 26px rgba(212, 175, 55, 0.5);
+      display: grid; place-items: center;
+      color: #08080a; font-size: 15px;
+    }
+    @keyframes vx-spin { to { transform: rotate(360deg); } }
+
+    .vx-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 7px 15px;
+      border: 1px solid var(--card-border);
+      border-radius: 100px;
+      background: rgba(46, 204, 113, 0.06);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .vx-status i {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--vx-ok);
+      box-shadow: 0 0 8px var(--vx-ok);
+      animation: vx-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes vx-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    /* ---- loading upgrade ---- */
+    .vx-loading-steps {
+      list-style: none;
+      max-width: 340px;
+      margin: 26px auto 0 auto;
+      text-align: left;
+      display: grid;
+      gap: 9px;
+    }
+    .vx-loading-steps li {
+      position: relative;
+      padding-left: 26px;
+      font-size: 13px;
+      color: var(--text-muted);
+      opacity: 0.4;
+      animation: vx-step-in 0.4s ease forwards;
+    }
+    .vx-loading-steps li::before {
+      content: "";
+      position: absolute; left: 3px; top: 5px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-muted);
+    }
+    .vx-loading-steps li:nth-child(1) { animation-delay: 0.1s; }
+    .vx-loading-steps li:nth-child(2) { animation-delay: 0.7s; }
+    .vx-loading-steps li:nth-child(3) { animation-delay: 1.3s; }
+    .vx-loading-steps li:nth-child(4) { animation-delay: 1.9s; }
+    .vx-loading-steps li:nth-child(5) { animation-delay: 2.5s; }
+    @keyframes vx-step-in {
+      to { opacity: 1; color: var(--gold-light); }
+    }
+    .vx-loading-steps li::after {
+      content: "";
+      position: absolute; left: 3px; top: 5px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-glow);
+      transform: scale(0);
+      animation: vx-dot-fill 0.4s ease forwards;
+      animation-delay: inherit;
+    }
+    @keyframes vx-dot-fill { to { transform: scale(1); } }
+
+    .vx-loading-bar {
+      width: 240px;
+      height: 4px;
+      margin: 24px auto 0 auto;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .vx-loading-bar span {
+      display: block;
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--gold-gradient);
+      animation: vx-indeterminate 1.4s ease-in-out infinite;
+    }
+    @keyframes vx-indeterminate {
+      0% { transform: translateX(-130%); }
+      100% { transform: translateX(330%); }
+    }
+
+    /* ---- shared new-section shell ---- */
+    .vx-section { margin-bottom: 34px; }
+    .vx-section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .vx-eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 6px;
+    }
+    .vx-section-head h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--gold-light);
+    }
+    .vx-demo-tag {
+      flex-shrink: 0;
+      padding: 4px 10px;
+      border: 1px solid var(--card-border);
+      border-radius: 100px;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ---- idea snapshot ---- */
+    .vx-snapshot {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--card-border);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .vx-snapshot > div {
+      background: var(--vx-panel-2);
+      padding: 16px 18px;
+    }
+    .vx-snapshot span {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .vx-snapshot strong {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* ---- validation dimension cards ---- */
+    .vx-dims {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .vx-dim {
+      background: var(--vx-panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.3s var(--vx-ease), border-color 0.3s ease;
+    }
+    .vx-dim:hover { transform: translateY(-4px); border-color: var(--card-border-hover); }
+    .vx-dim-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      line-height: 1.4;
+      min-height: 30px;
+    }
+    .vx-dim-score {
+      font-size: 26px;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: var(--text-main);
+    }
+    .vx-dim-score small { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .vx-bar {
+      height: 6px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .vx-bar > span {
+      display: block; height: 100%; width: 0;
+      border-radius: inherit;
+      background: var(--gold-gradient);
+      transition: width 1.1s var(--vx-ease);
+    }
+    .vx-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      border: 1px solid currentColor;
+    }
+    .vx-badge::before {
+      content: "";
+      width: 5px; height: 5px; border-radius: 50%;
+      background: currentColor;
+    }
+    .vx-badge.high { color: var(--vx-ok); background: rgba(46, 204, 113, 0.1); }
+    .vx-badge.mod  { color: var(--gold-primary); background: rgba(212, 175, 55, 0.12); }
+    .vx-badge.fair { color: var(--vx-warn); background: rgba(232, 161, 59, 0.12); }
+    .vx-badge.low  { color: var(--vx-risk); background: rgba(229, 98, 60, 0.12); }
+    .vx-dim p {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ---- score status line ---- */
+    .vx-status-line {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .vx-status-line strong {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--gold-light);
+    }
+    .vx-status-line span { color: var(--text-muted); font-size: 13px; }
+
+    /* ---- radar ---- */
+    .vx-radar-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      gap: 28px;
+      align-items: center;
+      background: var(--vx-panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .vx-radar { width: 100%; max-width: 320px; height: auto; overflow: visible; margin: 0 auto; display: block; }
+    .vx-radar-grid, .vx-radar-spoke { fill: none; stroke: var(--vx-grid); stroke-width: 1; }
+    .vx-radar-shape {
+      fill: rgba(212, 175, 55, 0.16);
+      stroke: var(--gold-primary);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      transform-origin: center;
+      transition: opacity 0.6s ease, transform 0.75s var(--vx-ease);
+    }
+    body.vx-anim .vx-radar-shape { opacity: 0; transform: scale(0.5); }
+    body.vx-anim .vx-radar-shape.vx-in { opacity: 1; transform: scale(1); }
+    .vx-radar-dot { fill: var(--gold-light); transition: r 0.2s ease; cursor: pointer; }
+    .vx-radar-dot:hover { r: 5; }
+    .vx-radar-label { fill: var(--text-muted); font-size: 8px; font-weight: 600; font-family: var(--font-body); }
+    .vx-radar-legend { display: grid; gap: 10px; }
+    .vx-radar-legend div { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: center; }
+    .vx-radar-legend .rl-name { font-size: 11px; color: var(--text-muted); }
+    .vx-radar-legend .rl-val { font-size: 12px; font-weight: 700; color: var(--gold-light); }
+    .vx-radar-legend .rl-bar { grid-column: 1 / -1; height: 4px; border-radius: 100px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .vx-radar-legend .rl-bar span { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--gold-gradient); transition: width 1s var(--vx-ease); }
+
+    /* ---- product-market fit flow ---- */
+    .vx-pmf {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      background: var(--vx-panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 26px;
+    }
+    .vx-pmf-flow { display: grid; gap: 8px; }
+    .vx-pmf-flow .pf {
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      background: var(--vx-panel-2);
+      font-size: 13px;
+      text-align: center;
+    }
+    .vx-pmf-flow .pf small { display: block; color: var(--text-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+    .vx-pmf-arrow { text-align: center; color: rgba(212, 175, 55, 0.5); font-size: 13px; }
+    .vx-pmf-core {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: radial-gradient(circle, rgba(212,175,55,0.16), rgba(212,175,55,0.02) 70%);
+      border: 1px solid var(--gold-primary);
+      text-align: center;
+    }
+    .vx-pmf-core b { font-size: 40px; font-weight: 800; font-family: var(--font-heading); color: var(--gold-light); line-height: 1; }
+    .vx-pmf-core span { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+    .vx-pmf-note { grid-column: 1 / -1; color: var(--text-muted); font-size: 12px; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; }
+
+    /* ---- competitive map ---- */
+    .vx-map {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      background: linear-gradient(rgba(212, 175, 55, 0.03), transparent);
+      overflow: hidden;
+    }
+    .vx-map::before, .vx-map::after {
+      content: ""; position: absolute; background: var(--vx-grid);
+    }
+    .vx-map::before { left: 50%; top: 6%; bottom: 6%; width: 1px; }
+    .vx-map::after { top: 50%; left: 6%; right: 6%; height: 1px; }
+    .vx-map-axis {
+      position: absolute;
+      font-size: 8px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .vx-map-axis.x-l { left: 10px; top: 50%; transform: translateY(-50%); }
+    .vx-map-axis.x-r { right: 10px; top: 50%; transform: translateY(-50%); }
+    .vx-map-axis.y-t { top: 8px; left: 50%; transform: translateX(-50%); }
+    .vx-map-axis.y-b { bottom: 8px; left: 50%; transform: translateX(-50%); }
+    .vx-map-dot {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+    .vx-map-dot.you {
+      width: 18px; height: 18px;
+      background: var(--gold-primary);
+      box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.16), 0 4px 14px rgba(212, 175, 55, 0.4);
+      z-index: 2;
+    }
+    .vx-map-dot b {
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 8px; font-weight: 700;
+      color: var(--text-main);
+      background: rgba(5,5,5,0.8);
+      padding: 2px 6px; border-radius: 5px;
+      border: 1px solid var(--card-border);
+    }
+    .vx-map-note { margin-top: 14px; color: var(--text-muted); font-size: 12px; line-height: 1.6; }
+
+    /* ---- risks ---- */
+    .vx-risks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .vx-risk-card {
+      background: var(--vx-panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid var(--text-muted);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: grid;
+      gap: 10px;
+    }
+    .vx-risk-card.lvl-low { border-left-color: var(--vx-ok); }
+    .vx-risk-card.lvl-medium { border-left-color: var(--vx-warn); }
+    .vx-risk-card.lvl-high { border-left-color: var(--vx-risk); }
+    .vx-risk-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .vx-risk-top h4 { font-size: 13px; color: var(--gold-light); font-weight: 700; }
+    .vx-risk-level {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 100px;
+      font-size: 9px; font-weight: 800; letter-spacing: 1px;
+      border: 1px solid currentColor;
+    }
+    .vx-risk-level::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .lvl-low .vx-risk-level { color: var(--vx-ok); }
+    .lvl-medium .vx-risk-level { color: var(--vx-warn); }
+    .lvl-high .vx-risk-level { color: var(--vx-risk); }
+    .vx-risk-card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .vx-risk-action {
+      font-size: 11px; color: var(--text-main);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 10px;
+    }
+    .vx-risk-action b { color: var(--gold-light); font-weight: 700; }
+
+    /* ---- AI recommendation ---- */
+    .vx-rec {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+      border: 1px solid var(--gold-primary);
+      border-radius: var(--radius-md);
+      padding: 28px;
+    }
+    .vx-rec-verdict {
+      font-family: var(--font-heading);
+      font-size: 19px;
+      color: var(--gold-light);
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .vx-rec-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+    .vx-rec-grid h5 {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold-primary);
+      margin-bottom: 10px;
+    }
+    .vx-rec-why { list-style: none; display: grid; gap: 10px; }
+    .vx-rec-why li {
+      position: relative; padding-left: 22px;
+      font-size: 13px; color: var(--text-main); line-height: 1.55;
+    }
+    .vx-rec-why li::before {
+      content: "→"; position: absolute; left: 0; color: var(--gold-primary); font-weight: 700;
+    }
+    .vx-rec-next p { font-size: 13px; color: var(--text-main); line-height: 1.6; margin-bottom: 14px; }
+
+    /* ---- score breakdown ---- */
+    .vx-breakdown { display: grid; gap: 16px; }
+    .vx-bd-row { display: grid; grid-template-columns: 130px 1fr 44px; gap: 14px; align-items: center; }
+    .vx-bd-row .bd-name { font-size: 12px; font-weight: 600; color: var(--text-muted); }
+    .vx-bd-row .bd-val { font-size: 13px; font-weight: 700; color: var(--gold-light); text-align: right; }
+    .vx-bd-track { height: 12px; border-radius: 6px; background: rgba(255,255,255,0.06); overflow: hidden; }
+    .vx-bd-track span { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--gold-gradient); transition: width 1.1s var(--vx-ease); }
+
+    /* ---- validation journey ---- */
+    .vx-journey { display: flex; align-items: flex-start; }
+    .vx-journey-step {
+      position: relative; flex: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      text-align: center;
+    }
+    .vx-journey-step::before {
+      content: ""; position: absolute; top: 13px; left: -50%;
+      width: 100%; height: 2px; background: rgba(255,255,255,0.1);
+    }
+    .vx-journey-step:first-child::before { display: none; }
+    .vx-journey-step.done::before, .vx-journey-step.current::before { background: var(--gold-gradient); }
+    .vx-journey-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: grid; place-items: center;
+      border: 2px solid rgba(255,255,255,0.14);
+      background: var(--bg-dark);
+      color: var(--text-muted);
+      font-size: 10px; font-weight: 700;
+      position: relative; z-index: 1;
+    }
+    .vx-journey-step.done .vx-journey-dot { border-color: transparent; background: var(--gold-gradient); color: #08080a; }
+    .vx-journey-step.current .vx-journey-dot {
+      border-color: var(--gold-primary); color: var(--gold-primary);
+      box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.16);
+      animation: vx-ring 2.4s ease-in-out infinite;
+    }
+    @keyframes vx-ring {
+      0%,100% { box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.16); }
+      50% { box-shadow: 0 0 0 9px rgba(212, 175, 55, 0.04); }
+    }
+    .vx-journey-step small { font-size: 8.5px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--text-muted); line-height: 1.3; }
+    .vx-journey-step.current small { color: var(--gold-light); }
+
+    /* ---- decision panel ---- */
+    .vx-decision { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .vx-decision-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 22px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      background: var(--vx-panel);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.3s var(--vx-ease), border-color 0.3s ease, background 0.3s ease;
+    }
+    .vx-decision-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.06);
+    }
+    .vx-decision-card .dc-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: grid; place-items: center;
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-primary);
+      margin-bottom: 4px;
+    }
+    .vx-decision-card strong { font-size: 14px; color: var(--gold-light); }
+    .vx-decision-card span { font-size: 11px; color: var(--text-muted); }
+    .vx-decision-card .dc-go {
+      margin-top: auto;
+      font-size: 11px; font-weight: 700; color: var(--gold-primary);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+
+    /* ---- error state ---- */
+    #validation-error { display: none; text-align: center; padding: 48px 24px; }
+    #validation-error .ve-icon {
+      width: 52px; height: 52px;
+      margin: 0 auto 16px auto;
+      display: grid; place-items: center;
+      border-radius: 14px;
+      background: rgba(229, 98, 60, 0.12);
+      color: var(--vx-risk);
+      font-size: 22px;
+    }
+    #validation-error h3 { font-family: var(--font-heading); font-size: 20px; color: var(--gold-light); margin-bottom: 8px; }
+    #validation-error p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+
+    /* ---- responsive ---- */
+    @media (max-width: 980px) {
+      .vx-dims { grid-template-columns: repeat(3, 1fr); }
+      .vx-radar-wrap { grid-template-columns: 1fr; }
+      .vx-pmf { grid-template-columns: 1fr; text-align: center; }
+      .vx-pmf-core { margin: 0 auto; }
+      .vx-rec-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .vx-snapshot { grid-template-columns: 1fr 1fr; }
+      .vx-dims { grid-template-columns: 1fr 1fr; }
+      .vx-risks { grid-template-columns: 1fr; }
+      .vx-decision { grid-template-columns: 1fr; }
+      .vx-bd-row { grid-template-columns: 92px 1fr 40px; }
+      .vx-journey { flex-direction: column; align-items: stretch; gap: 4px; }
+      .vx-journey-step { flex-direction: row; gap: 12px; text-align: left; padding: 5px 0; }
+      .vx-journey-step::before { top: -50%; left: 13px; width: 2px; height: 100%; }
+    }
+    @media (max-width: 480px) {
+      .vx-snapshot { grid-template-columns: 1fr; }
+      .vx-dims { grid-template-columns: 1fr; }
+    }
+
+    /* ---- reduced motion ---- */
+    @media (prefers-reduced-motion: reduce) {
+      body.vx-anim .vx-reveal,
+      body.vx-anim .vx-radar-shape {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .vx-hero-ring, .vx-status i, .vx-loading-bar span,
+      .vx-journey-step.current .vx-journey-dot,
+      .vx-loading-steps li, .vx-loading-steps li::after {
+        animation: none !important;
+      }
+      .vx-bar > span, .vx-bd-track span, .vx-radar-legend .rl-bar span {
+        transition: none !important;
+      }
+    }
   </style>
     <link rel="stylesheet" href="../css/quickhand.css">
 </head>
@@ -871,6 +1482,7 @@
       <h1 class="brand-title">VentureIQ <span class="gold-text"></span></h1>
     </a>
     <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
       <span class="active-link">Validation Dashboard</span>
       <span>Market Intel</span>
       <span>Settings</span>
@@ -884,11 +1496,22 @@
     
     <!-- Header -->
     <header>
-      <div class="brand-badge">
-        <span></span> AI Startup Intelligence
+      <div class="vx-hero-visual" aria-hidden="true">
+        <span class="vx-hero-ring"></span>
+        <span class="vx-hero-ring two"></span>
+        <span class="vx-hero-ring three"></span>
+        <span class="vx-hero-core">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </span>
       </div>
-      <h1 class="hero-title">AI Idea Validation</h1>
-      <p class="hero-subtitle">Enter your startup parameters to simulate an executive market analysis, risk profile, and monetization readiness report.</p>
+      <div class="brand-badge">
+        <span></span> VentureIQ AI Validation
+      </div>
+      <h1 class="hero-title">Know whether your idea is worth building.</h1>
+      <p class="hero-subtitle">VentureIQ evaluates your idea across market demand, customer need, competition, differentiation and execution potential.</p>
+      <div class="vx-status">
+        <i></i> AI Validation Engine Ready
+      </div>
     </header>
 
     <!-- FORM SECTION -->
@@ -966,7 +1589,17 @@
         <div class="loading-icon">⚡</div>
       </div>
       <h2 class="loading-title">Synthesizing Startup Intelligence</h2>
-      <p id="loading-status" class="loading-status-text">Analyzing Idea Structure & Keyword Matrix...</p>
+      <p id="loading-status" class="loading-status-text">Analyzing your problem...</p>
+
+      <ul class="vx-loading-steps" aria-hidden="true">
+        <li>Analyzing your problem</li>
+        <li>Evaluating market demand</li>
+        <li>Studying competitive pressure</li>
+        <li>Checking product&ndash;market fit</li>
+        <li>Assessing execution feasibility</li>
+      </ul>
+
+      <div class="vx-loading-bar" aria-hidden="true"><span></span></div>
     </section>
 
     <!-- RESULT SECTION -->
@@ -993,6 +1626,34 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
           Export Report
         </button>
+      </div>
+
+      <!-- IDEA SNAPSHOT -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Idea Snapshot</span>
+            <h3>What we evaluated</h3>
+          </div>
+          <span class="vx-demo-tag">From your inputs</span>
+        </div>
+        <div class="vx-snapshot">
+          <div><span>Idea name</span><strong id="vx-snap-name">—</strong></div>
+          <div><span>Industry</span><strong id="vx-snap-industry">—</strong></div>
+          <div><span>Target audience</span><strong id="vx-snap-audience">—</strong></div>
+          <div><span>Problem</span><strong id="vx-snap-problem">—</strong></div>
+          <div><span>Proposed solution</span><strong id="vx-snap-solution">—</strong></div>
+          <div><span>Business model</span><strong id="vx-snap-model">—</strong></div>
+        </div>
+      </div>
+
+      <!-- SCORE STATUS -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-status-line">
+          <span class="vx-eyebrow" style="margin:0;">Overall Validation Score</span>
+          <strong id="vx-status-label">—</strong>
+          <span id="vx-status-note">Illustrative — derived from your inputs by the rule-based engine.</span>
+        </div>
       </div>
 
       <!-- Top Score + Metrics -->
@@ -1074,6 +1735,203 @@
         <div class="rec-steps-grid" id="res-roadmap-grid"></div>
       </div>
 
+
+      <!-- ============ VALIDATION DIMENSIONS ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Validation Dimensions</span>
+            <h3>Five factors behind the score</h3>
+          </div>
+          <span class="vx-demo-tag">Illustrative</span>
+        </div>
+        <div class="vx-dims" id="vx-dims"><!-- injected --></div>
+      </div>
+
+
+      <!-- ============ VALIDATION RADAR ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Validation Radar</span>
+            <h3>Your startup profile</h3>
+          </div>
+          <span class="vx-demo-tag">Illustrative</span>
+        </div>
+        <div class="vx-radar-wrap">
+          <svg class="vx-radar" viewBox="0 0 240 220" role="img" aria-label="Validation radar across problem strength, market demand, product-market fit, competition, feasibility and scalability">
+            <polygon class="vx-radar-grid" points="120,20 198,65 198,155 120,200 42,155 42,65"></polygon>
+            <polygon class="vx-radar-grid" points="120,65 159,87.5 159,132.5 120,155 81,132.5 81,87.5"></polygon>
+            <line class="vx-radar-spoke" x1="120" y1="110" x2="120" y2="20"></line>
+            <line class="vx-radar-spoke" x1="120" y1="110" x2="198" y2="65"></line>
+            <line class="vx-radar-spoke" x1="120" y1="110" x2="198" y2="155"></line>
+            <line class="vx-radar-spoke" x1="120" y1="110" x2="120" y2="200"></line>
+            <line class="vx-radar-spoke" x1="120" y1="110" x2="42" y2="155"></line>
+            <line class="vx-radar-spoke" x1="120" y1="110" x2="42" y2="65"></line>
+            <polygon class="vx-radar-shape" id="vx-radar-shape"
+              data-center="120,110"
+              data-outer="120,20 198,65 198,155 120,200 42,155 42,65"
+              data-axes="0,0,0,0,0,0"
+              points="120,110 120,110 120,110 120,110 120,110 120,110"></polygon>
+            <text class="vx-radar-label" x="120" y="12" text-anchor="middle">Problem</text>
+            <text class="vx-radar-label" x="205" y="62" text-anchor="start">Market</text>
+            <text class="vx-radar-label" x="205" y="162" text-anchor="start">PM-Fit</text>
+            <text class="vx-radar-label" x="120" y="214" text-anchor="middle">Competition</text>
+            <text class="vx-radar-label" x="35" y="162" text-anchor="end">Feasibility</text>
+            <text class="vx-radar-label" x="35" y="62" text-anchor="end">Scalability</text>
+          </svg>
+          <div class="vx-radar-legend" id="vx-radar-legend"><!-- injected --></div>
+        </div>
+      </div>
+
+
+      <!-- ============ PRODUCT-MARKET FIT ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Product&ndash;Market Fit</span>
+            <h3>From problem to demand</h3>
+          </div>
+          <span class="vx-demo-tag">Illustrative</span>
+        </div>
+        <div class="vx-pmf">
+          <div class="vx-pmf-flow">
+            <div class="pf"><small>Customer problem</small>A recurring, costly pain your audience already works around.</div>
+            <div class="vx-pmf-arrow">&darr;</div>
+            <div class="pf"><small>Customer need</small>A clear job-to-be-done they would pay to have solved.</div>
+          </div>
+          <div class="vx-pmf-core">
+            <b id="vx-pmf-score">0</b>
+            <span>PM-Fit</span>
+          </div>
+          <div class="vx-pmf-flow">
+            <div class="pf"><small>Your solution</small>The product framed around that exact need.</div>
+            <div class="vx-pmf-arrow">&darr;</div>
+            <div class="pf"><small>Market demand</small>Enough buyers, reachable, ready now.</div>
+          </div>
+          <p class="vx-pmf-note" id="vx-pmf-note">&mdash;</p>
+        </div>
+      </div>
+
+
+      <!-- ============ COMPETITIVE POSITION ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Competitive Position</span>
+            <h3>Where your idea sits</h3>
+          </div>
+          <span class="vx-demo-tag">Illustrative &mdash; not real market research</span>
+        </div>
+        <div class="vx-map">
+          <span class="vx-map-axis x-l">Low differentiation</span>
+          <span class="vx-map-axis x-r">High differentiation</span>
+          <span class="vx-map-axis y-t">High competition</span>
+          <span class="vx-map-axis y-b">Low competition</span>
+          <div class="vx-map-dot you" id="vx-map-you" style="left:50%; top:50%;"><b>Your idea</b></div>
+          <div class="vx-map-dot" style="left:30%; top:32%;"><b>Competitor A</b></div>
+          <div class="vx-map-dot" style="left:44%; top:66%;"><b>Competitor B</b></div>
+          <div class="vx-map-dot" style="left:22%; top:52%;"><b>Competitor C</b></div>
+        </div>
+        <p class="vx-map-note" id="vx-map-note">Your opportunity appears strongest where differentiation is high and direct competition is limited.</p>
+      </div>
+
+
+      <!-- ============ VALIDATION RISKS ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Validation Risks</span>
+            <h3>What could break this</h3>
+          </div>
+          <span class="vx-demo-tag">Illustrative</span>
+        </div>
+        <div class="vx-risks" id="vx-risks"><!-- injected --></div>
+      </div>
+
+
+      <!-- ============ VENTUREIQ AI RECOMMENDATION ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">VentureIQ AI Recommendation</span>
+            <h3>The call</h3>
+          </div>
+          <span class="vx-demo-tag">Rule-based &middot; illustrative</span>
+        </div>
+        <div class="vx-rec">
+          <p class="vx-rec-verdict" id="vx-rec-verdict">&mdash;</p>
+          <div class="vx-rec-grid">
+            <div>
+              <h5>Why</h5>
+              <ul class="vx-rec-why" id="vx-rec-why"><!-- injected --></ul>
+            </div>
+            <div class="vx-rec-next">
+              <h5>Next step</h5>
+              <p id="vx-rec-next">&mdash;</p>
+              <a class="btn-outline" id="vx-rec-cta" href="marketintelligence.html" style="font-size:13px; padding:12px 22px;">Go to Market Intelligence</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ============ SCORE BREAKDOWN ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Validation Score Breakdown</span>
+            <h3>How the score is built</h3>
+          </div>
+          <span class="vx-demo-tag">Illustrative weighting</span>
+        </div>
+        <div class="vx-breakdown" id="vx-breakdown"><!-- injected --></div>
+      </div>
+
+
+      <!-- ============ VALIDATION JOURNEY ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Validation Journey</span>
+            <h3>Where you are</h3>
+          </div>
+        </div>
+        <div class="vx-journey" id="vx-journey"><!-- injected --></div>
+      </div>
+
+
+      <!-- ============ YOUR NEXT MOVE ============ -->
+      <div class="vx-section vx-reveal">
+        <div class="vx-section-head">
+          <div>
+            <span class="vx-eyebrow">Your Next Move</span>
+            <h3>Take it further</h3>
+          </div>
+        </div>
+        <div class="vx-decision">
+          <a class="vx-decision-card" href="marketintelligence.html">
+            <span class="dc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></span>
+            <strong>Validate further</strong>
+            <span>Size the market, confirm demand and the beachhead segment.</span>
+            <span class="dc-go">Market Intelligence &rarr;</span>
+          </a>
+          <a class="vx-decision-card" href="competitoranalysis.html">
+            <span class="dc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"></circle><path d="M17 11l2 2 4-4"></path><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path></svg></span>
+            <strong>Analyze competitors</strong>
+            <span>Map who else is here and where the open space is.</span>
+            <span class="dc-go">Competitor Analysis &rarr;</span>
+          </a>
+          <a class="vx-decision-card" href="strategicintelligence.html">
+            <span class="dc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.2 1 6.4L12 17l-5.5 2.5 1-6.4L3 8.9 9 8z"></path></svg></span>
+            <strong>Build strategy</strong>
+            <span>Turn the validated idea into a go-to-market plan.</span>
+            <span class="dc-go">Strategic Intelligence &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+
       <!-- Footer Buttons -->
       <div class="action-footer">
         <button class="btn-outline" onclick="resetToForm()">
@@ -1084,6 +1942,20 @@
         </button>
       </div>
 
+    </section>
+
+
+    <!-- VALIDATION ERROR STATE -->
+    <section id="validation-error" class="glass-card" role="alert">
+      <div class="ve-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <h3>Validation couldn't be completed.</h3>
+      <p>Please try again.</p>
+      <button type="button" class="btn-gold" style="padding: 14px 28px; font-size: 14px;" onclick="retryValidation()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        Retry
+      </button>
     </section>
 
   </div>
@@ -1141,11 +2013,11 @@
       // Sequence loading messages over 3 seconds
       const statusText = document.getElementById('loading-status');
       const messages = [
-        "Analyzing Idea Structure & Keyword Matrix...",
-        "Checking Industry Benchmark & Market Trajectory...",
-        "Evaluating Competition Density & Moat Potential...",
-        "Calculating Risk Vector & Monetization Feasibility...",
-        "Synthesizing AI Validation Executive Report..."
+        "Analyzing your problem...",
+        "Evaluating market demand...",
+        "Studying competitive pressure...",
+        "Checking product-market fit...",
+        "Assessing execution feasibility..."
       ];
 
       let msgIndex = 0;
@@ -1487,6 +2359,7 @@ Report generated via AI Startup Intelligence System
       import { supabase } from '../config/supabase.js';
       window.supabaseClient = supabase;
     </script>
+    <script type="module" src="../js/session-guard.js"></script>
     <script src="../js/quickhand.js" defer></script>
 </body>
 </html>
